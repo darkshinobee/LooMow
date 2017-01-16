@@ -9,6 +9,7 @@
 	@yield('content')
 <footer class="container-fluid text-center">
 		@include('partials._footer')
+		@include('partials._scripts')
 </footer>
 </body>
 </html>
