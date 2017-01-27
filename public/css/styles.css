@@ -17,3 +17,48 @@ footer {
 .cenText{
 	text-align: center;
 }
+
+.divBorder{
+	border-style: groove;
+}
+
+.divBorderBottom{
+	border-bottom-style: groove;
+}
+
+.divBorderTop{
+	border-top-style: groove;
+}
+
+.divBorderRight{
+	border-right-style: groove;
+}
+
+.fsize1{
+	font-size: 1.1em;
+}
+
+.fw{
+	font-weight: bold;
+}
+.navcol{
+	background-color: #337ab7;
+}
+.navTxt{
+	color: white;
+}
+
+.ul-list{
+	list-style: none;
+}
+
+
+
+
+
+
+
+
+
+
+
