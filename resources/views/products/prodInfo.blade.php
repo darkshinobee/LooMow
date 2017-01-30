@@ -12,7 +12,7 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
-        <div class="panel-body"><img src="/images/cod2016.jpg" class="img-responsive" style="width:100%" alt="Image">
+        <div class="panel-body"><img src="/images/cod2016.jpg" class="img-responsive prod-info-img-size" alt="Image">
         </div>
       </div>
       <div class="row">

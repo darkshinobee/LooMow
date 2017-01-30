@@ -52,6 +52,32 @@ footer {
 	list-style: none;
 }
 
+.banner1{
+	background:url("/images/2k-banner.png");
+	background-size: 100%;
+
+}
+
+.banner2{
+	background:url("/images/wd2-banner.jpg");
+	background-size: 100%;
+
+}
+
+.jumboHeight{
+	max-height: 30%;
+}
+
+.thumbnail_size{
+	height: 72px;
+	width: 72px;
+}
+
+.prod-info-img-size{
+	width: 100%;
+	height: 100%;
+}
+
 
 
 
