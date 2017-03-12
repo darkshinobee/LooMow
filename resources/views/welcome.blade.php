@@ -2,52 +2,66 @@
 @section('title', 'Homepage')
 
 @section('content')
-<div class="row">
-  @for ($i=0; $i < 9; $i++)
-  <div class="col-sm-4">
-    <div class="panel panel-primary">
-      <div class="panel-heading cenText">Video Games | PS4 Games</div>
-      <div class="row">
-        <div class="col-sm-6">
-          <div class="panel-body"><img src="/images/cod2016.jpg" class="img-responsive" style="width:100%" alt="Image"><br>
-          </div>
-        </div>
-        <div class="panel-body">
-          <div class="col-sm-6">
-            <dl>
-              <dt>We Sell For:</dt>
-              <dd>N00,000</dd>
-            </dl>
-            <dl>
-              <dt>We Buy For Cash:</dt>
-              <dd>N00,000</dd>
-            </dl>
-            <dl>
-              <dt>We Buy For Voucher:</dt>
-              <dd>N00,000</dd>
-            </dl>
 
-          </div>
-        </div>
-      </div>
-      <hr>
-      <div class="row">
-        <div class="col-sm-12">
-          <p class="lead cenText">COD: Infinite Warfare</p>
-        </div>
-      </div>
-      <div class="panel-footer cenText">
-        <div class="row">
-          <div class="col-sm-6">
-            <a class="btn btn-primary btn-block btn-sm" href="#">Buy Item</a>
-          </div>
-          <div class="col-sm-6">
-            <a class="btn btn-danger btn-block btn-sm" href="#">Sell Item</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  @endfor
+<div class="content">
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<!--products-->
+				<div class="content-mid">
+					<h3>Trending Games</h3>
+					<label class="line"></label>
+					<div class="mid-popular">
+						
+						@foreach ($products as $product)
+						<div class="col-md-4 item-grid simpleCart_shelfItem">
+							<div class="mid-pop">
+								<div class="pro-img">
+									<a href="products/{{ $product->id }}"><img src="{{ ($product->image_path) }}" class="img-responsive" alt=""></a>
+								</div>
+								<div class="mid-1">
+									<div class="row">
+										<div class="col-sm-12">
+											<h6 class="text-center">{{ $product->title }}</h6>
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-sm-6">
+												<form action="{{ route('cart.addBuy', $product->id) }}">
+												<input class="btn btn-primary btn-sm btn-block" type="submit" value="Buy">
+											</form>
+										</div>
+										<div class="col-sm-6">
+											<form action="{{ route('cart.addSell', $product->id) }}">
+												<input class="btn btn-danger btn-sm btn-block" type="submit" value="Sell">
+											</form>
+										</div>
+									</div>
+									<div class="row text-center">
+										<div class="col-sm-6">
+											<p><em class="item_price">&#8358;{{ number_format($product->sell_rate,2) }}</em></p>
+										</div>
+										<div class="col-sm-6">
+											<p><em class="item_price">&#8358;{{ number_format($product->buy_rate,2) }}</em></p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						@endforeach
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!--//products-->
+				<div class="text-center">
+					{!! $products->links() !!}
+				</div>				
+			</div>
+		</div>
+	</div>
+
 </div>
-@endsection
+@stop

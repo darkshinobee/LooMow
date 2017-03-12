@@ -1,90 +1,28 @@
-/* Remove the navbar's default rounded borders and increase the bottom margin */ 
-.navbar {
-  margin-bottom: 50px;
-  border-radius: 0;
+.btn-rec{
+	border-radius: 0;
 }
 
-/* Remove the jumbotron's default bottom margin */ 
-.jumbotron {
-  margin-bottom: 0;
-}
-
-/* Add a gray background color and some padding to the footer */
-footer {
-  background-color: #f2f2f2;
-  padding: 25px;
-}
-.cenText{
-	text-align: center;
-}
-
-.divBorder{
-	border-style: groove;
-}
-
-.divBorderBottom{
-	border-bottom-style: groove;
-}
-
-.divBorderTop{
-	border-top-style: groove;
-}
-
-.divBorderRight{
-	border-right-style: groove;
-}
-
-.fsize1{
-	font-size: 1.1em;
-}
-
-.fw{
-	font-weight: bold;
-}
-.navcol{
-	background-color: #337ab7;
-}
-.navTxt{
-	color: white;
-}
-
-.ul-list{
+.ul_bullet{
 	list-style: none;
 }
 
-.banner1{
-	background:url("/images/2k-banner.png");
-	background-size: 100%;
-
+.dr{
+	color: black;
 }
 
-.banner2{
-	background:url("/images/wd2-banner.jpg");
-	background-size: 100%;
-
+.link_decor{
+	text-decoration: none;
 }
 
-.jumboHeight{
-	max-height: 30%;
+.rb{
+	border-right: 1px solid;
 }
 
-.thumbnail_size{
-	height: 72px;
-	width: 72px;
+.lb{
+	border-left: 1px solid;
 }
 
-.prod-info-img-size{
-	width: 100%;
-	height: 100%;
+.nb{
+	border-style: hidden;
+	margin-left: 20px;
 }
-
-
-
-
-
-
-
-
-
-
-
