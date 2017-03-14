@@ -45,9 +45,14 @@ class Customer extends Authenticatable
     //     return $this->hasMany('App\Blog');
     // }
 
-    public function products()
+    // public function products()
+    // {
+    //     return $this->belongsToMany('App\Customer', 'transactions', 'customer_id', 'product_id');
+    // }
+
+    public function transactions()
     {
-        return $this->belongsToMany('App\Customer', 'transactions', 'customer_id', 'product_id');
+        return $this->hasMany('App\Transaction');
     }
 
     // public function details()

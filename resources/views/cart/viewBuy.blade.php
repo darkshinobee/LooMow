@@ -69,7 +69,6 @@ $item = Auth::guard('customer')->user()
           <tr>
             <th class="text-info">
               <p>Your Voucher Value: &#8358;{{number_format($item->voucher_value,2)}}</p>
-              <span id="vvv" class="label label-success">Use Voucher</span>
             </th>
             <td></td>
             <td></td>
@@ -139,76 +138,75 @@ $item = Auth::guard('customer')->user()
                         <li>Region: {{ $item->region }}</li>  
                       </ul>
                     </div>
-                    <input type="submit" value="Proceed" class="btn btn-primary pull-right">
-                    @endif
+                    {!! Form::open(['route' => ['transaction.store']]) !!}
 
-                        <!--@if ($item->address)
-                        {!! Form::open(['route' => ['cart.checkout', $item->id], 'method' => 'POST']) !!}
-                        {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
+                    {{ Form::hidden('product_id', $buyCartItems) }}
+                    {{ Form::hidden('customer_id', $item->id) }}
+
+                    {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
+
+                    {!! Form::close() !!}
+                    @endif
+                  </div>
+
+                  <div role="tabpanel" class="tab-pane" id="newAddress"><br>
+                    <div class="row">
+                      <div class="col-sm-12">
+                        <div class="well well-sm">
+                          <ul class="ul_bullet">
+                            <li>Name: {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }}</li>
+                            <li>Email: {{ Auth::guard('customer')->user()->email }}</li>
+                          </ul>
+                        </div><br>
+
+                        {!! Form::model($item, ['route' => ['misc.update', $item->id], 'method' => 'POST']) !!}
+
+                        {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *']) }}<br>
+
+                        {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50']) }}<br>
+
+                        {{ Form::textarea('landmark', null, ['class' => 'form-control', 'placeholder' => 'Landmark', 'rows' => '4', 'cols' => '50']) }}<br>
+
+                        {{ Form::select('state', ['Abuja' => 'Abuja'], null, ['class' => 'form-control', 'placeholder' => 'Select State']) }}<br>
+
+                        {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }}<br>
+
+                        {{ Form::submit('Save & Proceed', ['class' => 'btn btn-primary pull-right']) }}
+
                         {!! Form::close() !!}
 
-                        @endif-->
                       </div>
-
-                      <div role="tabpanel" class="tab-pane" id="newAddress"><br>
-                        <div class="row">
-                          <div class="col-sm-12">
-                            <div class="well well-sm">
-                              <ul class="ul_bullet">
-                                <li>Name: {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }}</li>
-                                <li>Email: {{ Auth::guard('customer')->user()->email }}</li>
-                              </ul>
-                            </div><br>
-
-                            {!! Form::model($item, ['route' => ['misc.update', $item->id], 'method' => 'POST']) !!}
-
-                            {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *']) }}<br>
-
-                            {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50']) }}<br>
-
-                            {{ Form::textarea('landmark', null, ['class' => 'form-control', 'placeholder' => 'Landmark', 'rows' => '4', 'cols' => '50']) }}<br>
-
-                            {{ Form::select('state', ['Abuja' => 'Abuja'], null, ['class' => 'form-control', 'placeholder' => 'Select State']) }}<br>
-
-                            {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }}<br>
-
-                            {{ Form::submit('Save Details', ['class' => 'btn btn-primary pull-right']) }}
-
-                            {!! Form::close() !!}
-
-                          </div>
-                        </div><br>
-                      </div>
-                    </div>
-                  </div>                
+                    </div><br>
+                  </div>
                 </div>
-              </div>
-            </div>            
-            <div class="modal-footer">
-              <form class="pull-left">
-              Use Voucher <input type="checkbox" name="voucher_value" value="{{ $item->voucher_value }}" class="pull-left">
+              </div>                
+            </div>
+          </div><hr>
+          <h3>VOUCHER</h3><hr>
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+              <p class="pull-left">Your Voucher Value: &#8358;{{ number_format($item->voucher_value,2) }}</p>
+              @if($item->voucher_value > 0)
+              <form>
+                <input type="checkbox" name="voucher_value"> Use Voucher
               </form>
-              @if (Cart::instance('buyCart')->Count() > 0)
-              <h3 id="gg" class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
               @endif
             </div>
-          </div>
+          </div>             
+        </div>         
+        <div class="modal-footer">
+          @if (Cart::instance('buyCart')->Count() > 0)
+          <h3 class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
+          @endif
         </div>
       </div>
-      {{-- </form> --}}
-
     </div>
-    <div class="clearfix"> </div>
-    <br>
   </div>
-</div><br>
 
-<script>
-$(document).ready(function() {
-  $("#vvv").click(function f1() {
-        alert("tt");
-      });
-});
-</script>
+</div>
+<div class="clearfix"> </div>
+<br>
+</div>
+</div><br>
 
 @endsection

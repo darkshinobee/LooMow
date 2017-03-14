@@ -21,6 +21,9 @@ Route::get('/', 'PageController@getIndex');
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
+Route::resource('transaction', 'TransactionController');
+
+Route::post('/transaction/{pid}/{cid}', ['as' => 'transaction.addTrans', 'uses' => 'TransactionController@addTrans']);
 
 Route::get('cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
 Route::get('cart/{id}/addSellCart', ['as' => 'cart.addSell', 'uses' => 'CartController@addSellCart']);
