@@ -14,7 +14,7 @@ class AddStatusToTransactions extends Migration
     public function up()
     {
         Schema::table('transactions', function($table) {
-            $table->string('status')->after('customer_id');
+            $table->string('status')->after('customer_id')->nullable();
         });
     }
 

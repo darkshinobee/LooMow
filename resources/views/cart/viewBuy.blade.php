@@ -2,8 +2,8 @@
 @section('title', 'Buy Shopping Cart')
 
 @section('content')
-@php
-$item = Auth::guard('customer')->user()
+  @php
+  $item = Auth::guard('customer')->user()
 @endphp
 
 <div class="check-out">
@@ -28,43 +28,43 @@ $item = Auth::guard('customer')->user()
           </tr>
           <tr class="cart-header">
             @foreach($buyCartItems as $buyCartItem)
-            <td class="ring-in"><a href="#" class="at-in"><img src="{{ asset('/images/'.$buyCartItem->options->platform.'/'.$buyCartItem->options->image_name) }}" class="img-responsive" alt=""></a>
-              <div class="sed">
-                <h5><a href="#">{{ $buyCartItem->name }}</a></h5><br>
-                <ul class="ul_bullet dr">
-                  <li>Platform - {{ $buyCartItem->options->platform }}</li>
-                  <li>Developer - {{ $buyCartItem->options->developer }}</li>
-                  <li>Genre - {{ $buyCartItem->options->genre }}</li>
-                </ul>
+              <td class="ring-in"><a href="#" class="at-in"><img src="{{ asset('/images/'.$buyCartItem->options->platform.'/'.$buyCartItem->options->image_name) }}" class="img-responsive" alt=""></a>
+                <div class="sed">
+                  <h5><a href="#">{{ $buyCartItem->name }}</a></h5><br>
+                  <ul class="ul_bullet dr">
+                    <li>Platform - {{ $buyCartItem->options->platform }}</li>
+                    <li>Developer - {{ $buyCartItem->options->developer }}</li>
+                    <li>Genre - {{ $buyCartItem->options->genre }}</li>
+                  </ul>
 
-              </div>
-              <div class="clearfix"> </div>
-            </td>
-            <td class="dr">&#8358;{{ number_format($buyCartItem->price, 2) }}</td>
-            <td>
-              {{-- <div class="input-prepend-append dr">
+                </div>
+                <div class="clearfix"> </div>
+              </td>
+              <td class="dr">&#8358;{{ number_format($buyCartItem->price, 2) }}</td>
+              <td>
+                {{-- <div class="input-prepend-append dr">
                 <input class="text-center" type="number" min="1" max="{{ $buyCartItem->options->quantity }}" id="prod_qty" value="{{ $buyCartItem->qty }}">
               </div> --}}
               {{-- <label class="label label-default">{{ $buyCartItem->qty }}</label> --}}
               {!! Form::open(['route' => ['cart.updateBuy', $buyCartItem->rowId], 'method' => 'PUT']) !!}
               <select class="form-control" name="qty">
                 @for ($i=1; $i <= $buyCartItem->options->quantity; $i++)
-                <option value="{{$i}}" @if($i==$buyCartItem->qty) selected @endif >{{$i}}</option>
-                @endfor
-              </select><br>
-              {{ Form::submit('Update', ['class' => 'btn btn-default btn-sm pull-right']) }}
-              {!! Form::close() !!}
-            </td>
-            @php
-            $buyTotal = $buyCartItem->price * $buyCartItem->qty
-            @endphp
-            <td class="dr">&#8358;{{ number_format($buyTotal,2) }}</td>
-            <td>
-              {!! Form::open(['route' => ['cart.removeBuy', $buyCartItem->rowId], 'method' => 'POST']) !!}
-              <button class="btn btn-danger btn-sm pull-right">Remove</button>
-              {!! Form::close() !!}
-            </td>
-          </tr>
+                  <option value="{{$i}}" @if($i==$buyCartItem->qty) selected @endif >{{$i}}</option>
+                  @endfor
+                </select><br>
+                {{ Form::submit('Update', ['class' => 'btn btn-default btn-sm pull-right']) }}
+                {!! Form::close() !!}
+              </td>
+              @php
+              $buyTotal = $buyCartItem->price * $buyCartItem->qty
+              @endphp
+              <td class="dr">&#8358;{{ number_format($buyTotal,2) }}</td>
+              <td>
+                {!! Form::open(['route' => ['cart.removeBuy', $buyCartItem->rowId], 'method' => 'POST']) !!}
+                <button class="btn btn-danger btn-sm pull-right">Remove</button>
+                {!! Form::close() !!}
+              </td>
+            </tr>
           @endforeach
           <tr>
             <th class="text-info">
@@ -76,14 +76,14 @@ $item = Auth::guard('customer')->user()
             @php
             $deliCharge = 100
             @endphp
-            <th>Delivery Charge: 
+            <th>Delivery Charge:
               @if (Cart::instance('buyCart')->Count() > 0)
-              <span class="pull-right">&#8358;{{number_format($deliCharge,2)}}</span>
+                <span class="pull-right">&#8358;{{number_format($deliCharge,2)}}</span>
               @endif
               <br>
-              Total: 
+              Total:
               @if (Cart::instance('buyCart')->Count() > 0)
-              <span class="pull-right">&#8358;{{ number_format(Cart::subtotal() + $deliCharge,2)}}</span>
+                <span class="pull-right">&#8358;{{ number_format(Cart::subtotal() + $deliCharge,2)}}</span>
               @endif
             </th>
           </tr>
@@ -125,27 +125,27 @@ $item = Auth::guard('customer')->user()
                             <li>Name: {{ $item->first_name .' '. $item->last_name }}</li>
                             <li>Email: {{ $item->email }}</li>
                             @if (!$item->address)
-                          </ul>
-                        </div>
-                        <h4>Click Next Tab To Add Details</h4>
+                            </ul>
+                          </div>
+                          <h4>Click Next Tab To Add Details</h4>
                         @else
-                        <li>Phone: {{ $item->phone }}</li>
-                        <li>Address: {{ $item->address }}</li>
-                        @if ($item->landmark)
-                        <li>Landmark: {{ $item->landmark }}</li>
-                        @endif
-                        <li>State: {{ $item->state }}</li>
-                        <li>Region: {{ $item->region }}</li>  
-                      </ul>
-                    </div>
-                    {!! Form::open(['route' => ['transaction.store']]) !!}
+                          <li>Phone: {{ $item->phone }}</li>
+                          <li>Address: {{ $item->address }}</li>
+                          @if ($item->landmark)
+                            <li>Landmark: {{ $item->landmark }}</li>
+                          @endif
+                          <li>State: {{ $item->state }}</li>
+                          <li>Region: {{ $item->region }}</li>
+                        </ul>
+                      </div>
+                      {!! Form::open(['route' => ['transaction.store']]) !!}
 
-                    {{ Form::hidden('product_id', $buyCartItems) }}
-                    {{ Form::hidden('customer_id', $item->id) }}
+                      {{ Form::hidden('product_id', $buyCartItems) }}
+                      {{ Form::hidden('customer_id', $item->id) }}
 
-                    {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
+                      {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
 
-                    {!! Form::close() !!}
+                      {!! Form::close() !!}
                     @endif
                   </div>
 
@@ -179,7 +179,7 @@ $item = Auth::guard('customer')->user()
                     </div><br>
                   </div>
                 </div>
-              </div>                
+              </div>
             </div>
           </div><hr>
           <h3>VOUCHER</h3><hr>
@@ -187,16 +187,16 @@ $item = Auth::guard('customer')->user()
             <div class="col-sm-8 col-sm-offset-2">
               <p class="pull-left">Your Voucher Value: &#8358;{{ number_format($item->voucher_value,2) }}</p>
               @if($item->voucher_value > 0)
-              <form>
-                <input type="checkbox" name="voucher_value"> Use Voucher
-              </form>
+                <form>
+                  <input type="checkbox" name="voucher_value"> Use Voucher
+                </form>
               @endif
             </div>
-          </div>             
-        </div>         
+          </div>
+        </div>
         <div class="modal-footer">
           @if (Cart::instance('buyCart')->Count() > 0)
-          <h3 class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
+            <h3 class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
           @endif
         </div>
       </div>
