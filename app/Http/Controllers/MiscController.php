@@ -100,9 +100,10 @@ class MiscController extends Controller
 
             //Redirection
         // return redirect()->route('cart.checkout', $customer->id);
-        return redirect()->action(
-            'CartController@checkout', ['id' => $customer->id]
-            );
+        // return redirect()->action(
+        //     'CartController@checkout', ['id' => $customer->id]
+        //     );
+        return back();
     }
 
     /**

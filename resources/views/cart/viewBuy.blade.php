@@ -140,9 +140,10 @@
                       </div>
                       {!! Form::open(['route' => ['transaction.store']]) !!}
 
-                      {{ Form::hidden('product_id', $buyCartItems) }}
-                      {{ Form::hidden('customer_id', $item->id) }}
-
+                      @foreach ($buyCartItems as $bci)
+                        {{ Form::hidden('product_id', $bci->id) }}
+                        {{ Form::hidden('customer_id', $item->id) }}
+                      @endforeach
                       {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
 
                       {!! Form::close() !!}
@@ -159,7 +160,7 @@
                           </ul>
                         </div><br>
 
-                        {!! Form::model($item, ['route' => ['misc.update', $item->id], 'method' => 'POST']) !!}
+                        {!! Form::open(['route' => ['misc.update', $item->id], 'method' => 'PUT']) !!}
 
                         {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *']) }}<br>
 

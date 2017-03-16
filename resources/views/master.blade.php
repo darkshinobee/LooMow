@@ -9,6 +9,7 @@
 	<div class="col-md-8 col-md-offset-2 text-center">
 	@include('partials._prompts')
 	</div>
+	<div class="clearfix"></div>
 	@yield('content')
 	<footer>
 		@include('partials._footer')

@@ -7,6 +7,7 @@ use App\Product;
 use App\Customer;
 use App\Transaction;
 use Session;
+use Paystack;
 
 class TransactionController extends Controller
 {
@@ -47,19 +48,18 @@ class TransactionController extends Controller
         //     ));
 
         //Store To DB
-        
-            foreach ($request->product_id as $pid->id) {
+            foreach ($request as $request) {
 
             $transact = new Transaction();
 
-            $transact->reference_no = "ref";
+            $transact->reference_no = Paystack::genTranxRef();
             $transact->description = "des";
-            $transact->product_id = $pid->id;
+            $transact->product_id = $request->product_id;
             $transact->customer_id = $request->customer_id;
             $transact->status = "pending";
 
             $transact->save();
-        }
+          }
 
         // return redirect()->action(
         //     'PaymentController@someMethod', ['id' => $id]);
