@@ -13,7 +13,7 @@
 					<h3>Trending Games</h3>
 					<label class="line"></label>
 					<div class="mid-popular">
-						
+
 						@foreach ($products as $product)
 						<div class="col-md-4 item-grid simpleCart_shelfItem">
 							<div class="mid-pop">
@@ -58,7 +58,7 @@
 				<!--//products-->
 				<div class="text-center">
 					{!! $products->links() !!}
-				</div>				
+				</div>
 			</div>
 		</div>
 	</div>

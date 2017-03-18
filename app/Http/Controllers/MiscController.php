@@ -92,7 +92,7 @@ class MiscController extends Controller
         $customer->state = $request->input('state');
         $customer->region = $request->input('region');
 
-            //Save changes
+        //Save changes
         $customer->save();
 
             //Set flash message

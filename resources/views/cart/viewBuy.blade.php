@@ -138,12 +138,17 @@
                           <li>Region: {{ $item->region }}</li>
                         </ul>
                       </div>
-                      {!! Form::open(['route' => ['transaction.store']]) !!}
+                      {{-- {!! Form::open(['route' => ['transaction.store']]) !!} --}}
+                      {!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
 
-                      @foreach ($buyCartItems as $bci)
-                        {{ Form::hidden('product_id', $bci->id) }}
-                        {{ Form::hidden('customer_id', $item->id) }}
-                      @endforeach
+                      {{ Form::hidden('customer_id', $item->id) }}
+                      {{ Form::hidden('email', $item->email) }}
+                      {{ Form::hidden('amount', 20000) }}
+                      {{ Form::hidden('quantity', 1) }}
+                      {{ Form::hidden('reference_no', Paystack::genTranxRef()) }}
+                      {{ Form::hidden('key', config('paystack.secretKey')) }}
+                      {{ csrf_field() }}
+
                       {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
 
                       {!! Form::close() !!}

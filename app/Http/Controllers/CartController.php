@@ -24,10 +24,7 @@ class CartController extends Controller
 
     public function index()
     {
-        // $buyCartItems = Cart::instance('buyCart')->content();
-        // $sellCartItems = Cart::instance('sellCart')->content();
 
-        // return view('cart.index', compact('buyCartItems', 'sellCartItems'));
     }
 
     public function viewBuyCart()
@@ -82,17 +79,7 @@ class CartController extends Controller
      */
     public function edit($id)
     {
-        // $product = Product::find($id);
 
-        // // Cart::add($id, $product->title, 1, $product->sell_rate);
-        // Cart::add(['id' => $id, 'name' => $product->title, 'qty' => 1, 
-        //     'price' => $product->sell_rate, 
-        //     'options' => ['platform' => $product->platform, 
-        //     'developer' => $product->developer, 
-        //     'genre' => $product->genre,
-        //     'quantity' => $product->quantity, 
-        //     'image_name' => $product->image_name]]);
-        // return back();
     }
 
     /**
@@ -134,16 +121,14 @@ class CartController extends Controller
     {
         $productBuy = Product::find($id);
 
-        // Cart::add($id, $product->title, 1, $product->sell_rate);
-        // Cart::instance('shopping')->add('192ao12', 'Product 1', 1, 9.99);
         if ($productBuy->quantity > Cart::instance('buyCart')->count()) {
 
-        Cart::instance('buyCart')->add(['id' => $id, 'name' => $productBuy->title, 'qty' => 1, 
-            'price' => $productBuy->sell_rate, 
-            'options' => ['platform' => $productBuy->platform, 
-            'developer' => $productBuy->developer, 
+        Cart::instance('buyCart')->add(['id' => $id, 'name' => $productBuy->title, 'qty' => 1,
+            'price' => $productBuy->sell_rate,
+            'options' => ['platform' => $productBuy->platform,
+            'developer' => $productBuy->developer,
             'genre' => $productBuy->genre,
-            'quantity' => $productBuy->quantity, 
+            'quantity' => $productBuy->quantity,
             'image_name' => $productBuy->image_name]]);
     }
         return back();
@@ -153,15 +138,14 @@ class CartController extends Controller
     {
         $productSell = Product::find($id);
 
-        // Cart::add($id, $product->title, 1, $product->sell_rate);
         if ($productSell->quantity > Cart::instance('sellCart')->count()) {
-        
-        Cart::instance('sellCart')->add(['id' => $id, 'name' => $productSell->title, 'qty' => 1, 
-            'price' => $productSell->buy_rate, 
-            'options' => ['platform' => $productSell->platform, 
-            'developer' => $productSell->developer, 
+
+        Cart::instance('sellCart')->add(['id' => $id, 'name' => $productSell->title, 'qty' => 1,
+            'price' => $productSell->buy_rate,
+            'options' => ['platform' => $productSell->platform,
+            'developer' => $productSell->developer,
             'genre' => $productSell->genre,
-            'quantity' => $productSell->quantity, 
+            'quantity' => $productSell->quantity,
             'image_name' => $productSell->image_name]]);
     }
         return back();
@@ -178,10 +162,4 @@ class CartController extends Controller
         Cart::instance('sellCart')->update($id, $request->qty);
         return back();
     }
-
-    // public function checkout($id)
-    // {
-    //     $cart = Cart::instance('buyCart')->content();
-    //     return view('cart.checkout')->withCart($cart);
-    // }
 }
