@@ -5,6 +5,7 @@
 <link rel="stylesheet" type="text/css" href="/css/styles.css">
 <!--theme-style-->
 <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="/css/style1.css">
 
 <script>
 window.Laravel = <?php echo json_encode([
@@ -27,15 +28,3 @@ $(function() {
 	$('a.picture').Chocolat();
 });
 </script>
-
-
-
-
-
-
-
-
-
-
-
-
