@@ -107,16 +107,12 @@
               <h3>YOUR DETAILS</h3><hr>
               <div class="row">
                 <div class="col-sm-8 col-sm-offset-2">
-
-
                   <div>
-
                     <!-- Nav tabs -->
                     <ul class="nav nav-tabs" role="tablist">
                       <li role="presentation" class="active"><a href="#existingAddress" aria-controls="existingAddress" role="tab" data-toggle="tab">Existing Details</a></li>
                       <li role="presentation"><a href="#newAddress" aria-controls="newAddress" role="tab" data-toggle="tab">Update Details</a></li>
                     </ul>
-
                     <!-- Tab panes -->
                     <div class="tab-content">
                       <div role="tabpanel" class="tab-pane active" id="existingAddress"><br>
@@ -138,20 +134,6 @@
                           <li>Region: {{ $item->region }}</li>
                         </ul>
                       </div>
-                      {{-- {!! Form::open(['route' => ['transaction.store']]) !!} --}}
-                      {!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
-
-                      {{ Form::hidden('customer_id', $item->id) }}
-                      {{ Form::hidden('email', $item->email) }}
-                      {{ Form::hidden('amount', 20000) }}
-                      {{ Form::hidden('quantity', 1) }}
-                      {{ Form::hidden('reference_no', Paystack::genTranxRef()) }}
-                      {{ Form::hidden('key', config('paystack.secretKey')) }}
-                      {{ csrf_field() }}
-
-                      {{ Form::submit('Proceed', ['class' => 'btn btn-primary pull-right']) }}
-
-                      {!! Form::close() !!}
                     @endif
                   </div>
 
@@ -177,7 +159,7 @@
 
                         {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }}<br>
 
-                        {{ Form::submit('Save & Proceed', ['class' => 'btn btn-primary pull-right']) }}
+                        {{ Form::submit('Save Details', ['class' => 'btn btn-primary pull-right']) }}
 
                         {!! Form::close() !!}
 
@@ -190,20 +172,44 @@
           </div><hr>
           <h3>VOUCHER</h3><hr>
           <div class="row">
-            <div class="col-sm-8 col-sm-offset-2">
+            <div class="col-sm-6">
               <p class="pull-left">Your Voucher Value: &#8358;{{ number_format($item->voucher_value,2) }}</p>
-              @if($item->voucher_value > 0)
-                <form>
-                  <input type="checkbox" name="voucher_value"> Use Voucher
-                </form>
+            </div>
+            <div class="col-sm-6">
+              @if (Cart::instance('buyCart')->Count() > 0)
+                <h3 class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
               @endif
+            </div>
+            <div class="row">
+              <div class="col-sm-10 col-sm-offset-2">
+                <div class="pull-left">
+                  @if($item->voucher_value > 0)
+                    <form>
+                      <input type="checkbox" name="voucher_value"> Use Voucher
+                    </form>
+                  @endif
+                </div>
+              </div>
             </div>
           </div>
         </div>
         <div class="modal-footer">
-          @if (Cart::instance('buyCart')->Count() > 0)
-            <h3 class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
-          @endif
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              {!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
+
+              {{ Form::hidden('email', $item->email) }}
+              {{ Form::hidden('amount', (Cart::subtotal() + $deliCharge)*100) }}
+              {{ Form::hidden('reference_no', Paystack::genTranxRef()) }}
+              {{ Form::hidden('key', config('paystack.secretKey')) }}
+
+              {{ csrf_field() }}
+
+              {{ Form::submit('Pay', ['class' => 'btn btn-success btn-block']) }}
+
+              {!! Form::close() !!}
+            </div>
+          </div>
         </div>
       </div>
     </div>
