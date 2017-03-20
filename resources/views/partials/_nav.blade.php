@@ -2,7 +2,7 @@
   <div class="container">
     <div class="head">
       <div class="logo">
-        <a href="#"><img src="/images/game_logo.jpg" alt=""></a> 
+        <a href="#"><img src="/images/game_logo.jpg" alt=""></a>
       </div>
     </div>
   </div>
@@ -12,11 +12,11 @@
         <ul>
           @if (Auth::guard('customer')->check())
           <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" 
+            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
             href="">Hello {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }} <span class="caret"></span>
           </a>
           <ul class="dropdown-menu" role="menu">
-            <li><a href="#">My Account</a></li>
+            <li><a href="/account">My Account</a></li>
             <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">Logout</a>
               <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
@@ -34,7 +34,7 @@
       </ul>
     </div>
 
-    <div class="col-sm-5 header-social">    
+    <div class="col-sm-5 header-social">
       <ul >
         <li><a href="#"><i></i></a></li>
         <li><a href="#"><i class="ic1"></i></a></li>
@@ -64,7 +64,7 @@
             <span class="icon-bar"></span>
           </button>
 
-        </div> 
+        </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
           <ul class="nav navbar-nav nav_1">
@@ -108,6 +108,6 @@
         </a>
       </div>
     </div>
-  </div>  
-</div>  
+  </div>
+</div>
 </div>

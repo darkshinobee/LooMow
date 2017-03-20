@@ -32,14 +32,9 @@ class PageController extends Controller
     	return view('pages.contact');
     }
 
-    public function getT1()
+    public function getAccount()
     {
-    	return view('test');
-    }
-
-    public function getT2()
-    {
-    	return view('test2');
+    	return view('customer.account');
     }
 
     public function login()

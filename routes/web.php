@@ -10,13 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('login', 'PageController@login');
-Route::get('register', 'PageController@register');
-Route::get('t2', 'PageController@getT2');
-Route::get('t1', 'PageController@getT1');
-Route::get('contact', 'PageController@getContact');
-Route::get('about', 'PageController@getAbout');
+Route::get('/login', 'PageController@login');
+Route::get('/register', 'PageController@register');
+Route::get('/contact', 'PageController@getContact');
+Route::get('/about', 'PageController@getAbout');
 Route::get('/', 'PageController@getIndex');
+
+Route::get('/account', 'PageController@getAccount');
 
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');

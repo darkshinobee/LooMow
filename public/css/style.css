@@ -64,6 +64,9 @@ h1,h2,h3,h4,h5,h6,label,p{
 .header-login ul li a:hover {
     color: royalblue;
 }
+ul .dropdown-menu li a{
+    color: royalblue;
+}
 .header-top {
     background-color: #2E2E2E;
 	padding: 0.3em 0;
