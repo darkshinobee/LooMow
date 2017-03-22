@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Paystack;
+use App\Transaction;
 
 class PaymentController extends Controller
 {
@@ -25,16 +26,20 @@ class PaymentController extends Controller
     public function handleGatewayCallback()
     {
     	$paymentDetails = Paystack::getPaymentData();
-      dd($paymentDetails['data']['status']);
-      // dd($paymentDetails);
-      // $pd = new Paystack::getPaymentData();
-      // dd($pd->status);
+      $tref = $paymentDetails['data']['reference'];
+
+      if ($paymentDetails['data']['status'] == "success") {
+        return redirect()->action('TransactionController@myTest', $tref);
+      }else {
+        dd($paymentDetails);
+      }
+
 
     	// dd($paymentDetails);
         // Now you have the payment details,
         // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then redirect or do whatever you want
         // return redirect()->action('PageController@getIndex');
-        return view('pages.about', compact('paymentDetails'));
+        // return view('pages.about', compact('paymentDetails'));
     }
 }

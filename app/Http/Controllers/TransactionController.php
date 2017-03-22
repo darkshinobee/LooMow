@@ -9,6 +9,7 @@ use App\Transaction;
 use Session;
 use Paystack;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Auth;
 
 class TransactionController extends Controller
 {
@@ -47,28 +48,36 @@ class TransactionController extends Controller
     //     'customer_id' => 'required',
     //     'status' => 'required'
     //     ));
+  }
+
+  public function myTest(Request $request)
+  {
+    $customer = Auth::guard('customer')->user();
+    // $paymentDet = Paystack::getPaymentData();
+    // $tref = $paymentDet['data']['reference'];
 
     //Store To DB
     $buyCartItems = Cart::instance('buyCart')->content();
-    // $tref = Paystack::genTranxRef();
 
     foreach ($buyCartItems as $bc) {
 
       $transact = new Transaction();
 
-      $transact->reference_no = $request->reference_no;
-      $transact->description = "des";
+      $transact->reference_no = $request->tref;
+      $transact->quantity = $bc->qty;
       $transact->product_id = $bc->id;
-      $transact->customer_id = $request->customer_id;
-      $transact->status = "pending";
+      $transact->customer_id = $customer->id;
+      $transact->status = "Awaiting Delivery";
 
       $transact->save();
     }
 
-    // return redirect()->action(
-    //     'PaymentController@someMethod', ['id' => $id]);
     Cart::instance('buyCart')->destroy();
-    return redirect()->action('PaymentController@redirectToGateway()');
+
+    //Set flash message
+    Session::flash('success', 'Payment Successful');
+
+    return redirect()->action('PageController@getIndex');
   }
 
   /**

@@ -199,8 +199,6 @@
             <div class="col-sm-6 col-sm-offset-3">
               {!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
 
-              {{ Form::hidden('first_name', $item->first_name) }}
-              {{ Form::hidden('last_name', $item->last_name) }}
               {{ Form::hidden('email', $item->email) }}
               {{ Form::hidden('amount', (Cart::subtotal() + $deliCharge)*100) }}
               {{ Form::hidden('reference_no', Paystack::genTranxRef()) }}

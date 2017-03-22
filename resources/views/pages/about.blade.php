@@ -19,7 +19,7 @@
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</p><br>
 		@php
-			echo $paymentDetails['status'];
+			echo $customer = Auth::guard('customer')->user()->first_name;
 		@endphp
 	</div>
 </div>

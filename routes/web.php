@@ -26,7 +26,8 @@ Route::resource('transaction', 'TransactionController');
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
 
-Route::post('/transaction/{pid}/{cid}', ['as' => 'transaction.addTrans', 'uses' => 'TransactionController@addTrans']);
+Route::get('/transaction', 'TransactionController@myTest');
+// Route::get('/transaction/{id}', ['as' => 'transaction.done', 'uses' => 'TransactionController@myTest']);
 
 Route::get('/cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
 Route::get('/cart/{id}/addSellCart', ['as' => 'cart.addSell', 'uses' => 'CartController@addSellCart']);
