@@ -70,7 +70,7 @@
           <ul class="nav navbar-nav nav_1">
             <li><a class="color" href="/">Home</a></li>
             <li class="active"><a class="color1" href="#">Games</a></li>
-            <li><a class="color4" href="#">About</a></li>
+            <li><a class="color4" href="/about">About</a></li>
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
           <div class="input-group">

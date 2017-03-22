@@ -2,11 +2,14 @@
 @section('title', 'About Us')
 
 @section('content')
-<h1>About Us</h1>
+<h1 class="text-center">About Us</h1>
 <hr>
+<div class="container">
+
+
 <div class="row">
-	<div class="col-sm-10 divBorder">
-		<h4>Some Nonsense</h4>
+	<div class="col-md-12">
+		<h3>Some Nonsense</h3><br>
 		<p class="lead">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -14,7 +17,11 @@
 			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
 			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
+		</p><br>
+		@php
+			echo $paymentDetails['status'];
+		@endphp
 	</div>
+</div>
 </div>
 @stop

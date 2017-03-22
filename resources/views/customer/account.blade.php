@@ -16,7 +16,7 @@
             <div class="panel-heading">
               <h3 class="panel-title">Account Information</h3>
             </div>
-            <div class="panel-body" style="overflow-y: scroll; height:120px">
+            <div class="panel-body" style="overflow-y: scroll; height:130px">
               <p>Name: {{$customer->first_name.' '.$customer->last_name}}</p>
               <p>Email: {{$customer->email}}</p>
               <p>Phone Number: {{$customer->phone}}</p>
@@ -29,11 +29,12 @@
             <div class="panel-heading">
               <h3 class="panel-title">My Address</h3>
             </div>
-            <div class="panel-body" style="overflow-y: scroll; height:120px">
+            <div class="panel-body" style="overflow-y: scroll; height:130px">
               <p>Address: {{$customer->address}}</p>
               <p>Landmark: {{$customer->landmark}}</p>
               <p>State: {{$customer->state}}</p>
               <p>Region: {{$customer->region}}</p>
+              <a href="#">Change Address</a>
             </div>
           </div>
         </div>

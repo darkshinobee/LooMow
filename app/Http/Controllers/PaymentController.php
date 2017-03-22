@@ -25,11 +25,16 @@ class PaymentController extends Controller
     public function handleGatewayCallback()
     {
     	$paymentDetails = Paystack::getPaymentData();
+      dd($paymentDetails['data']['status']);
+      // dd($paymentDetails);
+      // $pd = new Paystack::getPaymentData();
+      // dd($pd->status);
 
-    	dd($paymentDetails);
+    	// dd($paymentDetails);
         // Now you have the payment details,
         // you can store the authorization_code in your db to allow for recurrent subscriptions
         // you can then redirect or do whatever you want
-        return redirect()->action('PageController@getIndex');
+        // return redirect()->action('PageController@getIndex');
+        return view('pages.about', compact('paymentDetails'));
     }
 }
