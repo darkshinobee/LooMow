@@ -42,10 +42,6 @@
               </td>
               <td class="dr">&#8358;{{ number_format($buyCartItem->price, 2) }}</td>
               <td>
-                {{-- <div class="input-prepend-append dr">
-                <input class="text-center" type="number" min="1" max="{{ $buyCartItem->options->quantity }}" id="prod_qty" value="{{ $buyCartItem->qty }}">
-              </div> --}}
-              {{-- <label class="label label-default">{{ $buyCartItem->qty }}</label> --}}
               {!! Form::open(['route' => ['cart.updateBuy', $buyCartItem->rowId], 'method' => 'PUT']) !!}
               <select class="form-control" name="qty">
                 @for ($i=1; $i <= $buyCartItem->options->quantity; $i++)
