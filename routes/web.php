@@ -23,13 +23,16 @@ Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
 Route::resource('transaction', 'TransactionController');
 
+Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
+Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
+
 Route::post('/transaction/{pid}/{cid}', ['as' => 'transaction.addTrans', 'uses' => 'TransactionController@addTrans']);
 
-Route::get('cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
-Route::get('cart/{id}/addSellCart', ['as' => 'cart.addSell', 'uses' => 'CartController@addSellCart']);
+Route::get('/cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
+Route::get('/cart/{id}/addSellCart', ['as' => 'cart.addSell', 'uses' => 'CartController@addSellCart']);
 
-Route::post('cart/{id}/removeBuy', ['as' => 'cart.removeBuy', 'uses' => 'CartController@removeBuy']);
-Route::post('cart/{id}/removeSell', ['as' => 'cart.removeSell', 'uses' => 'CartController@removeSell']);
+Route::post('/cart/{id}/removeBuy', ['as' => 'cart.removeBuy', 'uses' => 'CartController@removeBuy']);
+Route::post('/cart/{id}/removeSell', ['as' => 'cart.removeSell', 'uses' => 'CartController@removeSell']);
 
 Route::put('/cart/{id}/updateBuy', ['as' => 'cart.updateBuy', 'uses' => 'CartController@updateBuy']);
 Route::put('/cart/{id}/updateSell', ['as' => 'cart.updateSell', 'uses' => 'CartController@updateSell']);
@@ -40,8 +43,8 @@ Route::get('viewSell', 'CartController@viewSellCart');
 Route::post('/checkout/{id}', ['as' => 'cart.checkout', 'uses' => 'CartController@checkout']);
 Route::get('/checkout/{id}', ['as' => 'cart.checkout', 'uses' => 'CartController@checkout']);
 
-Route::get('products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
-Route::post('products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store' ]);
+Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store' ]);
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
