@@ -10,6 +10,7 @@ use Session;
 use Paystack;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
+use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -50,11 +51,25 @@ class TransactionController extends Controller
     //     ));
   }
 
-  public function myTest(Request $request)
+  public function getOrders()
   {
+
+    $trans = Transaction::all();
+    // $t = $trans->get('id');
+    $ids = DB::table('transactions')->pluck('product_id');
+    foreach ($ids as $id) {
+      $prods = Product::find($id);
+    }
+
+    // $ps = $prods->where(['id'],[$t]);
+    // $try = $transact->id;
+    return view('customer.orders', compact('trans', 'prods'));
+  }
+
+  public function checkout($tref)
+  {
+    // dd($tref);
     $customer = Auth::guard('customer')->user();
-    // $paymentDet = Paystack::getPaymentData();
-    // $tref = $paymentDet['data']['reference'];
 
     //Store To DB
     $buyCartItems = Cart::instance('buyCart')->content();
@@ -63,7 +78,7 @@ class TransactionController extends Controller
 
       $transact = new Transaction();
 
-      $transact->reference_no = $request->tref;
+      $transact->reference_no = $tref;
       $transact->quantity = $bc->qty;
       $transact->product_id = $bc->id;
       $transact->customer_id = $customer->id;

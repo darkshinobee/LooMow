@@ -29,7 +29,7 @@ class PaymentController extends Controller
       $tref = $paymentDetails['data']['reference'];
 
       if ($paymentDetails['data']['status'] == "success") {
-        return redirect()->action('TransactionController@myTest', $tref);
+        return redirect()->action('TransactionController@checkout', $tref);
       }else {
         dd($paymentDetails);
       }

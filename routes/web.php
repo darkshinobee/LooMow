@@ -17,16 +17,17 @@ Route::get('/about', 'PageController@getAbout');
 Route::get('/', 'PageController@getIndex');
 
 Route::get('/account', 'PageController@getAccount');
+Route::get('/orders', 'TransactionController@getOrders');
 
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
-Route::resource('transaction', 'TransactionController');
+// Route::resource('transaction', 'TransactionController');
 
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
 
-Route::get('/transaction', 'TransactionController@myTest');
+Route::get('/transaction/{ref}', 'TransactionController@checkout');
 // Route::get('/transaction/{id}', ['as' => 'transaction.done', 'uses' => 'TransactionController@myTest']);
 
 Route::get('/cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
@@ -40,9 +41,6 @@ Route::put('/cart/{id}/updateSell', ['as' => 'cart.updateSell', 'uses' => 'CartC
 
 Route::get('viewBuy', 'CartController@viewBuyCart');
 Route::get('viewSell', 'CartController@viewSellCart');
-
-Route::post('/checkout/{id}', ['as' => 'cart.checkout', 'uses' => 'CartController@checkout']);
-Route::get('/checkout/{id}', ['as' => 'cart.checkout', 'uses' => 'CartController@checkout']);
 
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store' ]);

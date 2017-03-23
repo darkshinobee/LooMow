@@ -16,7 +16,6 @@ class PageController extends Controller
 
     public function getIndex()
     {
-    	// return view('welcome');
         $products = Product::orderby('id', 'desc')->paginate(6);
         // $products = Product::all();
         return view('welcome')->withProducts($products);

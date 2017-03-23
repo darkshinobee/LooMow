@@ -16,7 +16,7 @@ class Customer extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password', 'phone', 
+        'first_name', 'last_name', 'email', 'password', 'phone',
         'address', 'landmark', 'state', 'region', 'voucher_value',
     ];
 
@@ -40,10 +40,10 @@ class Customer extends Authenticatable
         $this->notify(new CustomerResetPassword($token));
     }
 
-    // public function blogs()
-    // {
-    //     return $this->hasMany('App\Blog');
-    // }
+    public function blogs()
+    {
+        return $this->hasMany('App\Blog');
+    }
 
     // public function products()
     // {

@@ -29,3 +29,8 @@
 .ddown_text_color{
 	color: blue;
 }
+
+.orderPicSize{
+	width: 130px;
+	height: 175px;
+}
