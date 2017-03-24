@@ -8,10 +8,9 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-        @php
-          dd($customer);
-        @endphp
-        @foreach ($ps as $o)
+
+        @foreach ($customer->transactions as $order)
+
         <div class="table-responsive">
           <table class="table table-condensed">
             <thead>
@@ -20,7 +19,7 @@
               <th>Order Total</th>
             </thead>
             <tr>
-              <td></td>
+              <td>{{ $order->product_id }}</td>
               <td></td>
               <td></td>
             </tr>

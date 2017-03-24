@@ -16,7 +16,7 @@ class Product extends Model
     //     return $this->belongsToMany('App\Customer', 'transactions', 'product_id', 'customer_id');
     // }
 
-    public function transaction()
+    public function transactions()
     {
     	return $this->belongsTo('App\Transaction');
     }

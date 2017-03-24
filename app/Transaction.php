@@ -18,6 +18,6 @@ class Transaction extends Model
 
     public function products()
     {
-    	return $this->hasMany('App\Product');
+    	return $this->hasOne('App\Product');
     }
 }

@@ -55,14 +55,8 @@ class TransactionController extends Controller
   {
 
     $trans = Transaction::all();
-    // $t = $trans->get('id');
-    $ids = DB::table('transactions')->pluck('product_id');
-    foreach ($ids as $id) {
-      $prods = Product::find($id);
-    }
+    $prods = Product::all();
 
-    // $ps = $prods->where(['id'],[$t]);
-    // $try = $transact->id;
     return view('customer.orders', compact('trans', 'prods'));
   }
 
