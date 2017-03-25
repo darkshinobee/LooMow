@@ -3,14 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Product;
-use App\Customer;
 use App\Transaction;
-use Session;
-use Paystack;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
-use Illuminate\Support\Facades\DB;
 
 class TransactionController extends Controller
 {
@@ -51,42 +45,20 @@ class TransactionController extends Controller
     //     ));
   }
 
-  public function getOrders()
-  {
-
-    $trans = Transaction::all();
-    $prods = Product::all();
-
-    return view('customer.orders', compact('trans', 'prods'));
-  }
-
   public function checkout($tref)
   {
-    // dd($tref);
     $customer = Auth::guard('customer')->user();
 
-    //Store To DB
-    $buyCartItems = Cart::instance('buyCart')->content();
+    $transact = new Transaction();
 
-    foreach ($buyCartItems as $bc) {
+    $transact->customer_id = $customer->id;
+    $transact->reference_no = $tref;
 
-      $transact = new Transaction();
 
-      $transact->reference_no = $tref;
-      $transact->quantity = $bc->qty;
-      $transact->product_id = $bc->id;
-      $transact->customer_id = $customer->id;
-      $transact->status = "Awaiting Delivery";
+    $transact->save();
+    $tr_id = $transact->id;
 
-      $transact->save();
-    }
-
-    Cart::instance('buyCart')->destroy();
-
-    //Set flash message
-    Session::flash('success', 'Payment Successful');
-
-    return redirect()->action('PageController@getIndex');
+    return redirect()->action('ProductTransactionController@store', ['id' => $tr_id]);
   }
 
   /**

@@ -45,9 +45,9 @@ class Customer extends Authenticatable
         return $this->hasMany('App\Blog');
     }
 
-    // public function transactions()
-    // {
-    //     return $this->belongsToMany('App\Transaction');
-    // }
+    public function transactions()
+    {
+        return $this->hasMany('App\Transaction');
+    }
 
 }

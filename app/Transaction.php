@@ -11,13 +11,8 @@ class Transaction extends Model
     	return $this->belongsTo('App\Customer');
     }
 
-    // public function products()
-    // {
-    // 	return $this->hasMany('App\Product');
-    // }
-
-    public function products()
+    public function prodTrans()
     {
-    	return $this->hasOne('App\Product');
+    	return $this->hasMany('App\ProductTransaction');
     }
 }

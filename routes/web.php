@@ -17,17 +17,19 @@ Route::get('/about', 'PageController@getAbout');
 Route::get('/', 'PageController@getIndex');
 
 Route::get('/account', 'PageController@getAccount');
-Route::get('/orders', 'TransactionController@getOrders');
+Route::get('/orders', 'ProductTransactionController@getOrders');
 
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
+// Route::resource('prodTrans', 'ProductTransactionController');
 // Route::resource('transaction', 'TransactionController');
 
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
 
 Route::get('/transaction/{ref}', 'TransactionController@checkout');
+Route::get('/prodtrans/{id}', 'ProductTransactionController@store');
 // Route::get('/transaction/{id}', ['as' => 'transaction.done', 'uses' => 'TransactionController@myTest']);
 
 Route::get('/cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);

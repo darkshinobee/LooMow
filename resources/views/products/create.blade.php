@@ -13,13 +13,13 @@
 			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
 			<br>
 			{{ Form::label('platform', 'Platform:') }}
-			{{ Form::select('platform', ['PS4' => 'PS4', 'PS3' => 'PS3', 'Xbox360' => 'Xbox 360', 'XboxOne' => 'Xbox One', 'PSVita' => 'PS Vita', 'NintendoWii' => 'Nintendo Wii']) }}
+			{{ Form::select('platform', ['PS4' => 'PS4', 'PS3' => 'PS3', 'Xbox360' => 'Xbox 360', 'XboxOne' => 'Xbox One', 'PSVita' => 'PS Vita', 'NintendoWii' => 'Nintendo Wii'], ['class' => 'form-control']) }}
 			<br><br>
 			{{ Form::label('developer', 'Developer:') }}
 			{{ Form::text('developer', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
 			<br>
 			{{ Form::label('genre', 'Genre:') }}
-			{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting']) }}
+			{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting'], ['class' => 'form-control']) }}
 			<br><br>
 			{{ Form::label('quantity', 'Quantity:') }}
 			{{ Form::number('quantity', null, array('class' => 'form-control', 'required' => '')) }}
@@ -31,7 +31,7 @@
 			{{ Form::file('image_location', null, array('class' => 'form-control', 'required' => '')) }}
 			<br>
 			{{ Form::label('release_date', 'Release Date:') }}
-			{{ Form::date('release_date', \Carbon\Carbon::now()) }}
+			{{ Form::date('release_date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
 			<br>
 			{{ Form::label('sell_rate', 'Sell Rate:') }}
 			{{ Form::number('sell_rate', null, array('class' => 'form-control', 'required' => '')) }}
