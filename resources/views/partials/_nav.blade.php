@@ -11,24 +11,24 @@
       <div class="col-sm-5 col-md-offset-2  header-login">
         <ul>
           @if (Auth::guard('customer')->check())
-          <li class="dropdown">
-            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-            href="">Hello {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }} <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/account">My Account</a></li>
-            <li><a href="/orders">My Orders</a></li>
-            <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
-              document.getElementById('logout-form').submit();">Logout</a>
-              <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-              </form>
-            </li>
-          </ul>
-        </li>
+            <li class="dropdown">
+              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+              href="">Hello {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }} <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/account">My Account</a></li>
+              <li><a href="/orders">My Orders</a></li>
+              <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">Logout</a>
+                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                  {{ csrf_field() }}
+                </form>
+              </li>
+            </ul>
+          </li>
         @else
-        <li><a href="/login">Log In</a></li>
-        <li><a href="/register">Register</a></li>
+          <li><a href="/login">Log In</a></li>
+          <li><a href="/register">Register</a></li>
         @endif
 
         <li><a href="/checkout">Checkout</a></li>
@@ -70,7 +70,18 @@
         <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
           <ul class="nav navbar-nav nav_1">
             <li><a class="color" href="/">Home</a></li>
-            <li class="active"><a class="color1" href="#">Games</a></li>
+            <li class="dropdown"><a class="color1 dropdown-toggle" href="#"
+              id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Games
+              <span class="caret"></span></a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="#">PS4</a></li>
+                <li><a href="#">PS3</a></li>
+                <li><a href="#">XBOX One</a></li>
+                <li><a href="#">XBOX 360</a></li>
+                <li><a href="#">PS Vita</a></li>
+                <li><a href="#">Nintendo Wii</a></li>
+              </ul>
+            </li>
             <li><a class="color4" href="/about">About</a></li>
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
