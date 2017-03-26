@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Route::get('/sorted/{platform}', 'PageController@getSortedGames');
+Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted');
+
 Route::get('/login', 'PageController@login');
 Route::get('/register', 'PageController@register');
 Route::get('/contact', 'PageController@getContact');

@@ -54,7 +54,8 @@ class ProductTransactionController extends Controller
             ->join($t, $pt.'.transaction_id', '=', $t.'.id')
             ->where($t.'.customer_id', $customer->id)
             ->orderBy($t.'.created_at', 'desc')
-            ->get();
+            // ->get()
+            ->paginate(2);
 
     // dd($orders);
 

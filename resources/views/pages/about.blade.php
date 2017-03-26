@@ -18,9 +18,6 @@
 			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 			proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 		</p><br>
-		@php
-			echo $customer = Auth::guard('customer')->user()->first_name;
-		@endphp
 	</div>
 </div>
 </div>

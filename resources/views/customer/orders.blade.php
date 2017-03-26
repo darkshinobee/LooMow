@@ -19,7 +19,7 @@
             <tr>
               <td>{{ $order->reference_no }}</td>
               <td>{{ date('F d, Y h:i a', strtotime($order->created_at)) }}</td>
-              <td>{{ $order->price }}</td>
+              <td>&#8358;{{ number_format($order->price, 2) }}</td>
             </tr>
           </table>
         </div>
@@ -39,6 +39,9 @@
           </div>
         </div>
         @endforeach
+        <div class="text-center">
+					{!! $orders->links() !!}
+				</div>
       </div>
 
     </div>
