@@ -53,7 +53,7 @@ Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
-Route::group(['prefix' => 'admin'], function () {
+Route::group(['prefix' => 'admin_lgx'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm');
   Route::post('/login', 'AdminAuth\LoginController@login');
   Route::post('/logout', 'AdminAuth\LoginController@logout');
@@ -65,6 +65,8 @@ Route::group(['prefix' => 'admin'], function () {
   Route::post('/password/reset', 'AdminAuth\ResetPasswordController@reset');
   Route::get('/password/reset', 'AdminAuth\ForgotPasswordController@showLinkRequestForm');
   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
+
+  Route::get('/dashboard', 'LGXAdminController@getDashboard');
 });
 
 Route::group(['prefix' => 'employee'], function () {
