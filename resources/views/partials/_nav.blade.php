@@ -30,8 +30,6 @@
           <li><a href="/login">Log In</a></li>
           <li><a href="/register">Register</a></li>
         @endif
-
-        <li><a href="/checkout">Checkout</a></li>
       </ul>
     </div>
 

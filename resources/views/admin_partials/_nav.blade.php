@@ -103,7 +103,7 @@
           <a href="javascript:;"><i class="fa fa-fw fa-envelope"></i> Inbox</a>
         </li>
         <li class="dropdown-item">
-          <a href="javascript:;"><i class="fa fa-fw fa-gear"></i> Settings</a>
+          <a href="/"><i class="fa fa-fw fa-gear"></i> Front End</a>
         </li>
         <li class="divider"></li>
         <li class="dropdown-item">

@@ -67,6 +67,7 @@ Route::group(['prefix' => 'admin_lgx'], function () {
   Route::get('/password/reset/{token}', 'AdminAuth\ResetPasswordController@showResetForm');
 
   Route::get('/dashboard', 'LGXAdminController@getDashboard');
+  Route::get('/addProduct', 'LGXAdminController@addProduct');
 });
 
 Route::group(['prefix' => 'employee'], function () {

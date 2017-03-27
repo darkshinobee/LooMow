@@ -4,13 +4,13 @@
 @section('content')
 
 <div class="content">
-	
+
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
 				<!--products-->
 				<div class="content-mid">
-					<h3>Trending Games</h3>
+					<h3>All Games</h3>
 					<label class="line"></label>
 					<div class="mid-popular">
 

@@ -29,10 +29,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('products.create');
-    }
+    // public function create()
+    // {
+    //     return view('products.create');
+    // }
 
     /**
      * Store a newly created resource in storage.
@@ -70,11 +70,11 @@ class ProductController extends Controller
             $file_name = $request->image_name . '.' . $image->getClientOriginalExtension();
 
             $product->image_name = $file_name;
-            
+
             $location = public_path('images/'.$product->platform.'/'.$file_name);
             $product->image_path = '/images/'.$product->platform.'/'.$file_name;
 
-            Image::make($image)->resize(426, 590)->save($location);            
+            Image::make($image)->resize(426, 590)->save($location);
         }
 
         $product->release_date = $request->release_date;
