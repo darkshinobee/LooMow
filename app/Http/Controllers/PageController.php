@@ -14,6 +14,11 @@ class PageController extends Controller
     $this->middleware('guest');
   }
 
+  public function getT5()
+  {
+    return view('t5');
+  }
+
   public function getIndex()
   {
     $products = Product::orderby('id', 'desc')->paginate(6);
