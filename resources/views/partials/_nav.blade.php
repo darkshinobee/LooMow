@@ -86,14 +86,7 @@
             <li><a class="color4" href="/about">About</a></li>
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
-          <div class="input-group">
-            <input type="text" class="form-control nb" placeholder="Search...">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="button">
-                <i class="glyphicon glyphicon-search"> </i>
-              </button>
-            </span>
-          </div>
+             <search></search>
         </div><!-- /.navbar-collapse -->
 
       </nav>
