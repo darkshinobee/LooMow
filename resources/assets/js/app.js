@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+// require('bootstrap');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,6 +17,8 @@ require('./bootstrap');
 Vue.component('example', require('./components/Example.vue'));
 Vue.component('search', require('./components/Search.vue'));
 
+window.onload = function () {
 const app = new Vue({
     el: '#app'
 });
+}

@@ -10,7 +10,7 @@
 
       <div class="col-md-5 grid">
         <div class="thumb-image"> <img src="{{ asset('/images/'.$product->platform.'/'.$product->image_name) }}" data-imagezoom="true" class="img-responsive"> </div>
-      </div>  
+      </div>
       <div class="col-md-7 single-top-in">
 
         <div class="span_2_of_a1 simpleCart_shelfItem">
@@ -43,7 +43,7 @@
             <li class="list-group-item">Status: <strong><span class="text-success">In Stock</span></strong></li>
             @else
             <li class="list-group-item">Status: <strong><span class="text-danger">Out of Stock</span></strong></li>
-            @endif            
+            @endif
           </ul>
         </div>
 
@@ -54,7 +54,7 @@
        <nav class="nav-sidebar">
         <ul class="nav tabs">
           <li class="active"><a href="#tab1" data-toggle="tab">Read Reviews</a></li>
-          <li class=""><a href="#tab2" data-toggle="tab">Write A Review</a></li> 
+          <li class=""><a href="#tab2" data-toggle="tab">Write A Review</a></li>
         </ul>
       </nav>
 
@@ -63,12 +63,12 @@
         <div class="tab-pane active text-style" id="tab1">
          @foreach($product->blog as $blog)
          <div class="facts">
-         <p><strong>Name: </strong> {{ $blog->name }} </p> 
-         <p><strong>Review: </strong> {{ $blog->body }} </p>         
+         <p><strong>Name: </strong> {{ $blog->name }} </p>
+         <p><strong>Review: </strong> {{ $blog->body }} </p>
         </div>
         @endforeach
       </div>
-      
+
       <div class="tab-pane text-style" id="tab2">
         <div class="facts">
           {{ Form::open(['route' => ['blogs.store', $product->id], 'method' => 'POST']) }}
@@ -85,7 +85,7 @@
             </div>
           </div>
           {{ Form::close() }}
-        </div>  
+        </div>
       </div>
 
     </div>

@@ -72,9 +72,6 @@
               id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Games
               <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                @php
-                  $ps4 = 'PS4';
-                @endphp
                 <li><a href="{{ route('sorted', ['platform' => "PS4"]) }}">PS4</a></li>
                 <li><a href="{{ route('sorted', ['platform' => "PS3"]) }}">PS3</a></li>
                 <li><a href="{{ route('sorted', ['platform' => "XboxOne"]) }}">XBOX One</a></li>
