@@ -121,7 +121,7 @@ class CartController extends Controller
     {
         $productBuy = Product::find($id);
 
-        if ($productBuy->quantity > Cart::instance('buyCart')->count()) {
+        // if ($productBuy->quantity > Cart::instance('buyCart')->count()) {
 
         Cart::instance('buyCart')->add(['id' => $id, 'name' => $productBuy->title, 'qty' => 1,
             'price' => $productBuy->sell_rate,
@@ -130,7 +130,7 @@ class CartController extends Controller
             'genre' => $productBuy->genre,
             'quantity' => $productBuy->quantity,
             'image_name' => $productBuy->image_name]]);
-    }
+    // }
         return back();
     }
 

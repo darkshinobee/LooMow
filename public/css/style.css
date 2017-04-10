@@ -48,6 +48,9 @@ h1,h2,h3,h4,h5,h6,label,p{
     position: absolute;
     top: 0;
 }
+.header-login{
+	text-align: right;
+}
 .header-social{
 	text-align: right;
 }
@@ -1559,7 +1562,7 @@ ul.nav_1 li a {
 .header-login {
     margin-left: 24%;
     width: 33%;
-	float:left;
+	/*float:right;*/
 }
 ul.nav_1 li a {
     padding: 1.2em 0.5em;

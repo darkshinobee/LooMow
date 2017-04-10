@@ -28,24 +28,24 @@
 									</div>
 									<br>
 									<div class="row">
-										<div class="col-sm-6">
+										<div class="col-sm-10 col-sm-offset-1">
 												<form action="{{ route('cart.addBuy', $product->id) }}">
-												<input class="btn btn-primary btn-sm btn-block" type="submit" value="Buy">
+												<input class="btn btnColor btn-sm btn-block" type="submit" value="Buy">
 											</form>
 										</div>
-										<div class="col-sm-6">
+										{{-- <div class="col-sm-6">
 											<form action="{{ route('cart.addSell', $product->id) }}">
 												<input class="btn btn-danger btn-sm btn-block" type="submit" value="Sell">
 											</form>
-										</div>
+										</div> --}}
 									</div>
 									<div class="row text-center">
-										<div class="col-sm-6">
+										<div class="col-sm-10 col-sm-offset-1">
 											<p><em class="item_price">&#8358;{{ number_format($product->sell_rate,2) }}</em></p>
 										</div>
-										<div class="col-sm-6">
+										{{-- <div class="col-sm-6">
 											<p><em class="item_price">&#8358;{{ number_format($product->buy_rate,2) }}</em></p>
-										</div>
+										</div> --}}
 									</div>
 
 								</div>

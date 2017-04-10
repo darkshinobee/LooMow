@@ -8,7 +8,23 @@
   </div>
   <div class="header-top">
     <div class="container">
-      <div class="col-sm-5 col-md-offset-2  header-login">
+      <div class="row">
+        <div class="header-social">
+          <div class="col-sm-4">
+          <ul>
+            <li><a href="#"><i></i></a></li>
+            <li><a href="#"><i class="ic1"></i></a></li>
+            <li><a href="#"><i class="ic2"></i></a></li>
+            <li><a href="#"><i class="ic3"></i></a></li>
+            <li><a href="#"><i class="ic4"></i></a></li>
+          </ul>
+</div>
+        </div>
+        <div class="col-sm-6">
+<search></search>
+        </div>
+      <div class="header-login">
+        <div class="col-sm-2">
         <ul>
           @if (Auth::guard('customer')->check())
             <li class="dropdown">
@@ -32,18 +48,9 @@
         @endif
       </ul>
     </div>
-
-    <div class="col-sm-5 header-social">
-      <ul >
-        <li><a href="#"><i></i></a></li>
-        <li><a href="#"><i class="ic1"></i></a></li>
-        <li><a href="#"><i class="ic2"></i></a></li>
-        <li><a href="#"><i class="ic3"></i></a></li>
-        <li><a href="#"><i class="ic4"></i></a></li>
-      </ul>
-
-    </div>
+</div>
     <div class="clearfix"> </div>
+    </div>
   </div>
 </div>
 
@@ -71,7 +78,7 @@
             <li class="dropdown"><a class="color1 dropdown-toggle" href="#"
               id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">Games
               <span class="caret"></span></a>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+              <ul class="dropdown-menu sortHov" aria-labelledby="dropdownMenu1">
                 <li><a href="{{ route('sorted', ['platform' => "PS4"]) }}">PS4</a></li>
                 <li><a href="{{ route('sorted', ['platform' => "PS3"]) }}">PS3</a></li>
                 <li><a href="{{ route('sorted', ['platform' => "XboxOne"]) }}">XBOX One</a></li>
@@ -83,24 +90,25 @@
             <li><a class="color4" href="/about">About</a></li>
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
-             <search></search>
+             {{-- <search></search> --}}
+             <button class="btn col-md-5 sellBtn btnColor">something</button>
         </div><!-- /.navbar-collapse -->
 
       </nav>
     </div>
 
-    <div class="col-sm-2 search-right">
+    <div class="col-sm-2 search-right cartBuy">
       <div class="cart box_1">
         <a href="/viewBuy">
           <h3> <div class="total">
             <span class="badge"> {{ Cart::instance('buyCart')->count() }} </span>
             <img src="/images/theme/cart.png" alt=""/>
-            <span class="label label-primary">Buy Cart</span>
+            <button class="btn btn-md btnColor">Game Cart</button>
           </h3>
         </a>
       </div>
 
-      <div class="clearfix"> </div>
+      {{-- <div class="clearfix"> </div>
       <div class="cart box_1">
         <a href="/viewSell">
           <h3> <div class="total">
@@ -110,7 +118,7 @@
           </h3>
         </a>
       </div>
-    </div>
+    </div> --}}
   </div>
 </div>
 </div>

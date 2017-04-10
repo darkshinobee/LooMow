@@ -4,12 +4,10 @@
     <div class="search_component dropdown">
 
       <div class="input-group dropdown-toggle" data-toggle="dropdown">
-        <input type="text" class="form-control nb" placeholder="Search..."
+        <input type="text" class="form-control input-sm" placeholder="Search..."
         v-model="search_query" @keyup.enter="search()">
-        <span class="input-group-btn">
-          <button class="btn btn-primary" type="button" @click="search">
-            <i class="glyphicon glyphicon-search"> </i>
-          </button>
+        <span class="input-group-addon" id="basic-addon1" @click="search">
+          <i class="glyphicon glyphicon-search"> </i>
         </span>
       </div>
 
@@ -83,8 +81,8 @@ export default {
 .search_component{
   display:flex;
   /*flex-direction: column;*/
-  /*width: 100%;*/
-  justify-content: center;
+  width: 100%;
+  /*justify-content: center;*/
   align-items: center;
 }
 .search_component input {
@@ -115,6 +113,6 @@ export default {
 .search_ddown {
   overflow-y: scroll;
   max-height: 350px;
-  width: 400px;
+  width: 100%;
 }
 </style>

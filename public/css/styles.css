@@ -24,7 +24,7 @@
 
 .nb{
 	border-style: hidden;
-	margin-left: 20px;
+	/*margin-left: 20px;*/
 }
 .ddown_text_color{
 	color: blue;
@@ -33,4 +33,20 @@
 .orderPicSize{
 	width: 130px;
 	height: 175px;
+}
+
+.cartBuy {
+	margin-top: 10px;
+}
+
+.sellBtn {
+	margin-left: 20px;
+	margin-bottom: 5px;
+}
+.btnColor {
+	background-color:royalblue;
+	color: white;
+}
+.sortHov li a:hover {
+	color: royalblue;
 }
