@@ -25,7 +25,8 @@ class ProductTransactionController extends Controller
       $prodTrans->quantity = $bc->qty;
       $prodTrans->product_id = $bc->id;
       $prodTrans->transaction_id = $tr_id;
-      $prodTrans->status = "Sold - Awaiting Delivery";
+      $prodTrans->key = 1;
+      $prodTrans->status = "Success - Pending Delivery";
       $prodTrans->price = $bc->price * $bc->qty;
 
       $prodTrans->save();

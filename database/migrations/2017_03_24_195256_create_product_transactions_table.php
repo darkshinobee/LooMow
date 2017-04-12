@@ -18,8 +18,8 @@ class CreateProductTransactionsTable extends Migration
           $table->integer('quantity');
           $table->integer('product_id');
           $table->integer('transaction_id');
-          $table->string('status');
           $table->integer('key');
+          $table->string('status');      
           $table->integer('price');
           $table->timestamps();
         });
