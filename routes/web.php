@@ -19,7 +19,7 @@ Route::get('/contact', 'PageController@getContact');
 Route::get('/about', 'PageController@getAbout');
 Route::get('/', 'PageController@getIndex');
 
-Route::get('/t5', 'PageController@getT5');
+Route::get('/game_upload', 'ProductController@uploadGame');
 
 Route::get('/account', 'PageController@getAccount');
 Route::get('/orders', 'ProductTransactionController@getOrders');

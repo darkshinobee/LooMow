@@ -90,8 +90,9 @@
             <li><a class="color4" href="/about">About</a></li>
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
-             {{-- <search></search> --}}
-             <button class="btn col-md-5 sellBtn btnColor">something</button>
+             <form class="" action="/game_upload" method="get">
+               <button class="btn col-md-5 sellBtn btnColor">Sell a Game</button>
+             </form>
         </div><!-- /.navbar-collapse -->
 
       </nav>

@@ -14,9 +14,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function uploadGame()
     {
-        // return view('products.prodInfo');
+        return view('products.game_upload');
     }
 
     public function getCart()
