@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transaction;
 use Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class TransactionController extends Controller
 {
@@ -16,6 +17,8 @@ class TransactionController extends Controller
   public function index()
   {
     //
+    Cart::instance('buyCart')->destroy();
+    return redirect()->action('PageController@getIndex');
   }
 
   /**

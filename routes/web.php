@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/sorted/{platform}', 'PageController@getSortedGames');
+Route::get('/t5', 'TransactionController@index');
 Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted');
 
 Route::get('/login', 'PageController@login');

@@ -79,7 +79,8 @@
               <br>
               Total:
               @if (Cart::instance('buyCart')->Count() > 0)
-                <span class="pull-right">&#8358;{{ number_format(Cart::subtotal() + $deliCharge,2)}}</span>
+                @php $subTotal = str_replace(',', '', Cart::subtotal()) @endphp
+                <span class="pull-right">&#8358;{{ number_format((int)$subTotal + $deliCharge,2)}}</span>
               @endif
             </th>
           </tr>
@@ -178,7 +179,7 @@
             </div>
             <div class="col-sm-6">
               @if (Cart::instance('buyCart')->Count() > 0)
-                <h3 class="pull-right">TOTAL: &#8358;{{ number_format(Cart::subtotal() + $deliCharge,2) }}</h3>
+                <h3 class="pull-right">TOTAL: &#8358;{{ number_format($subTotal + $deliCharge,2) }}</h3>
               @endif
             </div>
             <div class="row">
@@ -200,7 +201,7 @@
               {!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
 
               {{ Form::hidden('email', $item->email) }}
-              {{ Form::hidden('amount', (Cart::subtotal() + $deliCharge)*100) }}
+              {{ Form::hidden('amount', ($subTotal + $deliCharge)*100) }}
               {{ Form::hidden('reference_no', Paystack::genTranxRef()) }}
               {{ Form::hidden('key', config('paystack.secretKey')) }}
 

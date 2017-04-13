@@ -56,6 +56,7 @@
 					</div>
 				</div>
 				<!--//products-->
+				<a href="/t5">click</a>
 				<div class="text-center">
 					{!! $products->links() !!}
 				</div>

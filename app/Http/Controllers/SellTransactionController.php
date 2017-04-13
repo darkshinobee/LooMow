@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\SellTransactionController;
 use Illuminate\Http\Request;
 
-class SellTransactionControllerController extends Controller
+class SellTransactionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +40,10 @@ class SellTransactionControllerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\SellTransactionController  $sellTransactionController
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(SellTransactionController $sellTransactionController)
+    public function show($id)
     {
         //
     }
@@ -52,10 +51,10 @@ class SellTransactionControllerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\SellTransactionController  $sellTransactionController
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(SellTransactionController $sellTransactionController)
+    public function edit($id)
     {
         //
     }
@@ -64,10 +63,10 @@ class SellTransactionControllerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\SellTransactionController  $sellTransactionController
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, SellTransactionController $sellTransactionController)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -75,10 +74,10 @@ class SellTransactionControllerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\SellTransactionController  $sellTransactionController
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(SellTransactionController $sellTransactionController)
+    public function destroy($id)
     {
         //
     }
