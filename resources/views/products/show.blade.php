@@ -17,7 +17,7 @@
           <h3>{{ $product->title }}</h3><br>
           <div class="row">
             <div class="col-sm-6 text-center">
-              <span class="item_price">&#8358;{{ number_format($product->sell_rate,2) }}</span>
+              <span class="item_price">&#8358;{{ number_format($product->price,2) }}</span>
             </div>
             <div class="col-sm-6">
               <button class="btn btn-primary btn-md btn-block btn-rec">Buy</button>
@@ -26,7 +26,7 @@
           <br>
           <div class="row">
             <div class="col-sm-6 text-center">
-              <span class="item_price">&#8358;{{ number_format($product->buy_rate,2) }}</span>
+              <span class="item_price">&#8358;{{ number_format($product->price,2) }}</span>
             </div>
             <div class="col-sm-6">
               <button class="btn btn-danger btn-md btn-block btn-rec">Sell</button>

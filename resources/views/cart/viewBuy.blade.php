@@ -10,7 +10,7 @@
   <div class="container">
 
     <div class="content-mid">
-      <h3>Buy Cart</h3>
+      <h3>Game Cart</h3>
       <label class="line"></label>
     </div>
     <br>
@@ -69,18 +69,16 @@
             <td></td>
             <td></td>
             <td></td>
-            @php
-            $deliCharge = 100
-            @endphp
             <th>Delivery Charge:
-              @if (Cart::instance('buyCart')->Count() > 0)
-                <span class="pull-right">&#8358;{{number_format($deliCharge,2)}}</span>
+              @if (Cart::instance('buyCart')->Count())
+                <span class="pull-right">&#8358;{{number_format($delivery_charge,2)}}</span>
               @endif
               <br>
               Total:
-              @if (Cart::instance('buyCart')->Count() > 0)
-                @php $subTotal = str_replace(',', '', Cart::subtotal()) @endphp
-                <span class="pull-right">&#8358;{{ number_format((int)$subTotal + $deliCharge,2)}}</span>
+              @php $subTotal = str_replace(',', '', Cart::subtotal()) @endphp
+              @if (Cart::instance('buyCart')->Count())
+                <span class="pull-right">&#8358;{{ number_format((int)$subTotal + $delivery_charge,2)}}</span>
+              @else
               @endif
             </th>
           </tr>
@@ -178,41 +176,32 @@
               <p class="pull-left">Your Voucher Value: &#8358;{{ number_format($item->voucher_value,2) }}</p>
             </div>
             <div class="col-sm-6">
-              @if (Cart::instance('buyCart')->Count() > 0)
-                <h3 class="pull-right">TOTAL: &#8358;{{ number_format($subTotal + $deliCharge,2) }}</h3>
+              @if (Cart::instance('buyCart')->Count())
+                <h3 class="pull-right">TOTAL: &#8358;{{ number_format($subTotal + $delivery_charge,2) }}</h3>
               @endif
             </div>
             <div class="row">
               <div class="col-sm-10 col-sm-offset-2">
                 <div class="pull-left">
                   @if($item->voucher_value > 0)
-                    <form>
-                      <input type="checkbox" name="voucher_value"> Use Voucher
-                    </form>
+                      <input type="checkbox" name="voucher_input" form="checkout_form"> Use Voucher
                   @endif
                 </div>
               </div>
             </div>
           </div>
         </div>
+        @if ($item->address && Cart::instance('buyCart')->Count())
         <div class="modal-footer">
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
-              {!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
-
-              {{ Form::hidden('email', $item->email) }}
-              {{ Form::hidden('amount', ($subTotal + $deliCharge)*100) }}
-              {{ Form::hidden('reference_no', Paystack::genTranxRef()) }}
-              {{ Form::hidden('key', config('paystack.secretKey')) }}
-
-              {{ csrf_field() }}
-
-              {{ Form::submit('Pay', ['class' => 'btn btn-success btn-block']) }}
-
-              {!! Form::close() !!}
+              <form action="{{ url('/checkout') }}" method="get" id="checkout_form">
+                <input class="btn btn-success btn-block" type="submit" value="Payment Summary">
+              </form>
             </div>
           </div>
         </div>
+        @endif
       </div>
     </div>
   </div>
@@ -222,5 +211,4 @@
 <br>
 </div>
 </div><br>
-
 @endsection

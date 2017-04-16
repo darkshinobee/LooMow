@@ -46,8 +46,9 @@ Route::post('/cart/{id}/removeSell', ['as' => 'cart.removeSell', 'uses' => 'Cart
 Route::put('/cart/{id}/updateBuy', ['as' => 'cart.updateBuy', 'uses' => 'CartController@updateBuy']);
 Route::put('/cart/{id}/updateSell', ['as' => 'cart.updateSell', 'uses' => 'CartController@updateSell']);
 
-Route::get('viewBuy', 'CartController@viewBuyCart');
+Route::get('/viewBuy', 'CartController@viewBuyCart');
 Route::get('viewSell', 'CartController@viewSellCart');
+Route::get('/checkout', 'CartController@checkout');
 
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store' ]);

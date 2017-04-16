@@ -51,8 +51,7 @@ class ProductController extends Controller
             'quantity' => 'required',
             'image_name' => 'required',
             'release_date' => 'required',
-            'sell_rate' => 'required',
-            'buy_rate' => 'required'
+            'price' => 'required'
             ));
 
         //Store to DB
@@ -78,8 +77,7 @@ class ProductController extends Controller
         }
 
         $product->release_date = $request->release_date;
-        $product->sell_rate = $request->sell_rate;
-        $product->buy_rate = $request->buy_rate;
+        $product->price = $request->price;
 
         //Save
         if ($product->save()) {

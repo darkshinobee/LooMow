@@ -108,18 +108,6 @@
           </h3>
         </a>
       </div>
-
-      {{-- <div class="clearfix"> </div>
-      <div class="cart box_1">
-        <a href="/viewSell">
-          <h3> <div class="total">
-            <span class="badge"> {{ Cart::instance('sellCart')->count() }} </span>
-            <img src="/images/theme/cart.png" alt=""/>
-            <span class="label label-danger">Sell Cart</span>
-          </h3>
-        </a>
-      </div>
-    </div> --}}
   </div>
 </div>
 </div>

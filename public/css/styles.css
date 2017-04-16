@@ -50,3 +50,6 @@
 .sortHov li a:hover {
 	color: royalblue;
 }
+.padTop {
+	padding-top: 10px;
+}

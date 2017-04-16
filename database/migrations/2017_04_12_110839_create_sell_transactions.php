@@ -22,6 +22,7 @@ class CreateSellTransactions extends Migration
         $table->integer('max_rate')->unsigned();
         $table->string('img_path');
         $table->integer('customer_id');
+        $table->integer('transaction_id');
         $table->integer('key');
         $table->string('status');
         $table->timestamps();

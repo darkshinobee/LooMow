@@ -25,8 +25,12 @@ class PaymentController extends Controller
      */
     public function handleGatewayCallback()
     {
+
     	$paymentDetails = Paystack::getPaymentData();
+      dd($paymentDetails);
       $tref = $paymentDetails['data']['reference'];
+      $amount = ($paymentDetails['data']['amount']) / 100;
+      // dd($amount);
 
       if ($paymentDetails['data']['status'] == "success") {
         return redirect()->action('TransactionController@checkout', $tref);

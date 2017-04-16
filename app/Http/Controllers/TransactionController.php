@@ -17,8 +17,6 @@ class TransactionController extends Controller
   public function index()
   {
     //
-    Cart::instance('buyCart')->destroy();
-    return redirect()->action('PageController@getIndex');
   }
 
   /**

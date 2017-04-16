@@ -29,13 +29,13 @@
       <hr>
 			<div class="row">
 			  <div class="col-sm-6">
-          {{ Form::label('sell_rate', 'Min Rate: &#8358;') }}
-    			{{ Form::number('sell_rate', null, array('class' => 'form-control', 'required' => '')) }}
+          {{ Form::label('min_rate', 'Min Rate: &#8358;') }}
+    			{{ Form::number('min_rate', null, array('class' => 'form-control', 'required' => '')) }}
     			<br>
 			  </div>
         <div class="col-sm-6">
-          {{ Form::label('buy_rate', 'Max Rate: &#8358;') }}
-          {{ Form::number('buy_rate', null, array('class' => 'form-control', 'required' => '')) }}
+          {{ Form::label('max_rate', 'Max Rate: &#8358;') }}
+          {{ Form::number('max_rate', null, array('class' => 'form-control', 'required' => '')) }}
           <br>
         </div>
 			</div>

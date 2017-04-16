@@ -8,6 +8,7 @@ use App\Transaction;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use App\Customer;
+use Auth;
 
 class CartController extends Controller
 {
@@ -27,10 +28,24 @@ class CartController extends Controller
 
     }
 
+    public function checkout(Request $request)
+    {
+      $customer = Auth::guard('customer')->user();
+      $buyCartItems = Cart::instance('buyCart')->content();
+      if ($request->voucher_input) {
+        $voucher_value = $customer->voucher_value;
+      }else {
+        $voucher_value = 0;
+      }
+      $delivery_charge = 1500;
+      return view('cart.checkout', compact('buyCartItems', 'delivery_charge', 'voucher_value'));
+    }
+
     public function viewBuyCart()
     {
         $buyCartItems = Cart::instance('buyCart')->content();
-        return view('cart.viewBuy', compact('buyCartItems'));
+        $delivery_charge = 1500;
+        return view('cart.viewBuy', compact('buyCartItems', 'delivery_charge'));
     }
 
     public function viewSellCart()
@@ -124,7 +139,7 @@ class CartController extends Controller
         // if ($productBuy->quantity > Cart::instance('buyCart')->count()) {
 
         Cart::instance('buyCart')->add(['id' => $id, 'name' => $productBuy->title, 'qty' => 1,
-            'price' => $productBuy->sell_rate,
+            'price' => $productBuy->price,
             'options' => ['platform' => $productBuy->platform,
             'developer' => $productBuy->developer,
             'genre' => $productBuy->genre,

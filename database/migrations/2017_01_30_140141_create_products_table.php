@@ -23,8 +23,7 @@ class CreateProductsTable extends Migration
             $table->string('image_name');
             $table->string('image_path');
             $table->date('release_date');
-            $table->integer('sell_rate')->unsigned();
-            $table->integer('buy_rate')->unsigned();
+            $table->integer('price')->unsigned();
             $table->timestamps();
         });
     }

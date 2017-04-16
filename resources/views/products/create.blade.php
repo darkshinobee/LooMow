@@ -19,7 +19,7 @@
 			{{ Form::text('developer', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
 			<br>
 			{{ Form::label('genre', 'Genre:') }}
-			{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting'], ['class' => 'form-control']) }}
+			{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting', 'Kids' => 'Kids'], ['class' => 'form-control']) }}
 			<br><br>
 			{{ Form::label('quantity', 'Quantity:') }}
 			{{ Form::number('quantity', null, array('class' => 'form-control', 'required' => '')) }}
@@ -33,11 +33,8 @@
 			{{ Form::label('release_date', 'Release Date:') }}
 			{{ Form::date('release_date', \Carbon\Carbon::now(), ['class' => 'form-control']) }}
 			<br>
-			{{ Form::label('sell_rate', 'Sell Rate:') }}
-			{{ Form::number('sell_rate', null, array('class' => 'form-control', 'required' => '')) }}
-			<br>
-			{{ Form::label('buy_rate', 'Buy Rate:') }}
-			{{ Form::number('buy_rate', null, array('class' => 'form-control', 'required' => '')) }}
+			{{ Form::label('price', 'Price:') }}
+			{{ Form::number('price', null, array('class' => 'form-control', 'required' => '')) }}
 			<br>
 			{{ Form::submit('Add Product', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px')) }}
 			{!! Form::close() !!}
