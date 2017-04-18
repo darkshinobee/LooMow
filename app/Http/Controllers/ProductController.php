@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Product;
 use Image;
 use Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class ProductController extends Controller
 {
@@ -117,9 +118,21 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update()
     {
-        //
+      //Store To DB
+      $buyCartItems = Cart::instance('buyCart')->content();
+
+      foreach ($buyCartItems as $bc) {
+
+        $product = Product::find($bc->id);
+
+        //Retrieve value and store in DB
+        $product->quantity -= $bc->qty;
+
+        //Save changes
+        $product->save();
+      }
     }
 
     /**

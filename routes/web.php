@@ -33,7 +33,7 @@ Route::resource('misc', 'MiscController');
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
 
-Route::get('/transaction/{ref}', 'TransactionController@checkout');
+Route::get('/transaction/{ref}', 'TransactionController@paySuccess');
 Route::get('/prodtrans/{id}', 'ProductTransactionController@store');
 // Route::get('/transaction/{id}', ['as' => 'transaction.done', 'uses' => 'TransactionController@myTest']);
 

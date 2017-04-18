@@ -46,7 +46,7 @@ class TransactionController extends Controller
     //     ));
   }
 
-  public function checkout($tref)
+  public function paySuccess($tref)
   {
     $customer = Auth::guard('customer')->user();
 

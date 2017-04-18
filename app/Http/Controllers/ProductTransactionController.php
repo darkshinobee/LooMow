@@ -10,17 +10,22 @@ use App\Transaction;
 use App\Product;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MiscController;
+use App\BuyTemp;
 
 class ProductTransactionController extends Controller
 {
   public function store($tr_id)
   {
+    $customer = Auth::guard('customer')->user();
+
     //Store To DB
     $buyCartItems = Cart::instance('buyCart')->content();
 
     foreach ($buyCartItems as $bc) {
 
-      $prodTrans = new ProductTransaction();
+      $prodTrans = new ProductTransaction;
 
       $prodTrans->quantity = $bc->qty;
       $prodTrans->product_id = $bc->id;
@@ -31,6 +36,18 @@ class ProductTransactionController extends Controller
 
       $prodTrans->save();
     }
+
+    $product = new ProductController;
+    $product->update();
+
+    $buytemp = DB::table('buy_temps')->where('customer_id', $customer->id)->first();
+
+    $newVoucher = $buytemp->resultant_voucher;
+
+    $misc = new MiscController;
+    $misc->voucherUpdate($newVoucher);
+
+    DB::table('buy_temps')->where('customer_id', $customer->id)->delete();
 
     Cart::instance('buyCart')->destroy();
 

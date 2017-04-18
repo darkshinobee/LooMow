@@ -9,6 +9,7 @@ use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Transaction;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Auth;
 
 class MiscController extends Controller
 {
@@ -153,6 +154,16 @@ class MiscController extends Controller
         //Set flash message
         Session::flash('success', 'Details Updated!');
         return back();
+    }
+
+    public function voucherUpdate($voucher_value) {
+
+      $customer = Auth::guard('customer')->user();
+      $cust_obj = Customer::find($customer->id);
+
+      $cust_obj->voucher_value = $voucher_value;
+
+      $cust_obj->save();
     }
 
     /**

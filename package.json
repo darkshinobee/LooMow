@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "algoliasearch": "^3.22.1",
-    "laravel-elixir": "^6.0.0-15"
+    "laravel-elixir": "^6.0.0-15",
+    "rangeslider.js": "^2.3.0"
   }
 }

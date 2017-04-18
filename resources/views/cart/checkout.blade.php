@@ -45,7 +45,7 @@
 							<h3 class="">&#8358;{{ number_format($delivery_charge,2) }}</h3><br>
 							@php $subTotal = str_replace(',', '', Cart::subtotal()) @endphp
 							@if ($voucher_value > (int)$subTotal)
-								@php $sumTotal = ($voucher_value - (int)$subTotal) + $delivery_charge @endphp
+								@php $sumTotal = $delivery_charge @endphp
 								<h2>&#8358;{{ number_format($sumTotal, 2) }}</h2>
 							@else
 								@php $sumTotal = ((int)$subTotal - $voucher_value) + $delivery_charge @endphp
@@ -54,7 +54,10 @@
 					</div>
 				</div><hr>
 				<div class="col-sm-3 pull-right">
+					@php $new_voucher = $voucher_value - (int)$subTotal @endphp
 					{!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
+
+					{{ Form::hidden('new_voucher', $new_voucher) }}
 
 					{{ Form::hidden('email', $customer->email) }}
 					{{ Form::hidden('amount', ($sumTotal)*100) }}
