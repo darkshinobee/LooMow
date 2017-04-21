@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/t5', 'TransactionController@index');
+// Route::get('/t5', 'TransactionController@index');
 Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted');
 
 Route::get('/login', 'PageController@login');
@@ -49,6 +49,7 @@ Route::put('/cart/{id}/updateSell', ['as' => 'cart.updateSell', 'uses' => 'CartC
 Route::get('/viewBuy', 'CartController@viewBuyCart');
 Route::get('viewSell', 'CartController@viewSellCart');
 Route::get('/checkout', 'CartController@checkout');
+Route::get('/orderSuccess', 'ProductTransactionController@orderSuccess');
 
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store' ]);

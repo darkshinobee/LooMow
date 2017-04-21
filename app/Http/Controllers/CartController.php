@@ -35,9 +35,9 @@ class CartController extends Controller
       if ($request->voucher_input) {
         $voucher_value = $customer->voucher_value;
       }else {
-        $voucher_value = 0;
+        $voucher_value = null;
       }
-      $delivery_charge = 1500;
+      $delivery_charge = 2000;
       return view('cart.checkout', compact('buyCartItems', 'delivery_charge', 'voucher_value'));
     }
 

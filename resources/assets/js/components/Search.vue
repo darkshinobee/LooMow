@@ -6,7 +6,7 @@
       <div class="input-group dropdown-toggle" data-toggle="dropdown">
         <input type="text" class="form-control input-sm" placeholder="Search..."
         v-model="search_query" @keyup.enter="search()">
-        <span class="input-group-addon" id="basic-addon1" @click="search">
+        <span class="input-group-addon" id="basic-addon1" @click="search" disabled>
           <i class="glyphicon glyphicon-search"> </i>
         </span>
       </div>

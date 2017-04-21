@@ -54,6 +54,8 @@ class ProductTransactionController extends Controller
     //Set flash message
     Session::flash('success', 'Payment Successful');
 
+    // return return Redirect::action('ProductTransactionController@orderSuccess');
+
     return redirect()->action('PageController@getIndex');
   }
 
@@ -78,6 +80,11 @@ class ProductTransactionController extends Controller
     // dd($orders);
 
     return view('customer.orders', compact('orders'));
+  }
+
+  public function orderSuccess()
+  {
+    return view('cart.orderSuccess');
   }
 
 }
