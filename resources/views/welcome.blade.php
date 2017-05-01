@@ -15,6 +15,7 @@
 						<div class="mid-popular">
 
 							@foreach ($products as $product)
+								@if ($product->quantity > 0)
 								<div class="col-md-4 item-grid simpleCart_shelfItem">
 									<div class="mid-pop">
 										<div class="pro-img">
@@ -41,6 +42,7 @@
 										</div>
 									</div>
 								</div>
+								@endif
 							@endforeach
 							<div class="clearfix"></div>
 						</div>

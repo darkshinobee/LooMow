@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Paystack;
 use App\Transaction;
 use App\Http\Controllers\BuyTempController;
+use App\Http\Controllers\TransactionController;
 
 class PaymentController extends Controller
 {
@@ -34,14 +35,15 @@ class PaymentController extends Controller
   */
   public function handleGatewayCallback()
   {
+    $tr = new TransactionController;
+
     $paymentDetails = Paystack::getPaymentData();
-    // dd($paymentDetails);
     $tref = $paymentDetails['data']['reference'];
 
     if ($paymentDetails['data']['status'] == "success") {
-      return redirect()->action('TransactionController@paySuccess', $tref);
+      return $tr->paySuccess($tref);
     }else {
-      dd($paymentDetails);
+      return $tr->payFail();
     }
 
   }

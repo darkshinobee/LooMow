@@ -22,6 +22,9 @@
         <i class="fa fa-fw fa-money"></i> Transactions <i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="demo_tr" class="list-group collapse">
         <li class="list-group-item">
+          <a href="{{ url('admin_lgx/temp_uploads') }}">Uploaded Games</a>
+        </li>
+        <li class="list-group-item">
           <a href="#">Transaction History</a>
         </li>
         <li class="list-group-item">

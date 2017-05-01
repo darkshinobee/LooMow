@@ -1,31 +1,20 @@
 @extends('master')
-@section('title', 'Order Success')
+@section('title', 'Order Fail')
 
 @section('content')
-  @php
-  $customer = Auth::guard('customer')->user()
-@endphp
   <div class="container">
     <div class="row">
-      <div class="col-md-10 col-md-offset-1">
+      <div class="col-md-12">
         <div class="content-mid">
-          <h3>Thank You! Your order has been placed.</h3>
+          <h3>Transaction Failed</h3>
           <label class="line"></label>
-        </div><br><br>
+        </div><br>
         <div class="row">
-          <div class="col-md-6">
-            <p>Your order number is: {{ $tref }}</p>
-            <p>An email receipt containing the details of your order has been sent to {{ $customer->email }}</p><br>
-            <p>The order will be delivered to:</p><br>
-            <ul class="ul_bullet">
-              <li>{{ $customer->first_name.' '.$customer->last_name }}</li>
-              <li>{{ $customer->address }}</li>
-              @if ($customer->landmark)
-                <li>{{ $customer->landmark }}</li>
-              @endif
-              <li>T: {{ $customer->phone }}</li>
-              <li>E: {{ $customer->email }}</li>
-            </ul><br>
+          <div class="col-sm-6">
+            <p>Oops! Looks like your order has not been processed.</p>
+            <p>Your failed transaction reference is: {{ $failRef }}.</p>
+            <p>Your game cart has not been emptied. Go to your cart and checkout again.</p>
+            <p>We apologize for any inconvenience.</p><br>
             <div class="well well-sm">
               <h4>Any Enquiries?</h4>
               <p class="padTop">For enquiries regarding your order. Feel free to contact us @</p>
@@ -38,7 +27,7 @@
             <h4>Thank you</h4>
             <h4 class="padTop">The LooMow Team</h4>
           </div>
-          <div class="col-sm-6" style="overflow-y: scroll; height:450px">
+          <div class="col-sm-6" style="overflow-y: scroll; height:320px">
             @foreach ($myCart as $mc)
               <div class="media">
                 <div class="media-left">
@@ -56,13 +45,8 @@
               </div>
             @endforeach
           </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-6 col-sm-offset-3 text-center">
-            <button class="btn bt-lg btnColor btn-block padTop" type="button">Continue Shopping</button>
-          </div>
-        </div>
+        </div><br>
       </div>
-    </div><br>
+    </div>
   </div>
 @endsection

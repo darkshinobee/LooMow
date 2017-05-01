@@ -7,8 +7,12 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
+        <div class="content-mid">
+          <h3>Transaction History</h3>
+          <label class="line"></label>
+        </div><br>
+        @if ($orders->Count())
         @foreach ($orders as $order)
-
         <div class="table-responsive">
           <table class="table table-condensed">
             <thead>
@@ -39,6 +43,15 @@
           </div>
         </div>
         @endforeach
+        @else
+          <div class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+              <p class="lead">
+                Move along! Nothing to see here. You don't have any existing transactions.
+              </p>
+            </div>
+          </div>
+        @endif
         <div class="text-center">
 					{!! $orders->links() !!}
 				</div>

@@ -65,6 +65,7 @@
           <tr>
             <th class="text-info">
               <p>Your Voucher Value: &#8358;{{number_format($item->voucher_value,2)}}</p>
+              {{-- <a href="/orderSuccess">cart test</a> --}}
             </th>
             <td></td>
             <td></td>

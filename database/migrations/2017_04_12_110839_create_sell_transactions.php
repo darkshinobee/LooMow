@@ -23,6 +23,7 @@ class CreateSellTransactions extends Migration
         $table->string('img_path');
         $table->integer('customer_id');
         $table->integer('transaction_id');
+        $table->integer('product_id')->nullable();
         $table->integer('key');
         $table->string('status');
         $table->timestamps();

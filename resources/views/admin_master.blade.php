@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	@php
+		$admin = Auth::guard('admin')->user()
+	@endphp
 	@include('admin_partials._head')
 </head>
 <body>
@@ -11,7 +14,7 @@
 				@include('admin_partials._breadCrumb')
 				@include('admin_partials._sidebar')
 				<div class="col-md-8 col-md-offset-2 text-center">
-					@include('admin_partials._prompts')
+					@include('partials._prompts')
 				</div>
 				<div class="clearfix"></div>
 				@yield('content')

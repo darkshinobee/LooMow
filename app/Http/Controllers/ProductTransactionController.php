@@ -8,6 +8,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use App\ProductTransaction;
 use App\Transaction;
 use App\Product;
+use App\Customer;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Http\Controllers\ProductController;
@@ -31,10 +32,23 @@ class ProductTransactionController extends Controller
       $prodTrans->product_id = $bc->id;
       $prodTrans->transaction_id = $tr_id;
       $prodTrans->key = 1;
-      $prodTrans->status = "Success - Pending Delivery";
+      $prodTrans->status = "Pending Delivery";
       $prodTrans->price = $bc->price * $bc->qty;
 
       $prodTrans->save();
+
+      $cust = DB::table('sell_transactions')
+      ->where('product_id', $bc->id)
+      ->where('key', 2)
+      ->first();
+
+      $c_cust = Customer::find($cust->customer_id);
+      $c_cust->voucher_value += $bc->price;
+      $c_cust->save();
+
+      DB::table('sell_transactions')
+            ->where('id', $cust->id)
+            ->update(['key' => 3, 'status' => 'Product Sold']);
     }
 
     $product = new ProductController;
@@ -49,14 +63,7 @@ class ProductTransactionController extends Controller
 
     DB::table('buy_temps')->where('customer_id', $customer->id)->delete();
 
-    Cart::instance('buyCart')->destroy();
-
-    //Set flash message
-    Session::flash('success', 'Payment Successful');
-
-    // return return Redirect::action('ProductTransactionController@orderSuccess');
-
-    return redirect()->action('PageController@getIndex');
+    return $this->orderSuccess($tr_id);
   }
 
   public function getOrders()
@@ -66,25 +73,59 @@ class ProductTransactionController extends Controller
     $pt = 'product_transactions';
     $t = 'transactions';
 
-    // $users = DB::table('users')->select('name', 'email as user_email')->get();
-
     $orders = DB::table($p)->select($t.'.reference_no', $t.'.created_at',
     $pt.'.price', $pt.'.quantity', 'title', 'platform', 'status', 'image_name')
-            ->join($pt, $p.'.id', '=', $pt.'.product_id')
-            ->join($t, $pt.'.transaction_id', '=', $t.'.id')
-            ->where($t.'.customer_id', $customer->id)
-            ->orderBy($t.'.created_at', 'desc')
-            // ->get()
-            ->paginate(2);
-
-    // dd($orders);
+    ->join($pt, $p.'.id', '=', $pt.'.product_id')
+    ->join($t, $pt.'.transaction_id', '=', $t.'.id')
+    ->where($t.'.customer_id', $customer->id)
+    ->orderBy($t.'.created_at', 'desc')
+    ->paginate(2);
 
     return view('customer.orders', compact('orders'));
   }
 
-  public function orderSuccess()
+  public function orderSuccess($tr_id)
   {
-    return view('cart.orderSuccess');
+    $buyCartItems = Cart::instance('buyCart')->content();
+    $myCart = $buyCartItems;
+    Cart::instance('buyCart')->destroy();
+
+    $tref = DB::table('transactions')->where('id', $tr_id)->value('reference_no');
+
+    return view('cart.orderSuccess', compact('myCart', 'tref'));
+  }
+
+  public function orderFail($failRef)
+  {
+    $myCart = Cart::instance('buyCart')->content();
+    return view('cart.orderFail', compact('myCart', 'failRef'));
+  }
+
+  public function storeFail($tr_id)
+  {
+    $customer = Auth::guard('customer')->user();
+
+    //Store To DB
+    $buyCartItems = Cart::instance('buyCart')->content();
+
+    foreach ($buyCartItems as $bc) {
+
+      $prodTrans = new ProductTransaction;
+
+      $prodTrans->quantity = $bc->qty;
+      $prodTrans->product_id = $bc->id;
+      $prodTrans->transaction_id = $tr_id;
+      $prodTrans->key = 0;
+      $prodTrans->status = "Transaction Failed";
+      $prodTrans->price = $bc->price * $bc->qty;
+
+      $prodTrans->save();
+    }
+
+    $failRef = DB::table('transactions')->where('id', $tr_id)->value('reference_no');
+    DB::table('buy_temps')->where('customer_id', $customer->id)->delete();
+
+    return redirect()->action('ProductTransactionController@orderFail', $failRef);
   }
 
 }

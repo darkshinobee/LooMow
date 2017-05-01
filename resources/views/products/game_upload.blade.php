@@ -7,8 +7,7 @@
 		<div class="col-md-6 col-md-offset-3"><br>
 			<h1 class="text-center">Upload Your Game</h1>
 			<hr>
-			{{-- {!! Form::open(['route' => 'products.store']) !!} --}}
-			{!! Form::open(['route' => 'products.store', 'files' => true]) !!}
+			{!! Form::open(['route' => 'uploads.store', 'files' => true]) !!}
 			{{ Form::label('title', 'Game Title:') }}
 			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
 			<br>
@@ -20,7 +19,7 @@
 			  </div>
         <div class="col-sm-6">
           {{ Form::label('genre', 'Genre:') }}
-    			{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting'], ['class' => 'form-control']) }}
+    			{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting', 'Kids' => 'Kids'], ['class' => 'form-control']) }}
     			<br><br>
         </div>
 			</div>
@@ -39,8 +38,8 @@
           <br>
         </div>
 			</div>
-			{{ Form::label('image_location', 'Upload Image:') }}
-			{{ Form::file('image_location', null, array('class' => 'form-control', 'required' => '')) }}
+			{{ Form::label('img_path', 'Upload Image:') }}
+			{{ Form::file('img_path', null, array('class' => 'form-control', 'required' => '')) }}
 			<br>
 			{{ Form::submit('Submit', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px')) }}
 			{!! Form::close() !!}

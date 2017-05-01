@@ -5,8 +5,10 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-6 col-md-offset-3"><br>
-			<h1>Add New Product</h1>
-			<hr>
+			<h1 class="pull-left">Add New Product</h1>
+			<a class="pull-right" href="{{ url('admin_lgx/addProduct') }}">Create New</a>
+			<div class="clearfix"></div><br>
+
 			{{-- {!! Form::open(['route' => 'products.store']) !!} --}}
 			{!! Form::open(['route' => 'products.store', 'files' => true]) !!}
 			{{ Form::label('title', 'Title:') }}

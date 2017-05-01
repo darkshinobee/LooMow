@@ -21,7 +21,11 @@
               </div>
               <div class="col-sm-6">
                 <form action="{{ route('cart.addBuy', $product->id) }}">
+                  @if ($product->quantity > 0)
                   <input class="btn btnColor btn-md btn-block btn-rec" type="submit" value="Buy">
+                  @else
+                    <input class="btn btn-danger btn-md btn-block btn-rec" value="Out of Stock" disabled="">
+                  @endif
                 </form>
               </div>
             </div>

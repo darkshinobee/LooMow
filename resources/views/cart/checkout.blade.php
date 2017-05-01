@@ -61,7 +61,6 @@
 								@endif
 						</div>
 					</div><hr>
-					{{$new_voucher}}
 					<div class="col-sm-3 pull-right">
 						{!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
 

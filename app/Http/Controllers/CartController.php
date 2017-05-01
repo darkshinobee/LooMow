@@ -44,7 +44,7 @@ class CartController extends Controller
     public function viewBuyCart()
     {
         $buyCartItems = Cart::instance('buyCart')->content();
-        $delivery_charge = 1500;
+        $delivery_charge = 2000;
         return view('cart.viewBuy', compact('buyCartItems', 'delivery_charge'));
     }
 

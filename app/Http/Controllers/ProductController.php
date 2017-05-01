@@ -15,6 +15,13 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+        //  $this->middleware('customer');
+         $this->middleware('customer', ['only' => ['getCart', 'uploadGame']]);
+     }
+
     public function uploadGame()
     {
         return view('products.game_upload');
@@ -81,12 +88,24 @@ class ProductController extends Controller
         $product->price = $request->price;
 
         //Save
-        if ($product->save()) {
+        // if ($product->save())
+        // {
             //Redirect with flash message
-            Session::flash('success', 'New Product Added Successfully!');
-            return redirect()->route('products.show', $product->id);
-        }
+            // Session::flash('success', 'New Product Added Successfully!');
+            // return redirect()->route('products.show', $product->id);
+        // }
+        $product->save();
+
+        // Redirect with flash message
+        Session::flash('success', 'New Product Added Successfully!');
+        return redirect()->action('LGXAdminController@getDashboard');
+        // return $product->id;
+
     }
+
+    // public function updateQty($value='') {
+    //   # code...
+    // }
 
     /**
      * Display the specified resource.

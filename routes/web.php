@@ -27,15 +27,14 @@ Route::get('/orders', 'ProductTransactionController@getOrders');
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
-// Route::resource('prodTrans', 'ProductTransactionController');
+Route::resource('uploads', 'SellTransactionController');
 // Route::resource('transaction', 'TransactionController');
 
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
 
-Route::get('/transaction/{ref}', 'TransactionController@paySuccess');
-Route::get('/prodtrans/{id}', 'ProductTransactionController@store');
-// Route::get('/transaction/{id}', ['as' => 'transaction.done', 'uses' => 'TransactionController@myTest']);
+Route::get('/orderFail/{failRef}', 'ProductTransactionController@orderFail');
+Route::get('/orderSuccess/{tref}', 'ProductTransactionController@orderSuccess');
 
 Route::get('/cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
 Route::get('/cart/{id}/addSellCart', ['as' => 'cart.addSell', 'uses' => 'CartController@addSellCart']);
@@ -49,10 +48,9 @@ Route::put('/cart/{id}/updateSell', ['as' => 'cart.updateSell', 'uses' => 'CartC
 Route::get('/viewBuy', 'CartController@viewBuyCart');
 Route::get('viewSell', 'CartController@viewSellCart');
 Route::get('/checkout', 'CartController@checkout');
-Route::get('/orderSuccess', 'ProductTransactionController@orderSuccess');
 
 Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
-Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store' ]);
+Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
@@ -72,6 +70,9 @@ Route::group(['prefix' => 'admin_lgx'], function () {
 
   Route::get('/dashboard', 'LGXAdminController@getDashboard');
   Route::get('/addProduct', 'LGXAdminController@addProduct');
+  Route::get('/temp_uploads', 'LGXAdminController@tempUploads');
+  Route::get('/approve/{id}', 'LGXAdminController@approve');
+  Route::get('/disapprove/{id}', 'LGXAdminController@disApprove');
 });
 
 Route::group(['prefix' => 'employee'], function () {
