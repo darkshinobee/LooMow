@@ -7,6 +7,7 @@ use App\Product;
 use Image;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -86,14 +87,6 @@ class ProductController extends Controller
 
         $product->release_date = $request->release_date;
         $product->price = $request->price;
-
-        //Save
-        // if ($product->save())
-        // {
-            //Redirect with flash message
-            // Session::flash('success', 'New Product Added Successfully!');
-            // return redirect()->route('products.show', $product->id);
-        // }
         $product->save();
 
         // Redirect with flash message
@@ -103,18 +96,15 @@ class ProductController extends Controller
 
     }
 
-    // public function updateQty($value='') {
-    //   # code...
-    // }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($img_name)
     {
+        $id = DB::table('products')->where('image_name', $img_name)->value('id');
         $product = Product::find($id);
         return view('products.show')->withProduct($product);
     }

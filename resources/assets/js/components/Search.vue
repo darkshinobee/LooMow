@@ -13,7 +13,7 @@
 
   <ul class="search_res dropdown-menu search_ddown" v-if="search_query.length">
     <li class="single_search_result" v-for="result in search_results">
-      <a :href="'/products/'+result.id">
+      <a :href="'/products/'+result.image_name">
         <img :src="result.image_path" alt="" class="result_image">
         <span class="result_name">{{ result.title }} - </span>
         <em>

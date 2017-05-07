@@ -20,13 +20,13 @@
                 <span class="item_price lead">&#8358;{{ number_format($product->price,2) }}</span>
               </div>
               <div class="col-sm-6">
-                <form action="{{ route('cart.addBuy', $product->id) }}">
+                <a href="/viewBuy">
                   @if ($product->quantity > 0)
-                  <input class="btn btnColor btn-md btn-block btn-rec" type="submit" value="Buy">
+                  <input class="btn btnColor btn-md btn-block btn-rec a_link" value="Buy">
                   @else
                     <input class="btn btn-danger btn-md btn-block btn-rec" value="Out of Stock" disabled="">
                   @endif
-                </form>
+                </a>
               </div>
             </div>
             <h4 class="quick padTop">Quick Overview:</h4>

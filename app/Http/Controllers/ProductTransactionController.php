@@ -43,7 +43,7 @@ class ProductTransactionController extends Controller
       ->first();
 
       $c_cust = Customer::find($cust->customer_id);
-      $c_cust->voucher_value += $bc->price;
+      $c_cust->voucher_value += ($bc->price - 1000);
       $c_cust->save();
 
       DB::table('sell_transactions')

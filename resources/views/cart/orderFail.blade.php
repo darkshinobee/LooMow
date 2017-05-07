@@ -45,7 +45,14 @@
               </div>
             @endforeach
           </div>
-        </div><br>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-sm-offset-3 text-center">
+            <a href="/viewBuy">
+            <button class="btn bt-lg btnColor btn-block padTop a_link" type="button">Back to Cart</button>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -91,7 +91,7 @@
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
              <form class="" action="/game_upload" method="get">
-               <button class="btn col-md-5 sellBtn btnColor">Sell a Game</button>
+               <button class="btn col-md-5 sellBtn btnColor a_link">Sell a Game</button>
              </form>
         </div><!-- /.navbar-collapse -->
 
@@ -104,7 +104,7 @@
           <h3> <div class="total">
             <span class="badge"> {{ Cart::instance('buyCart')->count() }} </span>
             <img src="/images/theme/cart.png" alt=""/>
-            <button class="btn btn-md btnColor">Game Cart</button>
+            <button class="btn btn-md btnColor a_link">Game Cart</button>
           </h3>
         </a>
       </div>

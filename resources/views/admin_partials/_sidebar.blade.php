@@ -22,19 +22,16 @@
         <i class="fa fa-fw fa-money"></i> Transactions <i class="fa fa-fw fa-caret-down"></i></a>
       <ul id="demo_tr" class="list-group collapse">
         <li class="list-group-item">
-          <a href="{{ url('admin_lgx/temp_uploads') }}">Uploaded Games</a>
+          <a href="{{ url('admin_lgx/disapproved_games') }}"> Disapproved Games</a>
         </li>
         <li class="list-group-item">
-          <a href="#">Transaction History</a>
+          <a href="{{ url('admin_lgx/temp_uploads') }}">Temp Uploads</a>
         </li>
         <li class="list-group-item">
-          <a href="#">Completed Sales</a>
+          <a href="{{ url('admin_lgx/games_awaiting_purchase') }}">Games Awaiting Purchase</a>
         </li>
         <li class="list-group-item">
-          <a href="#">Completed Purchase</a>
-        </li>
-        <li class="list-group-item">
-          <a href="#"> Failed Transactions</a>
+          <a href="{{ url('admin_lgx/games_sold') }}">Successful Sales</a>
         </li>
       </ul>
     </li>

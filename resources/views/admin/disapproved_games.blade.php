@@ -1,11 +1,11 @@
 @extends('admin_master')
-@section('title', 'Uploaded Games')
+@section('title', 'Disapproved Games')
 
 @section('content')
   <div class="container">
     <div class="row">
       <div class="col-sm-12">
-          <h3>Temp Uploads</h3>
+          <h3>Disapproved Games</h3>
         </div><br><br>
         @if ($temps->Count())
         @foreach ($temps as $temp)
@@ -27,15 +27,6 @@
               <li class="list-group-item">Status - {{ $temp->status }}</li>
               <li class="list-group-item">Date Uploaded - {{ $temp->created_at }}</li>
             </ul>
-            <div class="col-sm-2 pull-right">
-              <a href="/admin_lgx/approve/{{$temp->id}}">
-              <button class="btn btn-success btn-block">Approve</button>
-              </a>
-              <br>
-              <a href="/admin_lgx/disapprove/{{$temp->id}}">
-              <button class="btn btn-danger btn-block">Dispprove</button>
-              </a>
-            </div>
           </div>
         </div><br>
       </div>

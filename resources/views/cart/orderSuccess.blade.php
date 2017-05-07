@@ -59,7 +59,9 @@
         </div>
         <div class="row">
           <div class="col-sm-6 col-sm-offset-3 text-center">
-            <button class="btn bt-lg btnColor btn-block padTop" type="button">Continue Shopping</button>
+            <a href="/">
+              <button class="btn bt-lg btnColor btn-block padTop a_link" type="button">Continue Shopping</button>
+            </a>
           </div>
         </div>
       </div>

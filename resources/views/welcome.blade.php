@@ -19,7 +19,7 @@
 								<div class="col-md-4 item-grid simpleCart_shelfItem">
 									<div class="mid-pop">
 										<div class="pro-img">
-											<a href="/products/{{ $product->id }}"><img src="{{ ($product->image_path) }}" class="img-responsive" alt=""></a>
+											<a href="/products/{{ $product->image_name }}"><img src="{{ ($product->image_path) }}" class="img-responsive" alt=""></a>
 										</div>
 										<div class="mid-1">
 											<div class="row">
@@ -30,7 +30,7 @@
 											<div class="row padTop">
 												<div class="col-sm-10 col-sm-offset-1">
 													<form action="{{ route('cart.addBuy', $product->id) }}">
-														<input class="btn btnColor btn-sm btn-block" type="submit" value="Buy for">
+														<input class="btn btnColor btn-sm btn-block a_link" type="submit" value="Buy for">
 													</form>
 												</div>
 											</div>

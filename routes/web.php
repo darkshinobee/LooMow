@@ -49,8 +49,8 @@ Route::get('/viewBuy', 'CartController@viewBuyCart');
 Route::get('viewSell', 'CartController@viewSellCart');
 Route::get('/checkout', 'CartController@checkout');
 
-Route::get('/products/{id}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
-Route::post('/products/{id}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
+Route::get('/products/{img_name}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+Route::post('/products/{img_name}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
@@ -70,7 +70,10 @@ Route::group(['prefix' => 'admin_lgx'], function () {
 
   Route::get('/dashboard', 'LGXAdminController@getDashboard');
   Route::get('/addProduct', 'LGXAdminController@addProduct');
+  Route::get('/disapproved_games', 'LGXAdminController@viewDisapproved');
   Route::get('/temp_uploads', 'LGXAdminController@tempUploads');
+  Route::get('/games_awaiting_purchase', 'LGXAdminController@viewPendingPurchase');
+  Route::get('/games_sold', 'LGXAdminController@gamesSold');
   Route::get('/approve/{id}', 'LGXAdminController@approve');
   Route::get('/disapprove/{id}', 'LGXAdminController@disApprove');
 });
