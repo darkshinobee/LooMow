@@ -26,7 +26,7 @@ class SellTransactionController extends Controller
           'genre' => 'required',
           'min_rate' => 'required',
           'max_rate' => 'required',
-          'img_path' => 'required'
+          'img_path' => 'required|mimes:jpeg,jpg,png|max:200'
           ));
 
         $customer = Auth::guard('customer')->user();

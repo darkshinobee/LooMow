@@ -11,7 +11,6 @@
 		@include('admin_partials._nav')
 		<div id="page-wrapper">
 			<div class="container-fluid">
-				@include('admin_partials._breadCrumb')
 				@include('admin_partials._sidebar')
 				<div class="col-md-8 col-md-offset-2 text-center">
 					@include('partials._prompts')

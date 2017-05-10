@@ -1,4 +1,5 @@
-@extends('customer.layout.auth')
+@extends('master')
+@section('title', 'Password Reset')
 
 @section('content')
 <div class="container">

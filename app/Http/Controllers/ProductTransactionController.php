@@ -84,6 +84,21 @@ class ProductTransactionController extends Controller
     return view('customer.orders', compact('orders'));
   }
 
+  public function getUploads()
+  {
+    $customer = Auth::guard('customer')->user();
+    $p = 'products';
+    $st = 'sell_transactions';
+
+    $uploads = DB::table($p)->select($st.'.status', $st.'.created_at', $p.'.title', $p.'.platform', $p.'.price', $p.'.image_path')
+    ->join($st, $p.'.id', '=', $st.'.product_id')
+    ->where($st.'.customer_id', $customer->id)
+    ->orderBy($st.'.created_at', 'desc')
+    ->paginate(6);
+
+    return view('customer.uploads', compact('uploads'));
+  }
+
   public function orderSuccess($tr_id)
   {
     $buyCartItems = Cart::instance('buyCart')->content();

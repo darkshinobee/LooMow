@@ -13,7 +13,7 @@
 					<li><a href="404.html">About</a></li>
 					<li><a href="contact.html">Contact Us</a></li>
 					<li><a href="#">Returns</a></li>
-					<li><a href="contact.html">Site Map</a></li>
+					<li><a href="contact.html">Terms and Conditions</a></li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>
@@ -22,7 +22,7 @@
 				<span>Sign up for News Letter</span>
 				<form>
 					<input type="text" placeholder="Enter your E-mail">
-					<input type="submit" value="Subscribe">	
+					<input type="submit" value="Subscribe">
 				</form>
 			</div>
 			<div class="clearfix"> </div>

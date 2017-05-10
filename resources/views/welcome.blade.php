@@ -15,7 +15,7 @@
 						<div class="mid-popular">
 
 							@foreach ($products as $product)
-								@if ($product->quantity > 0)
+								{{-- @if ($product->quantity > 0) --}}
 								<div class="col-md-4 item-grid simpleCart_shelfItem">
 									<div class="mid-pop">
 										<div class="pro-img">
@@ -29,9 +29,13 @@
 											</div>
 											<div class="row padTop">
 												<div class="col-sm-10 col-sm-offset-1">
-													<form action="{{ route('cart.addBuy', $product->id) }}">
-														<input class="btn btnColor btn-sm btn-block a_link" type="submit" value="Buy for">
-													</form>
+													@if ($product->quantity > 0)
+														<form action="{{ route('cart.addBuy', $product->id) }}">
+															<input class="btn btnColor btn-sm btn-block a_link" type="submit" value="Buy for">
+														</form>
+													@else
+														<button class="btn btn-danger btn-sm btn-block a_link" disabled="">Out of Stock</button>
+													@endif
 												</div>
 											</div>
 											<div class="row text-center padTop">
@@ -42,7 +46,7 @@
 										</div>
 									</div>
 								</div>
-								@endif
+								{{-- @endif --}}
 							@endforeach
 							<div class="clearfix"></div>
 						</div>

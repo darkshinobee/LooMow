@@ -6,9 +6,11 @@
       <div class="input-group dropdown-toggle" data-toggle="dropdown">
         <input type="text" class="form-control input-sm" placeholder="Search..."
         v-model="search_query" @keyup.enter="search()">
-        <span class="input-group-addon" id="basic-addon1" @click="search" disabled>
-          <i class="glyphicon glyphicon-search"> </i>
-        </span>
+        <span class="input-group-btn">
+        <button class="btn btnColor btn-sm" type="button" @click="search">
+          <span class="glyphicon glyphicon-search a_link"></span>
+        </button>
+      </span>
       </div>
 
   <ul class="search_res dropdown-menu search_ddown" v-if="search_query.length">

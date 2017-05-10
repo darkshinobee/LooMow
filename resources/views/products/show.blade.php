@@ -20,13 +20,13 @@
                 <span class="item_price lead">&#8358;{{ number_format($product->price,2) }}</span>
               </div>
               <div class="col-sm-6">
-                <a href="/viewBuy">
-                  @if ($product->quantity > 0)
-                  <input class="btn btnColor btn-md btn-block btn-rec a_link" value="Buy">
-                  @else
-                    <input class="btn btn-danger btn-md btn-block btn-rec" value="Out of Stock" disabled="">
-                  @endif
-                </a>
+                @if ($product->quantity > 0)
+                  <a href="/viewBuy">
+                    <input class="btn btnColor btn-md btn-block btn-rec a_link" value="Buy">
+                  </a>
+                @else
+                  <button class="btn btn-danger btn-sm btn-block a_link" disabled="">Out of Stock</button>
+                @endif
               </div>
             </div>
             <h4 class="quick padTop">Quick Overview:</h4>
@@ -36,7 +36,7 @@
               <li class="list-group-item">Genre: {{ $product->genre }}</li>
               <li class="list-group-item">Release Date: {{ $product->release_date }}</li>
               @if ($product->quantity > 0)
-                <li class="list-group-item">Status: <strong><span class="text-success">In Stock</span></strong></li>
+                <li class="list-group-item">Status: <strong><span class="text-success">{{$product->quantity}} Remaining</span></strong></li>
               @else
                 <li class="list-group-item">Status: <strong><span class="text-danger">Out of Stock</span></strong></li>
               @endif
@@ -56,12 +56,12 @@
 
           <div class="tab-content one">
 
-            <div class="tab-pane active text-style" id="tab1">
+            <div class="tab-pane active text-style" id="tab1" style="overflow-y: scroll; height:300px">
               @foreach($product->blog as $blog)
-                <div class="facts">
+                <div>
                   <p><strong>Name: </strong> {{ $blog->name }} </p>
                   <p><strong>Review: </strong> {{ $blog->body }} </p>
-                </div>
+                </div><hr>
               @endforeach
             </div>
 

@@ -92,4 +92,12 @@ class LGXAdminController extends Controller
         Session::flash('success', 'Product Disapproved');
         return redirect()->action('LGXAdminController@getDashboard');
     }
+
+    public function admin_search(Request $request)
+    {
+      $results = DB::table('products')
+                ->where('title', 'like', '%'.$request->keyword.'%')
+                ->paginate(5);
+      return view('admin.search_results', compact('results'));
+    }
 }

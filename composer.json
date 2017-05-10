@@ -9,6 +9,7 @@
         "Doctrine/dbal": "^2.5",
         "algolia/algoliasearch-client-php": "^1.17",
         "gloudemans/shoppingcart": "^2.3",
+        "guzzlehttp/guzzle": "^6.2",
         "hesto/multi-auth": "^1.0",
         "intervention/image": "^2.3",
         "laravel/framework": "5.4.*",

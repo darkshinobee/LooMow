@@ -8,6 +8,6 @@ window.Laravel = <?php echo json_encode([
 	]); ?>
 </script>
 
-{{-- <script src="/js/vue.min.js"></script> --}}
+<script src="/js/parsley.min.js"></script>
 {{-- <script src="/js/search.js"></script> --}}
 {{-- <script src="https://unpkg.com/vue@2.2.6"></script> --}}

@@ -1,5 +1,5 @@
 <?php
-
+use App\Mail\MarkdownTest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,7 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/t5', 'TransactionController@index');
+
+Route::get('/mailz', function () {
+    Mail::to('ahmedibrahim3000@gmail.com')->send(new MarkdownTest);
+    return redirect()->action('PageController@getIndex');
+});
+
 Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted');
 
 Route::get('/login', 'PageController@login');
@@ -23,6 +28,7 @@ Route::get('/game_upload', 'ProductController@uploadGame');
 
 Route::get('/account', 'PageController@getAccount');
 Route::get('/orders', 'ProductTransactionController@getOrders');
+Route::get('/my_uploads', 'ProductTransactionController@getUploads');
 
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
@@ -76,6 +82,7 @@ Route::group(['prefix' => 'admin_lgx'], function () {
   Route::get('/games_sold', 'LGXAdminController@gamesSold');
   Route::get('/approve/{id}', 'LGXAdminController@approve');
   Route::get('/disapprove/{id}', 'LGXAdminController@disApprove');
+  Route::get('/search', 'LGXAdminController@admin_search');
 });
 
 Route::group(['prefix' => 'employee'], function () {
@@ -101,8 +108,8 @@ Route::group(['prefix' => 'employee'], function () {
   Route::get('/register', 'CustomerAuth\RegisterController@showRegistrationForm');
   Route::post('/register', 'CustomerAuth\RegisterController@register');
 
-  Route::post('/password/email', 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail');
-  Route::post('/password/reset', 'CustomerAuth\ResetPasswordController@reset');
-  Route::get('/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm');
-  Route::get('/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
+  Route::post('customer/password/email', 'CustomerAuth\ForgotPasswordController@sendResetLinkEmail');
+  Route::post('customer/password/reset', 'CustomerAuth\ResetPasswordController@reset');
+  Route::get('customer/password/reset', 'CustomerAuth\ForgotPasswordController@showLinkRequestForm');
+  Route::get('customer/password/reset/{token}', 'CustomerAuth\ResetPasswordController@showResetForm');
 // });

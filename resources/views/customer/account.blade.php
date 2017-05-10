@@ -83,7 +83,7 @@
               <h3 class="panel-title">My Voucher</h3>
             </div>
             <div class="panel-body" style="overflow-y: scroll; height:100px">
-              <p>You currently have &#8466; {{number_format($customer->voucher_value,2)}}</p>
+              <p>You currently have &#8358;{{number_format($customer->voucher_value,2)}}</p>
             </div>
           </div>
         </div>

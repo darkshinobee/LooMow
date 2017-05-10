@@ -34,6 +34,7 @@
             <ul class="dropdown-menu" role="menu">
               <li><a href="/account">My Account</a></li>
               <li><a href="/orders">My Orders</a></li>
+              <li><a href="/my_uploads">My Games</a></li>
               <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Logout</a>
                 <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">

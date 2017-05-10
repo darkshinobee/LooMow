@@ -7,7 +7,8 @@
 		<div class="col-md-6 col-md-offset-3"><br>
 			<h1 class="text-center">Upload Your Game</h1>
 			<hr>
-			{!! Form::open(['route' => 'uploads.store', 'files' => true]) !!}
+			{!! Form::open(['route' => 'uploads.store', 'files' => true, 'data-parsley-validate' => '']) !!}
+
 			{{ Form::label('title', 'Game Title:') }}
 			{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
 			<br>
@@ -40,6 +41,7 @@
 			</div>
 			{{ Form::label('img_path', 'Upload Image:') }}
 			{{ Form::file('img_path', null, array('class' => 'form-control', 'required' => '')) }}
+			<p style="font-size:0.6em; color:royalblue">* Image cannot be greater than 200kb</p>
 			<br>
 			{{ Form::submit('Submit', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px')) }}
 			{!! Form::close() !!}

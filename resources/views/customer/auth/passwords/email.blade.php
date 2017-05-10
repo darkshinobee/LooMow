@@ -1,12 +1,12 @@
-@extends('customer.layout.auth')
+@extends('master')
+@section('title', 'Password Reset')
 
-<!-- Main Content -->
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+            <div class="panel panel-primary">
+                <div class="panel-heading text-center">Reset Password</div>
                 <div class="panel-body">
                     @if (session('status'))
                         <div class="alert alert-success">
