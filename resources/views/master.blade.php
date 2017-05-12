@@ -12,10 +12,10 @@
 		</div>
 		<div class="clearfix"></div>
 		@yield('content')
-		<footer>
-			@include('partials._footer')
-			@include('partials._scripts')
-		</footer>
 	</div>
 </body>
+<footer>
+	@include('partials._footer')
+	@include('partials._scripts')
+</footer>
 </html>

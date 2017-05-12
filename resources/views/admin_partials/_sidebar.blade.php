@@ -33,6 +33,12 @@
         <li class="list-group-item">
           <a href="{{ url('admin_lgx/games_sold') }}">Successful Sales</a>
         </li>
+        <li class="list-group-item">
+          <a href="{{ url('admin_lgx/games_delivered') }}">Delivered Games</a>
+        </li>
+        <li class="list-group-item">
+          <a href="{{ url('admin_lgx/failed_transactions') }}">Failed Transactions</a>
+        </li>
       </ul>
     </li>
 

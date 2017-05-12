@@ -77,7 +77,6 @@ class TransactionController extends Controller
 
     $pt = new ProductTransactionController;
     return $pt->store($tr_id);
-    // return redirect()->action('ProductTransactionController@store', ['id' => $tr_id]);
   }
 
   public function payFail()

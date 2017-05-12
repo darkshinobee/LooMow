@@ -25,7 +25,13 @@
               <li class="list-group-item">Title - {{ $order->title }}</li>
               <li class="list-group-item">Platform - {{ $order->platform }}</li>
               <li class="list-group-item">Price - N{{ number_format($order->price,2) }}</li>
-              <li class="list-group-item">Date Uploaded - {{ $order->created_at }}</li>
+              @if ($order->key == 1)
+                <li class="list-group-item">Date Uploaded - {{ date('F d, Y', strtotime($order->created_at)) }}</li>
+              @elseif ($order->key == 2)
+                <li class="list-group-item">Date Collected - {{ date('F d, Y', strtotime($order->updated_at)) }}</li>
+              @elseif ($order->key == 3)
+                <li class="list-group-item">Date Sold - {{ date('F d, Y', strtotime($order->updated_at)) }}</li>
+              @endif
               <li class="list-group-item">Status - {{ $order->status }}</li>
             </ul>
           </div>

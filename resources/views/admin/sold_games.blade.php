@@ -8,6 +8,15 @@
           <h3>Successful Sales</h3>
         </div><br><br>
         @if ($temps->Count())
+          <form action="{{ url('/admin_lgx/search_refno') }}">
+            <div style="margin-top:10px" class="input-group input-group-sm">
+              <input type="text" class="form-control" placeholder="Search By Reference No" name="refno"
+              aria-describedby="sizing-addon3">
+              <span class="input-group-btn">
+                <button class="btn btn-primary" type="submit">Go!</button>
+              </span>
+            </div>
+          </form><br>
         @foreach ($temps as $temp)
           <div class="">
         <div class="media row">
@@ -32,7 +41,7 @@
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
               <p class="lead">
-                Move along! Nothing to see here. You don't have any existing transactions.
+                Move along! Nothing to see here. No games sold.
               </p>
             </div>
           </div>

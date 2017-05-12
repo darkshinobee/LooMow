@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Loomow',
+    'name' => 'LooMow',
 
     /*
     |--------------------------------------------------------------------------
@@ -185,6 +185,7 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        Jenssegers\Rollbar\RollbarServiceProvider::class,
 
     ],
 

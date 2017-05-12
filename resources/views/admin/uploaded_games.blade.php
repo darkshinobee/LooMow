@@ -24,7 +24,7 @@
               <li class="list-group-item">Genre - {{ $temp->genre }}</li>
               <li class="list-group-item">Min Rate - &#8358;{{ number_format($temp->min_rate,2) }}</li>
               <li class="list-group-item">Max Rate - &#8358;{{ number_format($temp->max_rate,2) }}</li>
-              <li class="list-group-item">Status - {{ $temp->status }}</li>
+              <li class="list-group-item">Status - {{ $temp->status }} | PiD - {{ $temp->product_id }}</li>
               <li class="list-group-item">Date Uploaded - {{ $temp->created_at }}</li>
             </ul>
             <div class="col-sm-2 pull-right">
@@ -34,7 +34,13 @@
               <br>
               <a href="/admin_lgx/disapprove/{{$temp->id}}">
               <button class="btn btn-danger btn-block">Dispprove</button>
-              </a>
+            </a><br>
+              <form action="/admin_lgx/update_id/{{$temp->id}}">
+                <div style="" class="input-group input-group-sm">
+                  <input type="text" class="form-control" placeholder="Update ID" name="id"
+                  aria-describedby="sizing-addon3">
+                </div>
+              </form>
             </div>
           </div>
         </div><br>
@@ -44,7 +50,7 @@
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
               <p class="lead">
-                Move along! Nothing to see here. You don't have any existing transactions.
+                Move along! Nothing to see here. No games uploaded.
               </p>
             </div>
           </div>

@@ -20,10 +20,11 @@
 			<div class="col-md-4 footer-middle-in">
 				<h6>Newsletter</h6>
 				<span>Sign up for News Letter</span>
-				<form>
-					<input type="text" placeholder="Enter your E-mail">
+				{!! Form::open(['url' => '/subscribe', 'method' => 'POST']) !!}
+				{{ csrf_field() }}
+					<input type="text" name="email" placeholder="Enter your E-mail">
 					<input type="submit" value="Subscribe">
-				</form>
+				{!! Form::close() !!}
 			</div>
 			<div class="clearfix"> </div>
 		</div>

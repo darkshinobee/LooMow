@@ -8,6 +8,7 @@ use Image;
 use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -25,7 +26,8 @@ class ProductController extends Controller
 
     public function uploadGame()
     {
-        return view('products.game_upload');
+      $customer = Auth::guard('customer')->user();
+        return view('products.game_upload', compact('customer'));
     }
 
     public function getCart()

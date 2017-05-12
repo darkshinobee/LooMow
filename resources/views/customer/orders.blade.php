@@ -47,7 +47,7 @@
           <div class="row">
             <div class="col-sm-8 col-sm-offset-2 text-center">
               <p class="lead">
-                Move along! Nothing to see here. You don't have any existing transactions.
+                Move along! Nothing to see here. You don't have any existing orders.
               </p>
             </div>
           </div>
@@ -59,4 +59,7 @@
 
     </div>
   </div>
+  @php
+    unset($orders);
+  @endphp
 @stop

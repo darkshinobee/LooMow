@@ -2,9 +2,6 @@
 @section('title', 'My Account')
 
 @section('content')
-@php
-  $customer = Auth::guard('customer')->user()
-@endphp
 <div class="container">
   <div class="row">
     <div class="col-md-12">
@@ -21,18 +18,18 @@
               {!! Form::model($customer, ['route' => ['misc.updateInfo', $customer->id], 'method' => 'PUT']) !!}
 
               {{ Form::label('first_name', 'First Name') }}
-              {{ Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name: ']) }}<br>
+              {{ Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name: ', 'required']) }}<br>
 
               {{ Form::label('last_name', 'Last Name') }}
-              {{ Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name: ']) }}<br>
+              {{ Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => 'Last Name: ', 'required']) }}<br>
 
               {{ Form::label('email', 'Email Address') }}
-              {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email: ']) }}<br>
+              {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Email: ', 'required']) }}<br>
 
               {{ Form::label('phone', 'Phone Number') }}
-              {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *']) }}<br>
+              {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *', 'required']) }}<br>
 
-              {{ Form::submit('Save Details', ['class' => 'btn btn-primary pull-right']) }}
+              {{ Form::submit('Save Details', ['class' => 'btn btnColor pull-right']) }}
 
               {!! Form::close() !!}
             </div>
@@ -47,7 +44,7 @@
               {!! Form::model($customer, ['route' => ['misc.updateDetails', $customer->id], 'method' => 'PUT']) !!}
 
               {{ Form::label('address', 'Address') }}
-              {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50']) }}<br>
+              {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50', 'required']) }}<br>
 
               {{ Form::label('landmark', 'Landmark') }}
               {{ Form::textarea('landmark', null, ['class' => 'form-control', 'placeholder' => 'Landmark', 'rows' => '4', 'cols' => '50']) }}<br>
@@ -56,9 +53,10 @@
               {{ Form::select('state', ['Abuja' => 'Abuja'], null, ['class' => 'form-control', 'placeholder' => 'Select State']) }}<br>
 
               {{ Form::label('region', 'Region') }}
-              {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }}<br>
+              {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null,
+                ['class' => 'form-control', 'placeholder' => 'Select Region', 'required']) }}<br>
 
-              {{ Form::submit('Save Details', ['class' => 'btn btn-primary pull-right']) }}
+              {{ Form::submit('Save Details', ['class' => 'btn btnColor pull-right']) }}
 
               {!! Form::close() !!}
             </div>
@@ -72,8 +70,19 @@
               <h3 class="panel-title">Newsletter Subscription</h3>
             </div>
             <div class="panel-body" style="overflow-y: scroll; height:100px">
+              @if (in_array($customer->email, $mail_list))
+                <p>You are currently subscribed to our newsletter.</p>
+                {!! Form::open(['url' => '/unsubscribe', 'method' => 'PUT']) !!}
+                {{ csrf_field() }}
+                  <button type="submit" name="email" class="btn btnColor btn-md a_link" value="{{$customer->email}}">Unsubscribe</button>
+                {!! Form::close() !!}
+              @else
               <p>You are currently not subscribed to any of our newsletters.</p>
-              <a href="#">Subscribe</a>
+              {!! Form::open(['url' => '/subscribe']) !!}
+              {{ csrf_field() }}
+                <button type="submit" name="email" class="btn btnColor btn-md a_link" value="{{$customer->email}}">Subscribe</button>
+              {!! Form::close() !!}
+              @endif
             </div>
           </div>
         </div>

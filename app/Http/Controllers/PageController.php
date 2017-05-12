@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use App\Product;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactUs;
+use Auth;
+use Illuminate\Support\Facades\DB;
 
 class PageController extends Controller
 {
@@ -12,11 +16,6 @@ class PageController extends Controller
   public function __construct()
   {
     $this->middleware('guest');
-  }
-
-  public function getT5()
-  {
-    return view('t5');
   }
 
   public function getIndex()
@@ -35,9 +34,23 @@ class PageController extends Controller
     return view('pages.contact');
   }
 
+  public function contact_us(Request $request)
+  {
+    Mail::to('help@loomow.com')->send(new ContactUs($request));
+
+    // Redirect with flash message
+    Session::flash('success', 'Message Sent');
+    return $this->getIndex();
+  }
+
   public function getAccount()
   {
-    return view('customer.account');
+    $customer = Auth::guard('customer')->user();
+    $mail_list = DB::table('emailsubscriptions')
+    ->where('key', 1)
+    ->pluck('email');
+    $mail_list = $mail_list->toArray();
+    return view('customer.account', compact('customer', 'mail_list'));
   }
 
   public function login()

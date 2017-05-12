@@ -12,6 +12,7 @@
         "guzzlehttp/guzzle": "^6.2",
         "hesto/multi-auth": "^1.0",
         "intervention/image": "^2.3",
+        "jenssegers/rollbar": "^1.5",
         "laravel/framework": "5.4.*",
         "laravel/scout": "^3.0",
         "laravelcollective/html": "^5.3.0",

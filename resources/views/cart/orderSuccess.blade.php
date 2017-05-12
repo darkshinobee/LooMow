@@ -23,6 +23,7 @@
               @if ($customer->landmark)
                 <li>{{ $customer->landmark }}</li>
               @endif
+              <li>{{ $customer->state }}</li>
               <li>T: {{ $customer->phone }}</li>
               <li>E: {{ $customer->email }}</li>
             </ul><br>

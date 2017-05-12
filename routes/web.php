@@ -12,7 +12,9 @@ use App\Mail\MarkdownTest;
 */
 
 Route::get('/mailz', function () {
-    Mail::to('ahmedibrahim3000@gmail.com')->send(new MarkdownTest);
+  $f = 'wordss';
+  $l = "tryyyy";
+    Mail::to('ahmedibrahim3000@gmail.com')->send(new MarkdownTest($f, $l));
     return redirect()->action('PageController@getIndex');
 });
 
@@ -21,6 +23,7 @@ Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted'
 Route::get('/login', 'PageController@login');
 Route::get('/register', 'PageController@register');
 Route::get('/contact', 'PageController@getContact');
+Route::post('/contact_us', 'PageController@contact_us');
 Route::get('/about', 'PageController@getAbout');
 Route::get('/', 'PageController@getIndex');
 
@@ -29,12 +32,13 @@ Route::get('/game_upload', 'ProductController@uploadGame');
 Route::get('/account', 'PageController@getAccount');
 Route::get('/orders', 'ProductTransactionController@getOrders');
 Route::get('/my_uploads', 'ProductTransactionController@getUploads');
+Route::post('/subscribe', 'EmailsubscriptionController@store');
+Route::put('/unsubscribe', 'EmailsubscriptionController@update');
 
 Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
 Route::resource('uploads', 'SellTransactionController');
-// Route::resource('transaction', 'TransactionController');
 
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
@@ -77,12 +81,17 @@ Route::group(['prefix' => 'admin_lgx'], function () {
   Route::get('/dashboard', 'LGXAdminController@getDashboard');
   Route::get('/addProduct', 'LGXAdminController@addProduct');
   Route::get('/disapproved_games', 'LGXAdminController@viewDisapproved');
+  Route::get('/failed_transactions', 'LGXAdminController@failed_transactions');
   Route::get('/temp_uploads', 'LGXAdminController@tempUploads');
   Route::get('/games_awaiting_purchase', 'LGXAdminController@viewPendingPurchase');
   Route::get('/games_sold', 'LGXAdminController@gamesSold');
+  Route::get('/games_delivered', 'LGXAdminController@gamesDelivered');
+  Route::get('/delivery_update/{id}', 'LGXAdminController@update_delivered');
   Route::get('/approve/{id}', 'LGXAdminController@approve');
   Route::get('/disapprove/{id}', 'LGXAdminController@disApprove');
   Route::get('/search', 'LGXAdminController@admin_search');
+  Route::get('/update_id/{id}', 'LGXAdminController@id_update');
+  Route::get('/search_refno', 'LGXAdminController@search_refno');
 });
 
 Route::group(['prefix' => 'employee'], function () {

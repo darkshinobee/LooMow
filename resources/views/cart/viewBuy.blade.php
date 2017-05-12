@@ -146,10 +146,10 @@
                         {!! Form::model($item, ['route' => ['misc.update', $item->id], 'method' => 'PUT']) !!}
 
                         {{ Form::label('phone', 'Phone Number', ['class' => 'pull-left']) }}
-                        {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *']) }}<br>
+                        {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *', 'required']) }}<br>
 
                         {{ Form::label('address', 'Address', ['class' => 'pull-left']) }}
-                        {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50']) }}<br>
+                        {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50', 'required']) }}<br>
 
                         {{ Form::label('landmark', 'Landmark', ['class' => 'pull-left']) }}
                         {{ Form::textarea('landmark', null, ['class' => 'form-control', 'placeholder' => 'Landmark', 'rows' => '4', 'cols' => '50']) }}<br>
@@ -158,7 +158,8 @@
                         {{ Form::select('state', ['Abuja' => 'Abuja'], null, ['class' => 'form-control', 'placeholder' => 'Select State']) }}<br>
 
                         {{ Form::label('region', 'Region', ['class' => 'pull-left']) }}
-                        {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null, ['class' => 'form-control', 'placeholder' => 'Select Region']) }}<br>
+                        {{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null,
+                          ['class' => 'form-control', 'placeholder' => 'Select Region', 'required']) }}<br>
 
                         {{ Form::submit('Save Details', ['class' => 'btn btn-primary pull-right']) }}
 

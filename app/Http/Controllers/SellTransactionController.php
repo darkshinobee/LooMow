@@ -8,6 +8,9 @@ use App\SellTransaction;
 use Image;
 use App\Http\Controllers\TransactionController;
 use Session;
+use App\Mail\GameUploaded;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\GameApproved;
 
 class SellTransactionController extends Controller
 {
@@ -59,19 +62,20 @@ class SellTransactionController extends Controller
 
         $upload->save();
 
+        Mail::to($customer->email)->send(new GameUploaded($upload, $customer));
+
         Session::flash('success', 'Game Uploaded Successfully!');
         return redirect()->action('PageController@getIndex');
     }
 
-    public function updateSellTrans($id)
+    public function updateSellTrans($id, $customer)
     {
       $st = SellTransaction::find($id);
-
-      // $st->product_id = $prod_id;
       $st->key = 2;
       $st->status = "Pending Purchase";
-
       $st->save();
+
+      Mail::to($customer->email)->send(new GameApproved($st, $customer));
 
       // Redirect with flash message
       Session::flash('success', 'Product Quantity Updated');

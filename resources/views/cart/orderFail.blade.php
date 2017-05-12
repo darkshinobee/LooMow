@@ -11,7 +11,7 @@
         </div><br>
         <div class="row">
           <div class="col-sm-6">
-            <p>Oops! Looks like your order has not been processed.</p>
+            <p>Oops! Your order has not been processed.</p>
             <p>Your failed transaction reference is: {{ $failRef }}.</p>
             <p>Your game cart has not been emptied. Go to your cart and checkout again.</p>
             <p>We apologize for any inconvenience.</p><br>
@@ -24,8 +24,8 @@
                 <li>T: 0801 234 5678</li>
               </ul>
             </div>
-            <h4>Thank you</h4>
-            <h4 class="padTop">The LooMow Team</h4>
+            <h4>Thanks,</h4>
+            <h4 class="padTop">LooMow</h4>
           </div>
           <div class="col-sm-6" style="overflow-y: scroll; height:320px">
             @foreach ($myCart as $mc)
