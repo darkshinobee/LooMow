@@ -18,4 +18,9 @@ class Product extends Model
   {
     return $this->hasMany('App\ProductTransaction');
   }
+
+  public function searchableAs()
+    {
+        return 'products_index';
+    }
 }

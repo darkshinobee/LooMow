@@ -22,6 +22,7 @@ class CreateProductsTable extends Migration
             $table->integer('quantity')->unsigned();;
             $table->string('image_name');
             $table->string('image_path');
+            $table->string('slug');
             $table->date('release_date');
             $table->integer('price')->unsigned();
             $table->timestamps();

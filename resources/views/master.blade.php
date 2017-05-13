@@ -4,7 +4,7 @@
 	@include('partials._head')
 </head>
 <body>
-	<div id="app">
+	<div id="">
 		@include('partials._nav')
 		@include('partials._banner')
 		<div class="col-md-8 col-md-offset-2 text-center">

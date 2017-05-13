@@ -39,7 +39,7 @@ class BlogController extends Controller
     public function store(Request $request, $product_id)
     {
         $this->validate($request, array(
-            'name' => 'required|max:255',
+            'name' => 'required|min:5|max:255',
             'body' => 'required|min:5|max:2000'));
 
         $product = Product::find($product_id);
@@ -52,10 +52,10 @@ class BlogController extends Controller
 
         $blog->save();
 
-        $image_name = DB::table('products')->where('id', $product_id)->value('image_name');
+        $slug = DB::table('products')->where('id', $product_id)->value('slug');
 
         Session::flash('success', 'Your Review Has Been Posted!');
-        return redirect()->route('products.show', [$image_name]);
+        return redirect()->route('products.show', [$slug]);
     }
 
     /**

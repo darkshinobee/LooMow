@@ -8,6 +8,7 @@
 				<h1 class="text-center">Upload Your Game</h1>
 				<hr>
 				{!! Form::open(['route' => 'uploads.store', 'files' => true, 'id' => 'upload_form']) !!}
+				{{ csrf_field() }}
 
 				{{ Form::label('title', 'Game Title:') }}
 				{{ Form::text('title', null, array('class' => 'form-control', 'required' => '', 'maxlength' => '255')) }}
@@ -104,7 +105,7 @@
 															</div><br>
 
 															{!! Form::model($customer, ['route' => ['misc.update', $customer->id], 'method' => 'PUT', 'data-parsley-validate' => '']) !!}
-
+															{{ csrf_field() }}
 															{{ Form::label('phone', 'Phone Number', ['class' => 'pull-left']) }}
 															{{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *', 'required' => '']) }}<br>
 

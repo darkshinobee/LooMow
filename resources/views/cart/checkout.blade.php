@@ -2,7 +2,6 @@
 	@section('title', 'LGX Checkout')
 
 	@section('content')
-		@php $customer = Auth::guard('customer')->user() @endphp
 
 		<div class="container">
 			<div class="row">

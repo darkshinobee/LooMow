@@ -16,6 +16,7 @@
             <div class="panel-body" style="overflow-y: scroll; height:380px">
 
               {!! Form::model($customer, ['route' => ['misc.updateInfo', $customer->id], 'method' => 'PUT']) !!}
+              {{ csrf_field() }}
 
               {{ Form::label('first_name', 'First Name') }}
               {{ Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => 'First Name: ', 'required']) }}<br>
@@ -42,7 +43,7 @@
             </div>
             <div class="panel-body" style="overflow-y: scroll; height:380px">
               {!! Form::model($customer, ['route' => ['misc.updateDetails', $customer->id], 'method' => 'PUT']) !!}
-
+              {{ csrf_field() }}
               {{ Form::label('address', 'Address') }}
               {{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50', 'required']) }}<br>
 

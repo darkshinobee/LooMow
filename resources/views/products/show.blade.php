@@ -68,6 +68,7 @@
             <div class="tab-pane text-style" id="tab2">
               <div class="facts">
                 {{ Form::open(['route' => ['blogs.store', $product->id], 'method' => 'POST']) }}
+                {{ csrf_field() }}
                 <div class="row">
                   <div class="col-sm-6">
                     {{ Form::label('name', "Name:") }}
@@ -77,7 +78,7 @@
                     {{ Form::label('body', "Your Review:") }}
                     {{ Form::textarea('body', null, ['class' => 'form-control']) }}
                     <br>
-                    {{ Form::submit('Post Review', ['class' => 'btn btn-primary btn-block']) }}
+                    {{ Form::submit('Post Review', ['class' => 'btn btnColor btn-block']) }}
                   </div>
                 </div>
                 {{ Form::close() }}

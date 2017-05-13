@@ -2,15 +2,15 @@
 @section('title', 'About Us')
 
 @section('content')
-<h1 class="text-center">About Us</h1>
-<hr>
+	<div class="content-mid">
+		<h3>About Us</h3>
+		<label class="line"></label>
+	</div><br>
 <div class="container">
-
-
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-md-8 col-md-offset-2">
 		<h3>Some Nonsense</h3><br>
-		<p class="lead">
+		<p class="">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
 			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo

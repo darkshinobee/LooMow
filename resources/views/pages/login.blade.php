@@ -31,21 +31,19 @@
           <i class="glyphicon glyphicon-lock"></i>
         </div>
 
-        <div class="form-group text-center">
+        <div class="form-group">
           <div class="checkbox">
             <label>
               <input type="checkbox" name="remember"> Remember Me
             </label>
-            <a class="btn btn-link form-control" href="{{ url('/customer/password/reset') }}">
+            <a class="btn btn-link pull-right" href="{{ url('/customer/password/reset') }}">
               Forgot Your Password?
             </a>
           </div>
         </div>
         </form>
-        <button class="btn btnColor btn-lg btn-rec a_link" form="login_form">Login</button>
-        <a href="/register">
-          <button class="btn btnColor btn-lg btn-rec pull-right a_link">Register</button>
-        </a>
+        <button class="btn btnColor btn-md btn-block btn-rec a_link" form="login_form">Login</button>
+        <span class="pull-right" style="margin-top:10px">Don't have an account? <a href="/register">Sign Up</a></span>
     </div>
 
   </div>

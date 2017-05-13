@@ -2,7 +2,7 @@
 # Game Disapproved
 
 Hello {{ $customer->first_name }},<br>
-your game has been unfortunately rejected by our consoles. Our efforts to fix the game proved futile. Your game will be returned without any charges.
+your game has been unfortunately rejected by our consoles. Our efforts to fix the game proved futile. Your game is packed and ready for collection. See details below.
 
 @component('mail::table')
 | Game               | Platform              | Status              |
@@ -10,20 +10,17 @@ your game has been unfortunately rejected by our consoles. Our efforts to fix th
 |{{ $game->title }}|{{ $game->platform }}|{{ $game->status }}|
 @endcomponent
 
-The game will be returned to:<br>
+You can find us @:<br>
 <ul style="list-style:none">
-  <li>{{ $customer->first_name.' '.$customer->last_name }}</li>
-  <li>{{ $customer->address }}</li>
-  @if ($customer->landmark)
-    <li>{{ $customer->landmark }}</li>
-  @endif
-  <li>{{ $customer->state }}</li>
-  <li>T: {{ $customer->phone }}</li>
-  <li>E: {{ $customer->email }}</li>
+  <li>4 Tapa Close</li>
+  <li>Limpopo Street</li>
+  <li>Maitama</li>
+  <li>Abuja</li>
 </ul>
 
 @component('mail::panel')
-For more information contact us @:<br>
+For more information:<br>
+<a href="#">Returns Policy</a><br>
 T: 0801 234 5678<br>
 E: returns@loomow.com
 @endcomponent

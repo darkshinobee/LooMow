@@ -10,7 +10,7 @@
     <label class="line"></label>
   </div>
   <div class="contact-form">
-    
+
     <div class="container">
 
       <div class="col-md-6 contact-left">
@@ -40,6 +40,7 @@
 
           <div class="col-md-6 contact-top"><h3>Want to contact us?</h3>
             {!! Form::open(['url' => '/contact_us', 'method' => 'POST']) !!}
+            {{ csrf_field() }}
             <div>
               <span>Your Name </span><input type="text" name="name" required="">
             </div>
@@ -52,7 +53,7 @@
             <div>
               <span>Your Message</span><textarea name="message" required=""> </textarea>
             </div>
-            <button class="btn btnColor btn-lg btn-rec" type="submit">Send</button>
+            <button class="btn btnColor btn-md btn-block btn-rec a_link" type="submit">Send</button>
             {!! Form::close() !!}
           </div>
           <div class="clearfix"></div>

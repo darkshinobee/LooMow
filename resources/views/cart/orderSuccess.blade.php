@@ -2,9 +2,6 @@
 @section('title', 'Order Success')
 
 @section('content')
-  @php
-  $customer = Auth::guard('customer')->user()
-@endphp
   <div class="container">
     <div class="row">
       <div class="col-md-10 col-md-offset-1">
@@ -36,8 +33,8 @@
                 <li>T: 0801 234 5678</li>
               </ul>
             </div>
-            <h4>Thank you</h4>
-            <h4 class="padTop">The LooMow Team</h4>
+            <h4>Thanks,</h4>
+            <h4 class="padTop">LooMow</h4>
           </div>
           <div class="col-sm-6" style="overflow-y: scroll; height:450px">
             @foreach ($myCart as $mc)

@@ -11,46 +11,46 @@
       <div class="row">
         <div class="header-social">
           <div class="col-sm-4">
-          <ul>
-            <li><a href="#"><i></i></a></li>
-            <li><a href="#"><i class="ic1"></i></a></li>
-            <li><a href="#"><i class="ic2"></i></a></li>
-            <li><a href="#"><i class="ic3"></i></a></li>
-            <li><a href="#"><i class="ic4"></i></a></li>
-          </ul>
-</div>
-        </div>
-        <div class="col-sm-6">
-<search></search>
-        </div>
-      <div class="header-login">
-        <div class="col-sm-2">
-        <ul>
-          @if (Auth::guard('customer')->check())
-            <li class="dropdown">
-              <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
-              href="">Hello {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }} <span class="caret"></span>
-            </a>
-            <ul class="dropdown-menu" role="menu">
-              <li><a href="/account">My Account</a></li>
-              <li><a href="/orders">My Orders</a></li>
-              <li><a href="/my_uploads">My Games</a></li>
-              <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">Logout</a>
-                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                  {{ csrf_field() }}
-                </form>
-              </li>
+            <ul>
+              <li><a href="#"><i></i></a></li>
+              <li><a href="#"><i class="ic1"></i></a></li>
+              <li><a href="#"><i class="ic2"></i></a></li>
+              <li><a href="#"><i class="ic3"></i></a></li>
+              <li><a href="#"><i class="ic4"></i></a></li>
             </ul>
-          </li>
-        @else
-          <li><a href="/login">Log In</a></li>
-          <li><a href="/register">Register</a></li>
-        @endif
-      </ul>
-    </div>
-</div>
-    <div class="clearfix"> </div>
+          </div>
+        </div>
+        <div class="col-sm-6" id="app">
+          <search></search>
+        </div>
+        <div class="header-login">
+          <div class="col-sm-2">
+            <ul>
+              @if (Auth::guard('customer')->check())
+                <li class="dropdown">
+                  <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"
+                  href="">Hello {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }} <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="/account">My Account</a></li>
+                  <li><a href="/orders">My Orders</a></li>
+                  <li><a href="/my_uploads">My Games</a></li>
+                  <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">Logout</a>
+                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                      {{ csrf_field() }}
+                    </form>
+                  </li>
+                </ul>
+              </li>
+            @else
+              <li><a href="/login">Log In</a></li>
+              <li><a href="/register">Register</a></li>
+            @endif
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"> </div>
     </div>
   </div>
 </div>
@@ -91,9 +91,9 @@
             <li><a class="color4" href="/about">About</a></li>
             <li ><a class="color6" href="/contact">Contact</a></li>
           </ul><br>
-             <form class="" action="/game_upload" method="get">
-               <button class="btn col-md-5 sellBtn btnColor a_link">Sell a Game</button>
-             </form>
+          <form action="/game_upload" method="get">
+            <button class="btn col-md-5 sellBtn btnColor a_link">Sell a Game</button>
+          </form>
         </div><!-- /.navbar-collapse -->
 
       </nav>
@@ -109,6 +109,7 @@
           </h3>
         </a>
       </div>
+    </div>
   </div>
 </div>
-</div>
+<script src="/js/search.js"></script>

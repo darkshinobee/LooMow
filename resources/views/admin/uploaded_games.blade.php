@@ -33,7 +33,7 @@
               </a>
               <br>
               <a href="/admin_lgx/disapprove/{{$temp->id}}">
-              <button class="btn btn-danger btn-block">Dispprove</button>
+              <button class="btn btn-danger btn-block">Disapprove</button>
             </a><br>
               <form action="/admin_lgx/update_id/{{$temp->id}}">
                 <div style="" class="input-group input-group-sm">

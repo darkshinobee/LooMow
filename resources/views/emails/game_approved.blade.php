@@ -11,7 +11,8 @@ your game has been verified to be in good working condition and is awaiting purc
 @endcomponent
 
 @component('mail::panel')
-For more information contact us @:<br>
+For more information:<br>
+<a href="#">Terms and Conditions</a><br>
 T: 0801 234 5678<br>
 E: help@loomow.com
 @endcomponent

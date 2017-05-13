@@ -68,4 +68,22 @@ class PageController extends Controller
     $products = Product::orderby('id', 'desc')->where('platform', $platform)->paginate(6);
     return view('pages.sorted_games', compact('products', 'platform'));
   }
-}
+
+  public function search(Request $request)
+  {
+    if ($request->has('query')) {
+      $q = $request->input("query");
+      $query = DB::table('products')->select('title', 'platform', 'image_name', 'image_path', 'slug')
+      ->where('title', 'like', '%'.$q.'%')
+      ->orWhere('platform', 'like', '%'.$q.'%')
+      ->orWhere('genre', 'like', '%'.$q.'%')
+      ->get();
+      if ($query->Count()) {
+        return $query;
+      }else {
+        return "no match";
+      }
+      }
+      return "empty";
+    }
+  }

@@ -10,10 +10,10 @@
 			<div class="col-md-4 footer-middle-in">
 				<h6>Information</h6>
 				<ul class="in">
-					<li><a href="404.html">About</a></li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="/about">About</a></li>
+					<li><a href="/contact">Contact Us</a></li>
 					<li><a href="#">Returns</a></li>
-					<li><a href="contact.html">Terms and Conditions</a></li>
+					<li><a href="#">Terms and Conditions</a></li>
 				</ul>
 				<div class="clearfix"></div>
 			</div>

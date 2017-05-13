@@ -18,7 +18,7 @@
 								<div class="col-md-4 item-grid simpleCart_shelfItem">
 									<div class="mid-pop">
 										<div class="pro-img">
-											<a href="/products/{{ $product->image_name }}"><img src="{{ ($product->image_path) }}" class="img-responsive" alt=""></a>
+											<a href="{{ route('products.show', $product->slug) }}"><img src="{{ ($product->image_path) }}" class="img-responsive" alt=""></a>
 										</div>
 										<div class="mid-1">
 											<div class="row">

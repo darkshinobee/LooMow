@@ -2,9 +2,6 @@
 @section('title', 'Buy Shopping Cart')
 
 @section('content')
-  @php
-  $item = Auth::guard('customer')->user()
-@endphp
 
 <div class="check-out">
   <div class="container">
@@ -43,6 +40,7 @@
               <td class="dr">&#8358;{{ number_format($buyCartItem->price, 2) }}</td>
               <td>
               {!! Form::open(['route' => ['cart.updateBuy', $buyCartItem->rowId], 'method' => 'PUT']) !!}
+              {{ csrf_field() }}
               <select class="form-control" name="qty">
                 @for ($i=1; $i <= $buyCartItem->options->quantity; $i++)
                   <option value="{{$i}}" @if($i==$buyCartItem->qty) selected @endif >{{$i}}</option>
@@ -57,6 +55,7 @@
               <td class="dr">&#8358;{{ number_format($buyTotal,2) }}</td>
               <td>
                 {!! Form::open(['route' => ['cart.removeBuy', $buyCartItem->rowId], 'method' => 'POST']) !!}
+                {{ csrf_field() }}
                 <button class="btn btn-danger btn-sm pull-right">Remove</button>
                 {!! Form::close() !!}
               </td>
@@ -144,7 +143,7 @@
                         </div><br>
 
                         {!! Form::model($item, ['route' => ['misc.update', $item->id], 'method' => 'PUT']) !!}
-
+                        {{ csrf_field() }}
                         {{ Form::label('phone', 'Phone Number', ['class' => 'pull-left']) }}
                         {{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *', 'required']) }}<br>
 

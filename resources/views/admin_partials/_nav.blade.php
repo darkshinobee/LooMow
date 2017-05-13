@@ -9,6 +9,7 @@
   </div>
   <div class="col-md-6">
     <form action="{{ url('/admin_lgx/search') }}">
+      {{ csrf_field() }}
       <div style="margin-top:10px" class="input-group input-group-sm">
         <input type="text" class="form-control" placeholder="Search..." name="keyword"
         aria-describedby="sizing-addon3">
@@ -119,10 +120,10 @@
           </li>
           <li class="divider"></li>
           <li class="dropdown-item">
-            <a href="{{ url('admin_lgx/logout') }}" onclick="event.preventDefault();
+            <a href="{{ url('/admin_lgx/logout') }}" onclick="event.preventDefault();
             document.getElementById('logout-form').submit();">
             <i class="fa fa-fw fa-power-off"></i> Log Out</a>
-            <form id="logout-form" action="{{ url('admin_lgx/logout') }}" method="POST" style="display: none;">
+            <form id="logout-form" action="{{ url('/admin_lgx/logout') }}" method="POST" style="display: none;">
               {{ csrf_field() }}
             </form>
           </li>

@@ -7,37 +7,30 @@
         <input type="text" class="form-control input-sm" placeholder="Search..."
         v-model="search_query" @keyup.enter="search()">
         <span class="input-group-btn">
-        <button class="btn btnColor btn-sm" type="button" @click="search">
-          <span class="glyphicon glyphicon-search a_link"></span>
-        </button>
-      </span>
+          <button class="btn btnColor btn-sm" type="button" @click="search">
+            <span class="glyphicon glyphicon-search a_link"></span>
+          </button>
+        </span>
       </div>
 
-  <ul class="search_res dropdown-menu search_ddown" v-if="search_query.length">
-    <li class="single_search_result" v-for="result in search_results">
-      <a :href="'/products/'+result.image_name">
-        <img :src="result.image_path" alt="" class="result_image">
-        <span class="result_name">{{ result.title }} - </span>
-        <em>
-          {{ result.platform }}
-        </em>
-      </a>
-    </li>
-    <li class="single_search_result text-center" v-if="search_loader">{{ search_loader }}</li>
-    <li class="single_search_result text-center" v-if="errors">{{ errors }}</li>
-    <div class="img-responsive pull-right" style="padding-right:10px">
-      <img src="/images/logos/algolia_logo.jpg" alt="Algolia Logo">
-      <span>with <i class="glyphicon glyphicon-heart"></i></span>
+      <ul class="search_res dropdown-menu search_ddown" v-if="search_query.length">
+        <li class="single_search_result" v-for="result in search_results">
+          <a :href="'/games/'+result.slug">
+            <img :src="result.image_path" alt="" class="result_image">
+            <span class="result_name">{{ result.title }} - </span>
+            <em>
+              {{ result.platform }}
+            </em>
+          </a>
+        </li>
+        <li class="single_search_result text-center" v-if="search_loader">{{ search_loader }}</li>
+        <li class="single_search_result text-center" v-if="errors">{{ errors }}</li>
+      </ul>
     </div>
-  </ul>
-</div>
-</div>
+  </div>
 </template>
 
 <script>
-var algoliasearch = require('algoliasearch');
-var client = algoliasearch('7QVF296YT4', '4c88071e634786bc9a9841bb26d937af');
-var index = client.initIndex('products');
 
 export default {
   mounted() {
@@ -55,7 +48,8 @@ export default {
   watch: {
     search_query: function () {
       this.search_results = null
-      if (this.search_query.length >= 3) {
+      this.errors = ""
+      if (this.search_query.length >= 1) {
         this.search()
       }
     }
@@ -65,15 +59,28 @@ export default {
     search: _.debounce(function() {
       var obj = this;
       obj.search_loader = "Searching..."
-      index.search(obj.search_query, function(err, content) {
-        if (content.hits) {
+      axios.get('/search_results?query=' + obj.search_query)
+      .then(function (content) {
+        if (content.data == 'empty') {
           obj.search_loader = ""
-          obj.search_results = content.hits
-        }else{
-          obj.search_loader = ""
+        }else if (content.data == 'no match') {
           obj.errors = "No Matching Records!"
+          obj.search_loader = ""
+        }else {
+          obj.search_loader = ""
+          obj.search_results = content.data
+          obj.errors = ""
         }
       })
+
+      // if (content.length > 1) {
+      //   obj.search_loader = ""
+      //   obj.search_results = content.query
+      //   obj.errors = ""
+      // }else{
+      //   obj.search_loader = ""
+      //   obj.errors = "No Matching Records!"
+      // }
     }, 500)
   }
 }

@@ -130,7 +130,7 @@ class ProductTransactionController extends Controller
     Mail::to($customer->email)->send(new PaySuccess($obj, $tref, $customer));
     Mail::to('orders@loomow.com')->send(new OrderSheet($obj, $customer, $tref));
 
-    return view('cart.orderSuccess', compact('myCart', 'tref'));
+    return view('cart.orderSuccess', compact('myCart', 'tref', 'customer'));
   }
 
   public function orderFail($failRef)

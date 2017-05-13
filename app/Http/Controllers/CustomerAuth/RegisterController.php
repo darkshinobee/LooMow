@@ -8,6 +8,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Auth;
 use Session;
+// use Illuminate\Support\Facades\Mail;
+// use App\Mail\RegistrationMail;
 
 class RegisterController extends Controller
 {
@@ -72,6 +74,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+        // Mail::to($data['email'])->send(new RegistrationMail($data));
     }
 
     /**

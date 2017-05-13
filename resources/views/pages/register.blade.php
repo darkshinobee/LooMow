@@ -60,10 +60,8 @@
             <i class="glyphicon glyphicon-lock"></i>
           </div>
         </form>
-        <button type="submit" class="btn btnColor btn-lg btn-rec a_link" form="reg_form">Register</button>
-        <a href="/login">
-          <button type="submit" class="btn btnColor btn-lg btn-rec pull-right a_link">Login</button>
-        </a>
+        <button type="submit" class="btn btnColor btn-md btn-block btn-rec a_link" form="reg_form">Register</button>
+        <span class="pull-right" style="margin-top:10px">Already have an account? <a href="/login">Login</a></span>
       </div>
 
     </div>

@@ -61,6 +61,7 @@ class ProductController extends Controller
             'genre' => 'required',
             'quantity' => 'required',
             'image_name' => 'required',
+            // 'slug' => 'required|alpha_dash|unique:products,slug',
             'release_date' => 'required',
             'price' => 'required'
             ));
@@ -87,6 +88,7 @@ class ProductController extends Controller
             Image::make($image)->resize(426, 590)->save($location);
         }
 
+        $product->slug = $request->title.'_'.$request->platform;
         $product->release_date = $request->release_date;
         $product->price = $request->price;
         $product->save();
@@ -104,9 +106,9 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($img_name)
+    public function show($slug)
     {
-        $id = DB::table('products')->where('image_name', $img_name)->value('id');
+        $id = DB::table('products')->where('slug', $slug)->value('id');
         $product = Product::find($id);
         return view('products.show')->withProduct($product);
     }

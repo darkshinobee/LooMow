@@ -1,5 +1,4 @@
 <?php
-use App\Mail\MarkdownTest;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,15 +10,8 @@ use App\Mail\MarkdownTest;
 |
 */
 
-Route::get('/mailz', function () {
-  $f = 'wordss';
-  $l = "tryyyy";
-    Mail::to('ahmedibrahim3000@gmail.com')->send(new MarkdownTest($f, $l));
-    return redirect()->action('PageController@getIndex');
-});
-
 Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted');
-
+Route::get('/search_results', 'PageController@search');
 Route::get('/login', 'PageController@login');
 Route::get('/register', 'PageController@register');
 Route::get('/contact', 'PageController@getContact');
@@ -59,8 +51,10 @@ Route::get('/viewBuy', 'CartController@viewBuyCart');
 Route::get('viewSell', 'CartController@viewSellCart');
 Route::get('/checkout', 'CartController@checkout');
 
-Route::get('/products/{img_name}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
-Route::post('/products/{img_name}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
+// Route::get('/products/{img_name}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+// Route::post('/products/{img_name}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
+Route::get('games/{slug}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
+Route::post('games/{slug}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
 
 Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
 Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');

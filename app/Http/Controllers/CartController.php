@@ -38,14 +38,15 @@ class CartController extends Controller
       $voucher_value = null;
     }
     $delivery_charge = 2000;
-    return view('cart.checkout', compact('buyCartItems', 'delivery_charge', 'voucher_value'));
+    return view('cart.checkout', compact('buyCartItems', 'delivery_charge', 'voucher_value', 'customer'));
   }
 
   public function viewBuyCart()
   {
+    $item = Auth::guard('customer')->user();
     $buyCartItems = Cart::instance('buyCart')->content();
     $delivery_charge = 2000;
-    return view('cart.viewBuy', compact('buyCartItems', 'delivery_charge'));
+    return view('cart.viewBuy', compact('buyCartItems', 'delivery_charge', 'item'));
   }
 
   public function viewSellCart()
