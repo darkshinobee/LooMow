@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\SellTransaction;
 use App\ProductTransaction;
+use App\Selltemp;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ProductController;
@@ -103,22 +104,16 @@ class LGXAdminController extends Controller
   public function approve($id)
   {
     $st = SellTransaction::find($id);
-
     $customer = Customer::find($st->customer_id);
-
     $stc = new SellTransactionController;
-    $p = new ProductController;
 
     if ($st->product_id == null) {
-      $max_id = DB::table('products')->max('id');
-      $st->product_id = $max_id + 1;
-      $st->key = 2;
-      $st->status = "Pending Purchase";
-      $st->save();
-
-      Mail::to($customer->email)->send(new GameApproved($st, $customer));
+      $selltemp = New Selltemp;
+      $selltemp->sell_id = $id;
+      $selltemp->save();
 
       return $this->addProduct();
+
     }else {
       $pr = Product::find($st->product_id);
       $pr->quantity += 1;
@@ -126,7 +121,6 @@ class LGXAdminController extends Controller
 
       return $stc->updateSellTrans($id, $customer);
     }
-
   }
 
   public function disApprove($id)

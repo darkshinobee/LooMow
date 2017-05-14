@@ -9,6 +9,7 @@ use Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\Http\Controllers\SellTransactionController;
 
 class ProductController extends Controller
 {
@@ -93,9 +94,12 @@ class ProductController extends Controller
         $product->price = $request->price;
         $product->save();
 
+        $stc = new SellTransactionController;
+        return $stc->approveNew($product->id);
+
         // Redirect with flash message
-        Session::flash('success', 'New Product Added Successfully!');
-        return redirect()->action('LGXAdminController@getDashboard');
+        // Session::flash('success', 'New Product Added Successfully!');
+        // return redirect()->action('LGXAdminController@getDashboard');
         // return $product->id;
 
     }

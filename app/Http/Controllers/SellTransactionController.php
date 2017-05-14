@@ -11,6 +11,8 @@ use Session;
 use App\Mail\GameUploaded;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\GameApproved;
+use App\Customer;
+use Illuminate\Support\Facades\DB;
 
 class SellTransactionController extends Controller
 {
@@ -81,6 +83,25 @@ class SellTransactionController extends Controller
       Session::flash('success', 'Product Quantity Updated');
       return redirect()->action('LGXAdminController@getDashboard');
 
+    }
+
+    public function approveNew($product_id)
+    {
+      $sell_id = DB::table('selltemps')->max('sell_id');
+      $stc = SellTransaction::find($sell_id);
+      $stc->product_id = $product_id;
+      $stc->key = 2;
+      $stc->status = "Pending Purchase";
+      $stc->save();
+
+      $customer = Customer::find($stc->customer_id);
+
+      Mail::to($customer->email)->send(new GameApproved($stc, $customer));
+
+      DB::table('selltemps')->truncate();
+
+      Session::flash('success', 'New Product Added Successfully!');
+      return redirect()->action('LGXAdminController@getDashboard');
     }
 
     public function uploadRef()
