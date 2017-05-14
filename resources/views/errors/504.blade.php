@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>404 - Not Found</title>
+        <title>504 - Gateway Timeout</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -40,7 +40,7 @@
     <body>
         <div class="container">
             <div class="content">
-                <div class="title">Wetin you dey find!</div>
+                <div class="title">Taking Too Long Huh, Be Right Back.</div>
                 <a href="/"> <h2>Back to LooMow</h2> </a>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Be right back.</title>
+        <title>503 - Service Unavailable</title>
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -41,6 +41,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Be right back.</div>
+                <a href="/"> <h2>Back to LooMow</h2> </a>
             </div>
         </div>
     </body>
