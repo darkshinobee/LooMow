@@ -19,11 +19,9 @@ class MarkdownTest extends Mailable
      *
      * @return void
      */
-    public function __construct($f, $l)
+    public function __construct()
     {
-        $this->f = $f;
-        $this->l = $l;
-        $this->customer = Auth::guard('customer')->user();
+
     }
 
     /**
@@ -35,9 +33,6 @@ class MarkdownTest extends Mailable
     {
 
         return $this->markdown('emails.marktest')
-                    ->with(['f' => $this->f,
-                            'l' => $this->l,
-                            'customer' => $this->customer])
                     ->from('help@loomow.com', 'LooMow')
                     ->subject('Markdown Test');
     }

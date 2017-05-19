@@ -20,7 +20,6 @@
               <p class="padTop">For enquiries regarding your order. Feel free to contact us @</p>
               <ul class="ul_bullet">
                 <li>E: orders@loomow.com</li>
-                <p>OR</p>
                 <li>T: 0801 234 5678</li>
               </ul>
             </div>

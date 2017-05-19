@@ -1,5 +1,4 @@
 <?php
-use Illuminate\Support\Facades\DB;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,12 +9,6 @@ use Illuminate\Support\Facades\DB;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/top', function()
-{
-  // DB::table('customers')->truncate();
-  $top = DB::table('customers')->get();
-    dd($top);
-});
 
 Route::get('/sorted/{platform}', 'PageController@getSortedGames')->name('sorted');
 Route::get('/search_results', 'PageController@search');

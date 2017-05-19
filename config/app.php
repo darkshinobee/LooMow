@@ -185,7 +185,8 @@ return [
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
         Unicodeveloper\Paystack\PaystackServiceProvider::class,
-        // Jenssegers\Rollbar\RollbarServiceProvider::class,
+        PhpConsole\Laravel\ServiceProvider::class,
+        Laravel\Dusk\DuskServiceProvider::class,
 
     ],
 

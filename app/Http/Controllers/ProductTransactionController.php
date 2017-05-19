@@ -48,10 +48,11 @@ class ProductTransactionController extends Controller
       ->first();
 
       $c_cust = Customer::find($cust->customer_id);
+      $old_voucher = $c_cust->voucher_value;
       $c_cust->voucher_value += ($bc->price - 1000);
       $c_cust->save();
 
-      Mail::to($c_cust->email)->send(new GamePurchased($c_cust, $bc));
+      Mail::to($c_cust->email)->send(new GamePurchased($c_cust, $bc, $old_voucher));
 
       DB::table('sell_transactions')
       ->where('id', $cust->id)
