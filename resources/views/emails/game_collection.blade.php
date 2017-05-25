@@ -1,14 +1,5 @@
 @component('mail::message')
-#  {{ $tref }} - Game Uploaded
-
-Hello {{ $customer->first_name }},<br>
-your game has been uploaded successfully and will be collected for verification within two working days.
-Please have the following ready:<br>
-<ul style="list-style:none">
-  <li>The game you uploaded.</li>
-  <li>The sum of &#8358;{{ number_format(1000,2) }} to pay for the collection service.</li>
-  <li>This reference number - **{{ $tref }}**</li>
-</ul>
+# Game Collection [{{ $tref }}]
 
 @component('mail::table')
 | Game               | Platform              | Status              |
@@ -16,7 +7,7 @@ Please have the following ready:<br>
 |{{ $upload->title }}|{{ $upload->platform }}|{{ $upload->status }}|
 @endcomponent
 
-The game will be collected from:<br>
+The order will be collected from:<br>
 <ul style="list-style:none">
   <li>{{ $customer->first_name.' '.$customer->last_name }}</li>
   <li>{{ $customer->address }}</li>
@@ -27,12 +18,6 @@ The game will be collected from:<br>
   <li>T: {{ $customer->phone }}</li>
   <li>E: {{ $customer->email }}</li>
 </ul>
-
-@component('mail::panel')
-For more information contact us @:<br>
-T: 0801 234 5678<br>
-E: help@loomow.com
-@endcomponent
 
 Thanks,<br>
 {{ config('app.name') }}

@@ -34,50 +34,32 @@
 						</div>
 						<div class="col-sm-2 pull-left">
 							<h3>Subtotal: </h3>
-							<h3 class="padTop">Voucher: </h3><hr>
-							<h3 class="">Delivery: </h3><br>
+							<h3 class="padTop">Delivery: </h3><br>
 							<h2>TOTAL: </h2>
 						</div>
 						<div class="col-sm-2 pull-right">
 								<h3>&#8358;{{ Cart::subtotal() }}</h3>
-								<h3 class="padTop">&#8358;{{ number_format($voucher_value,2) }}</h3><hr>
-								<h3 class="">&#8358;{{ number_format($delivery_charge,2) }}</h3><br>
-								@php $subTotal = str_replace(',', '', Cart::subtotal()) @endphp
-								@if(isset($voucher_value))
-									@if ($voucher_value >= (int)$subTotal)
-										@php $sumTotal = $delivery_charge;
-										 		 $new_voucher = $voucher_value - (int)$subTotal @endphp
-										<h2>&#8358;{{ number_format($sumTotal, 2) }}</h2>
-									@elseif($voucher_value < (int)$subTotal)
-										@php $sumTotal = ((int)$subTotal - $voucher_value) + $delivery_charge;
-										     $new_voucher = 0 @endphp
-										<h2>&#8358;{{ number_format($sumTotal, 2) }}</h2>
-									@endif
-								@else
-									@php $sumTotal = (int)$subTotal + $delivery_charge;
-										   $new_voucher = $customer->voucher_value @endphp
-									<h2>&#8358;{{ number_format($sumTotal, 2) }}</h2>
-								@endif
+								<h3 class="padTop">&#8358;{{ number_format($delivery_charge,2) }}</h3><br>
+								@php $subTotal = str_replace(',', '', Cart::subtotal());
+								 		 $subTotal = $subTotal + $delivery_charge @endphp
+								<h2>&#8358;{{ number_format($subTotal, 2) }}</h2>
 						</div>
 					</div><hr>
 					<div class="col-sm-3 pull-right">
 						{!! Form::open(['route' => ['pay'], 'method' => 'POST']) !!}
-
-						{{ Form::hidden('new_voucher', $new_voucher) }}
-
+						{{ Form::hidden('name', $customer->first_name.' '.$customer->last_name) }}
 						{{ Form::hidden('email', $customer->email) }}
-						{{ Form::hidden('amount', ($sumTotal)*100) }}
+						{{ Form::hidden('amount', ($subTotal)*100) }}
 						{{ Form::hidden('reference_no', Paystack::genTranxRef()) }}
 						{{ Form::hidden('key', config('paystack.secretKey')) }}
-
 						{{ csrf_field() }}
-
-						{{ Form::submit('Pay', ['class' => 'btn btn-success btn-block']) }}
-
+						{{ Form::submit('Pay', ['class' => 'btn btn_load btn-success btn-block', 'data-loading-text' => 'Please wait...']) }}
 						{!! Form::close() !!}
 					</div>
 				</div>
 			</div><br>
 		</div>
-
+	@endsection
+	@section('scripts')
+		{{ Html::script('js/btn_load.js') }}
 	@endsection

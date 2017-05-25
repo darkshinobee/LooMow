@@ -4,10 +4,10 @@
     <div class="search_component dropdown">
 
       <div class="input-group dropdown-toggle" data-toggle="dropdown">
-        <input type="text" class="form-control input-sm" placeholder="Search..."
+        <input type="text" class="form-control" placeholder="Search..."
         v-model="search_query" @keyup.enter="search()">
         <span class="input-group-btn">
-          <button class="btn btnColor btn-sm" type="button" @click="search">
+          <button class="btn btnColor" type="button" @click="search">
             <span class="glyphicon glyphicon-search a_link"></span>
           </button>
         </span>
@@ -92,7 +92,7 @@ export default {
   /*flex-direction: column;*/
   width: 100%;
   /*justify-content: center;*/
-  align-items: center;
+  /*align-items: center;*/
 }
 .search_component input {
   /*border : 1px transparent;*/

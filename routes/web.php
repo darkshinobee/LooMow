@@ -27,7 +27,6 @@ Route::get('/my_uploads', 'ProductTransactionController@getUploads');
 Route::post('/subscribe', 'EmailsubscriptionController@store');
 Route::put('/unsubscribe', 'EmailsubscriptionController@update');
 
-Route::resource('cart', 'CartController');
 Route::resource('products', 'ProductController');
 Route::resource('misc', 'MiscController');
 Route::resource('uploads', 'SellTransactionController');
@@ -38,17 +37,10 @@ Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'Mi
 Route::get('/orderFail/{failRef}', 'ProductTransactionController@orderFail');
 Route::get('/orderSuccess/{tref}', 'ProductTransactionController@orderSuccess');
 
-Route::get('/cart/{id}/addBuyCart', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
-Route::get('/cart/{id}/addSellCart', ['as' => 'cart.addSell', 'uses' => 'CartController@addSellCart']);
-
+Route::get('/cart/{p_id}/{s_id}', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
 Route::post('/cart/{id}/removeBuy', ['as' => 'cart.removeBuy', 'uses' => 'CartController@removeBuy']);
-Route::post('/cart/{id}/removeSell', ['as' => 'cart.removeSell', 'uses' => 'CartController@removeSell']);
-
 Route::put('/cart/{id}/updateBuy', ['as' => 'cart.updateBuy', 'uses' => 'CartController@updateBuy']);
-Route::put('/cart/{id}/updateSell', ['as' => 'cart.updateSell', 'uses' => 'CartController@updateSell']);
-
 Route::get('/viewBuy', 'CartController@viewBuyCart');
-Route::get('viewSell', 'CartController@viewSellCart');
 Route::get('/checkout', 'CartController@checkout');
 
 // Route::get('/products/{img_name}', ['as' => 'products.show', 'uses' => 'ProductController@show']);

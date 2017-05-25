@@ -18,9 +18,9 @@ class CreateSellTransactions extends Migration
         $table->string('title');
         $table->string('platform');
         $table->string('genre');
-        $table->integer('min_rate')->unsigned();
-        $table->integer('max_rate')->unsigned();
+        $table->integer('price')->unsigned();
         $table->string('img_path');
+        $table->string('purchase_time');
         $table->integer('customer_id');
         $table->integer('transaction_id');
         $table->integer('product_id')->nullable();

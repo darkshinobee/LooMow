@@ -7,6 +7,7 @@
 			<div class="col-md-6 col-md-offset-3"><br>
 				<h1 class="text-center">Upload Your Game</h1>
 				<hr>
+				<a href="" data-toggle="modal" data-target="#myModal"><p class="pull-right" style="font-size:0.8em; color:royalblue">* Click here to update your address</p></a>
 				{!! Form::open(['route' => 'uploads.store', 'files' => true, 'id' => 'upload_form']) !!}
 				{{ csrf_field() }}
 
@@ -18,39 +19,40 @@
 						{{ Form::label('platform', 'Platform:') }}
 						{{ Form::select('platform', ['PS4' => 'PS4', 'PS3' => 'PS3', 'Xbox360' => 'Xbox 360', 'XboxOne' => 'Xbox One', 'PSVita' => 'PS Vita', 'NintendoWii' => 'Nintendo Wii'], null,
 							['class' => 'form-control', 'required', 'placeholder' => 'Select Platform']) }}
-						<br><br>
 					</div>
 					<div class="col-sm-6">
 						{{ Form::label('genre', 'Genre:') }}
 						{{ Form::select('genre', ['Action' => 'Action', 'Adventure' => 'Adventure', 'Racing' => 'Racing', 'Sports' => 'Sports', 'Simulation' => 'Simulation', 'Fighting' => 'Fighting', 'Kids' => 'Kids'], null,
 							 ['class' => 'form-control', 'required', 'placeholder' => 'Select Platform']) }}
-						<br><br>
 					</div>
-				</div>
-				<hr>
-				<h3 class="text-center">Price Range</h3>
+				</div><br>
 				<hr>
 				<div class="row">
 					<div class="col-sm-6">
-						{{ Form::label('min_rate', 'Min Rate: &#8358;') }}
-						{{ Form::number('min_rate', null, array('class' => 'form-control', 'required' => '')) }}
-						<br>
+						{{ Form::label('price', 'Price: &#8358;') }}
+						{{ Form::number('price', null, array('class' => 'form-control', 'required' => '')) }}
 					</div>
 					<div class="col-sm-6">
-						{{ Form::label('max_rate', 'Max Rate: &#8358;') }}
-						{{ Form::number('max_rate', null, array('class' => 'form-control', 'required' => '')) }}
-						<br>
+						{{ Form::label('platform', 'How long have you had the game:') }}
+							<select class="form-control required" name="purchase_time">
+								<option>--</option>
+								<option value="Less than a month">Less than a month</option>
+								<option value="1 month">1 month</option>
+								@for ($i=2; $i <= 12; $i++)
+									<option value="{{$i}} months">{{$i}} months</option>
+								@endfor
+								<option value="Over a year">Over a year</option>
+							</select>
 					</div>
-				</div>
+				</div><br>
 				<div class="row">
-					<div class="col-sm-6">
-						{{-- {{ Form::label('img_path', 'Upload Image:') }} --}}
+					<div class="col-sm-12">
 						{{ Form::file('img_path', array('class' => 'form-control', 'required' => '')) }}
 						<p style="font-size:0.6em; color:royalblue">* Image cannot be greater than 200kb</p>
 					</div>
 					{!! Form::close() !!}
-					<div class="col-sm-6">
-						<button class="btn btnColor btn-md pull-right btn-block a_link" type="button" data-toggle="modal" data-target="#myModal">Update Address</button>
+					{{-- <div class="col-sm-6"> --}}
+						{{-- <button class="btn btnColor btn-md pull-right btn-block a_link" type="button" data-toggle="modal" data-target="#myModal">Update Address</button> --}}
 						<!-- Modal -->
 						<div class="modal fade produced" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 							<div class="modal-dialog" role="document">
@@ -135,14 +137,18 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				{{-- </div> --}}
 			</div>
 			@if ($customer->address)
 				{{ Form::submit('Submit', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px', 'form' => 'upload_form')) }}
-				{{-- {!! Form::close() !!} --}}
+			@else
+				<script type="text/javascript">
+				    $(window).on('load',function(){
+				        $('#myModal').modal('show');
+				    });
+				</script>
 			@endif
 		</div>
 	</div>
 </div><br>
-
 @stop

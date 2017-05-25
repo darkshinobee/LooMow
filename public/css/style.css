@@ -593,33 +593,7 @@ a.buy-now:hover{
 .brand {
     padding: 5em 0;
 }
-.banner-top1{
-	text-align:center;
-	width: 100%;
-    height: 250px;
-    /*height: 40%;*/
-    display: block;
-    background: url(/images/banner/wd2_banner.png)no-repeat ;
-	padding:5em 0;
-}
-.banner-top2{
-	text-align:center;
-	width: 100%;
-    height: 250px;
-    /*height: 40%;*/
-    display: block;
-    background: url(/images/banner/hzd.jpg)no-repeat ;
-	padding:5em 0;
-}
-.banner-top3{
-	text-align:center;
-	width: 100%;
-    height: 250px;
-    /*height: 100%;*/
-    display: block;
-    background: url(/images/banner/mea.png)no-repeat ;
-	padding:5em 0;
-}
+
 .banner-top h1{
 	font-size:3em;
 	color:#fff;

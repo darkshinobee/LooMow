@@ -9,6 +9,7 @@ use App\ProductTransaction;
 use App\Transaction;
 use App\Product;
 use App\Customer;
+use App\Payout;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\Http\Controllers\ProductController;
@@ -42,34 +43,30 @@ class ProductTransactionController extends Controller
 
       $prodTrans->save();
 
-      $cust = DB::table('sell_transactions')
+      $st = DB::table('sell_transactions')
       ->where('product_id', $bc->id)
       ->where('key', 2)
       ->first();
 
-      $c_cust = Customer::find($cust->customer_id);
-      $old_voucher = $c_cust->voucher_value;
-      $c_cust->voucher_value += ($bc->price - 1000);
-      $c_cust->save();
+      $seller = DB::table('customers')->where('id', $st->customer_id)->first();
 
-      Mail::to($c_cust->email)->send(new GamePurchased($c_cust, $bc, $old_voucher));
+      DB::table('payouts')
+            ->where('sell_id', $st->id)
+            ->where('customer_id', $st->customer_id)
+            ->update([
+              'amount' => $st->price - 1000,
+              'key' => 1,
+              'status' => 'Paid']);
+
+      Mail::to($seller->email)->send(new GamePurchased($seller, $bc));
 
       DB::table('sell_transactions')
-      ->where('id', $cust->id)
+      ->where('id', $st->id)
       ->update(['key' => 3, 'status' => 'Product Sold']);
     }
 
     $product = new ProductController;
     $product->update();
-
-    $buytemp = DB::table('buy_temps')->where('customer_id', $customer->id)->first();
-
-    $newVoucher = $buytemp->resultant_voucher;
-
-    $misc = new MiscController;
-    $misc->voucherUpdate($newVoucher);
-
-    DB::table('buy_temps')->where('customer_id', $customer->id)->delete();
 
     return $this->orderSuccess($tr_id);
   }

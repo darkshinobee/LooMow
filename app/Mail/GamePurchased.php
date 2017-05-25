@@ -16,11 +16,10 @@ class GamePurchased extends Mailable
      *
      * @return void
      */
-    public function __construct($customer, $game, $old_voucher)
+    public function __construct($customer, $game)
     {
       $this->customer = $customer;
       $this->game = $game;
-      $this->old_voucher = $old_voucher;
     }
 
     /**
@@ -33,8 +32,7 @@ class GamePurchased extends Mailable
         return $this->markdown('emails.game_purchased')
                     ->with([
                       'customer' => $this->customer,
-                      'game' => $this->game,
-                      'old_voucher' => $this->old_voucher
+                      'game' => $this->game
                     ])
                     ->from('noreply@loomow.com')
                     ->subject('Congratulations! Your Game Has Been Purchased');

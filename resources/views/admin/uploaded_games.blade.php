@@ -22,9 +22,9 @@
               <li class="list-group-item">Title - {{ $temp->title }}</li>
               <li class="list-group-item">Platform - {{ $temp->platform }}</li>
               <li class="list-group-item">Genre - {{ $temp->genre }}</li>
-              <li class="list-group-item">Min Rate - &#8358;{{ number_format($temp->min_rate,2) }}</li>
-              <li class="list-group-item">Max Rate - &#8358;{{ number_format($temp->max_rate,2) }}</li>
+              <li class="list-group-item">Price - &#8358;{{ number_format($temp->price,2) }}</li>
               <li class="list-group-item">Status - {{ $temp->status }} | PiD - {{ $temp->product_id }}</li>
+              <li class="list-group-item">Duration - {{ $temp->purchase_time }}</li>
               <li class="list-group-item">Date Uploaded - {{ $temp->created_at }}</li>
             </ul>
             <div class="col-sm-2 pull-right">

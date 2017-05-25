@@ -62,10 +62,7 @@
             </tr>
           @endforeach
           <tr>
-            <th class="text-info">
-              <p>Your Voucher Value: &#8358;{{number_format($item->voucher_value,2)}}</p>
-              {{-- <a href="/orderSuccess">cart test</a> --}}
-            </th>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -137,8 +134,8 @@
                       <div class="col-sm-12">
                         <div class="well well-sm">
                           <ul class="ul_bullet">
-                            <li>Name: {{ Auth::guard('customer')->user()->first_name .' '. Auth::guard('customer')->user()->last_name }}</li>
-                            <li>Email: {{ Auth::guard('customer')->user()->email }}</li>
+                            <li>Name: {{ $item->first_name .' '. $item->last_name }}</li>
+                            <li>Email: {{ $item->email }}</li>
                           </ul>
                         </div><br>
 
@@ -171,24 +168,12 @@
               </div>
             </div>
           </div><hr>
-          <h3>VOUCHER</h3><hr>
           <div class="row">
-            <div class="col-sm-6">
-              <p class="pull-left">Your Voucher Value: &#8358;{{ number_format($item->voucher_value,2) }}</p>
-            </div>
+            <div class="col-sm-6"></div>
             <div class="col-sm-6">
               @if (Cart::instance('buyCart')->Count())
                 <h3 class="pull-right">TOTAL: &#8358;{{ number_format($subTotal + $delivery_charge,2) }}</h3>
               @endif
-            </div>
-            <div class="row">
-              <div class="col-sm-8 col-sm-offset-2">
-                <div class="pull-left">
-                  @if($item->voucher_value > 0)
-                      <input type="checkbox" name="voucher_input" form="checkout_form"> Use Voucher
-                  @endif
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -197,7 +182,7 @@
           <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
               <form action="{{ url('/checkout') }}" method="get" id="checkout_form">
-                <input class="btn btn-success btn-block" type="submit" value="Payment Summary">
+                <input class="btn_load btn btn-success btn-block" data-loading-text="Please wait..." type="submit" value="Payment Summary">
               </form>
             </div>
           </div>
@@ -212,4 +197,7 @@
 <br>
 </div>
 </div><br>
+@endsection
+@section('scripts')
+	{{ Html::script('js/btn_load.js') }}
 @endsection

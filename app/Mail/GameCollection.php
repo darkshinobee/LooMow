@@ -7,7 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class GameUploaded extends Mailable
+class GameCollection extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -18,9 +18,9 @@ class GameUploaded extends Mailable
      */
     public function __construct($upload, $customer, $tref)
     {
-        $this->upload = $upload;
-        $this->customer = $customer;
-        $this->tref = $tref;
+      $this->upload = $upload;
+      $this->customer = $customer;
+      $this->tref = $tref;
     }
 
     /**
@@ -30,11 +30,11 @@ class GameUploaded extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.uploads')
-                    ->with(['upload' => $this->upload,
-                            'customer' => $this->customer,
-                          'tref' => $this->tref])
-                    ->from('noreply@loomow.com', 'LooMow')
-                    ->subject('Game Uploaded');
+        return $this->markdown('emails.game_collection')
+        ->with(['upload' => $this->upload,
+                'customer' => $this->customer,
+              'tref' => $this->tref])
+        ->from('noreply@loomow.com', 'LooMow')
+        ->subject('Game Collection');
     }
 }

@@ -16,16 +16,8 @@ class PaymentController extends Controller
   * Redirect the User to Paystack Payment Page
   * @return Url
   */
-  public function redirectToGateway(Request $request)
+  public function redirectToGateway()
   {
-    $bt = new BuyTempController;
-
-    $tempArray = array(
-      'price' => $request->amount/100,
-      'resultant_voucher' => $request->new_voucher
-    );
-    $bt->store($tempArray);
-
     return Paystack::getAuthorizationUrl()->redirectNow();
   }
 

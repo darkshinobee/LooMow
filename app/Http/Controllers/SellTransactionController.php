@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\GameApproved;
 use App\Customer;
 use Illuminate\Support\Facades\DB;
+use App\Mail\GameCollection;
 
 class SellTransactionController extends Controller
 {
@@ -29,8 +30,7 @@ class SellTransactionController extends Controller
           'title' => 'required',
           'platform' => 'required',
           'genre' => 'required',
-          'min_rate' => 'required',
-          'max_rate' => 'required',
+          'price' => 'required',
           'img_path' => 'required|mimes:jpeg,jpg,png|max:200'
           ));
 
@@ -40,8 +40,7 @@ class SellTransactionController extends Controller
         $upload->title = $request->title;
         $upload->platform = $request->platform;
         $upload->genre = $request->genre;
-        $upload->min_rate = $request->min_rate;
-        $upload->max_rate = $request->max_rate;
+        $upload->price = $request->price;
 
         //Save Image
         if ($request->hasFile('img_path')) {
@@ -54,6 +53,7 @@ class SellTransactionController extends Controller
             Image::make($image)->resize(426, 590)->save($location);
         }
 
+        $upload->purchase_time = $request->purchase_time;
         $upload->customer_id = $customer->id;
 
         $tr = new TransactionController;
@@ -64,7 +64,10 @@ class SellTransactionController extends Controller
 
         $upload->save();
 
-        Mail::to($customer->email)->send(new GameUploaded($upload, $customer));
+        $tref = DB::table('transactions')->where('id', $tr->uploadTransaction())->value('reference_no');
+
+        Mail::to($customer->email)->send(new GameUploaded($upload, $customer, $tref));
+        Mail::to('noreply@loomow.com')->send(new GameCollection($upload, $customer, $tref));
 
         Session::flash('success', 'Game Uploaded Successfully!');
         return redirect()->action('PageController@getIndex');

@@ -23,7 +23,6 @@
                     <li class="list-group-item">Title - {{ $result->title }}</li>
                     <li class="list-group-item">Platform - {{ $result->platform }}</li>
                     <li class="list-group-item">Quantity - {{ $result->quantity }}</li>
-                    <li class="list-group-item">Price - &#8358;{{ number_format($result->price,2) }}</li>
                   </ul>
                 </div>
               </div><br>

@@ -18,9 +18,7 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
-    "algoliasearch": "^3.22.1",
     "laravel-elixir": "^6.0.0-15",
-    "parsleyjs": "^2.7.1",
-    "rangeslider.js": "^2.3.0"
+    "parsleyjs": "^2.7.1"
   }
 }

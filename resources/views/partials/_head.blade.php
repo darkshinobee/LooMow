@@ -1,7 +1,9 @@
 <title>LGX | @yield('title')</title>
 
 <script src="/js/app.js"></script>
+
 <link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/banners.css">
 <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/css/style1.css" rel="stylesheet" type="text/css" media="all" />
 <link href="/css/styles.css" rel="stylesheet" type="text/css" media="all" />

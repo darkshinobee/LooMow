@@ -19,12 +19,12 @@ class CreateProductsTable extends Migration
             $table->string('platform');
             $table->string('developer');
             $table->string('genre');
+            $table->string('age_restriction');
             $table->integer('quantity')->unsigned();;
             $table->string('image_name');
             $table->string('image_path');
             $table->string('slug');
             $table->date('release_date');
-            $table->integer('price')->unsigned();
             $table->timestamps();
         });
     }

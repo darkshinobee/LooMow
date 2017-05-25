@@ -22,8 +22,7 @@ class CreateCustomersTable extends Migration
             $table->string('address')->nullable();
             $table->string('landmark')->nullable();
             $table->string('state')->default('Abuja');
-            $table->string('region')->nullable();
-            $table->integer('voucher_value')->nullable()->default(0);            
+            $table->string('region')->nullable();            
             $table->rememberToken();
             $table->timestamps();
         });

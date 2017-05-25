@@ -30,17 +30,10 @@
 											<div class="row padTop">
 												<div class="col-sm-10 col-sm-offset-1">
 													@if ($product->quantity > 0)
-														<form action="{{ route('cart.addBuy', $product->id) }}">
-															<input class="btn btnColor btn-sm btn-block a_link" type="submit" value="Buy for">
-														</form>
+														<a href="{{ route('products.show', $product->slug) }}" class="btn btnColor btn-sm btn-block a_link">More Info</a>
 													@else
 														<button class="btn btn-danger btn-sm btn-block a_link" disabled="">Out of Stock</button>
 													@endif
-												</div>
-											</div>
-											<div class="row text-center padTop">
-												<div class="col-sm-12">
-													<p class="item_price">&#8358;{{ number_format($product->price,2) }}</p>
 												</div>
 											</div>
 										</div>
@@ -48,7 +41,7 @@
 								</div>
 								{{-- @endif --}}
 							@endforeach
-							<div class="clearfix"></div>
+							<div class="clearfix"></div><br>
 						</div>
 					</div>
 					<!--//products-->
@@ -58,6 +51,5 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 @stop

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\SellTransaction;
 use App\ProductTransaction;
 use App\Selltemp;
+use App\Payout;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ProductController;
@@ -62,7 +63,7 @@ class LGXAdminController extends Controller
 
   public function tempUploads()
   {
-    $temps = SellTransaction::orderby('created_at', 'desc')
+    $temps = SellTransaction::orderby('created_at', 'asc')
     ->where('key', 1)
     ->paginate(3);
     return view('admin.uploaded_games', compact('temps'));
@@ -106,6 +107,13 @@ class LGXAdminController extends Controller
     $st = SellTransaction::find($id);
     $customer = Customer::find($st->customer_id);
     $stc = new SellTransactionController;
+
+    $payout = new Payout;
+    $payout->customer_id = $st->customer_id;
+    $payout->sell_id = $id;
+    $payout->key = 0;
+    $payout->status = 'Pending';
+    $payout->save();
 
     if ($st->product_id == null) {
       $selltemp = New Selltemp;
