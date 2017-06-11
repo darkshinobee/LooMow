@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use App\Customer;
 use Validator;
 use Session;
-use Gloudemans\Shoppingcart\Facades\Cart;
 use Transaction;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Auth;
@@ -18,8 +17,7 @@ class MiscController extends Controller
         //Validation
         $this->validate($request, array(
 
-            'phone' => 'required',
-            'address' => 'required',
+            'phone' => 'required|size:11|unique:customers,phone',
             'state' => 'required',
             'region' => 'required'
             ));
@@ -29,8 +27,6 @@ class MiscController extends Controller
 
         //Retrieve values and store in DB
         $customer->phone = $request->input('phone');
-        $customer->address = $request->input('address');
-        $customer->landmark = $request->input('landmark');
         $customer->state = $request->input('state');
         $customer->region = $request->input('region');
 
@@ -47,7 +43,6 @@ class MiscController extends Controller
         //Validation
         $this->validate($request, array(
 
-            'address' => 'required',
             'state' => 'required',
             'region' => 'required'
             ));
@@ -56,8 +51,6 @@ class MiscController extends Controller
         $customer = Customer::find($id);
 
         //Retrieve values and store in DB
-        $customer->address = $request->input('address');
-        $customer->landmark = $request->input('landmark');
         $customer->state = $request->input('state');
         $customer->region = $request->input('region');
 
@@ -75,8 +68,8 @@ class MiscController extends Controller
         $this->validate($request, array(
             'first_name' => 'required',
             'last_name' => 'required',
-            'email' => 'required|email',
-            'phone' => 'required'
+            'email' => 'required|email|unique:customers,email',
+            'phone' => 'required|unique:customers,phone|size:11'
             ));
 
         //Get edit id and store in a variable

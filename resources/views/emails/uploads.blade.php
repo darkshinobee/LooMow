@@ -1,32 +1,16 @@
 @component('mail::message')
-#  {{ $tref }} - Game Uploaded
+#  {{ $tref }} - Ad Request Received
 
 Hello {{ $customer->first_name }},<br>
-your game has been uploaded successfully and will be collected for verification within two working days.
-Please have the following ready:<br>
-<ul style="list-style:none">
-  <li>The game you uploaded.</li>
-  <li>The sum of &#8358;{{ number_format(1000,2) }} to pay for the collection service.</li>
-  <li>This reference number - **{{ $tref }}**</li>
-</ul>
+your request to advertise your game on Loomow has been received and is currently being processed.
+You will be notified as soon as your ad is verified and goes live.
+Details Below:<br>
 
 @component('mail::table')
 | Game               | Platform              | Status              |
 |:------------------:|:---------------------:|:-------------------:|
 |{{ $upload->title }}|{{ $upload->platform }}|{{ $upload->status }}|
 @endcomponent
-
-The game will be collected from:<br>
-<ul style="list-style:none">
-  <li>{{ $customer->first_name.' '.$customer->last_name }}</li>
-  <li>{{ $customer->address }}</li>
-  @if ($customer->landmark)
-    <li>{{ $customer->landmark }}</li>
-  @endif
-  <li>{{ $customer->state }}</li>
-  <li>T: {{ $customer->phone }}</li>
-  <li>E: {{ $customer->email }}</li>
-</ul>
 
 @component('mail::panel')
 For more information contact us @:<br>

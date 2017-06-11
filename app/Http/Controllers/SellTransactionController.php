@@ -13,15 +13,9 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\GameApproved;
 use App\Customer;
 use Illuminate\Support\Facades\DB;
-use App\Mail\GameCollection;
 
 class SellTransactionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function store(Request $request)
     {
@@ -60,16 +54,15 @@ class SellTransactionController extends Controller
 
         $upload->transaction_id = $tr->uploadTransaction();
         $upload->key = 1;
-        $upload->status = 'Awaiting Collection';
+        $upload->status = 'Awaiting Approval';
 
         $upload->save();
 
         $tref = DB::table('transactions')->where('id', $tr->uploadTransaction())->value('reference_no');
 
         Mail::to($customer->email)->send(new GameUploaded($upload, $customer, $tref));
-        Mail::to('noreply@loomow.com')->send(new GameCollection($upload, $customer, $tref));
 
-        Session::flash('success', 'Game Uploaded Successfully!');
+        Session::flash('success', 'Ad Request Received!');
         return redirect()->action('PageController@getIndex');
     }
 
@@ -120,7 +113,7 @@ class SellTransactionController extends Controller
       {
          $digits .= $numbers[$i];
       }
-       $uplRef = $k1.$digits.$k2.'upl';
+       $uplRef = $k1.$digits.$k2;
        return $uplRef;
     }
 }

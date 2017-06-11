@@ -18,11 +18,9 @@ class CreateCustomersTable extends Migration
             $table->string('last_name');
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
-            $table->string('landmark')->nullable();
-            $table->string('state')->default('Abuja');
-            $table->string('region')->nullable();            
+            $table->string('phone')->unique()->nullable();
+            $table->string('state')->nullable();
+            $table->string('region')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

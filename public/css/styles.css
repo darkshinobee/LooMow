@@ -60,3 +60,10 @@
 .a_link:hover {
 	color: white;
 }
+
+.main_logo{
+	position: absolute;
+  left: 0px;
+  top: 0px;
+	z-index: 1;
+}

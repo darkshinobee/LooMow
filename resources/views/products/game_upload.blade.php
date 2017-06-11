@@ -111,17 +111,11 @@
 															{{ Form::label('phone', 'Phone Number', ['class' => 'pull-left']) }}
 															{{ Form::tel('phone', null, ['class' => 'form-control', 'placeholder' => 'Phone No: *', 'required' => '']) }}<br>
 
-															{{ Form::label('address', 'Address', ['class' => 'pull-left']) }}
-															{{ Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'Address: *', 'rows' => '4', 'cols' => '50', 'required' => '']) }}<br>
-
-															{{ Form::label('landmark', 'Landmark', ['class' => 'pull-left']) }}
-															{{ Form::textarea('landmark', null, ['class' => 'form-control', 'placeholder' => 'Landmark', 'rows' => '4', 'cols' => '50']) }}<br>
-
 															{{ Form::label('state', 'State', ['class' => 'pull-left']) }}
 															{{ Form::select('state', ['Abuja' => 'Abuja'], null, ['class' => 'form-control', 'placeholder' => 'Select State']) }}<br>
 
 															{{ Form::label('region', 'Region', ['class' => 'pull-left']) }}
-															{{ Form::select('region', ['Abaji' => 'Abaji', 'Abuja Municipal' => 'Abuja Municipal', 'Bwari' => 'Bwari', 'Gwagwalada' => 'Gwagwalada', 'Kuje' => 'Kuje', 'Kwali' => 'Kwali'], null, ['class' => 'form-control', 'placeholder' => 'Select Region', 'required' => '']) }}<br>
+															{{ Form::text('region', null, ['class' => 'form-control', 'placeholder' => 'e.g Wuse, Ikeja', 'required' => '']) }}<br>
 
 															{{ Form::submit('Save Details', ['class' => 'btn btn-primary pull-right']) }}
 
@@ -139,7 +133,7 @@
 					</div>
 				{{-- </div> --}}
 			</div>
-			@if ($customer->address)
+			@if ($customer->region)
 				{{ Form::submit('Submit', array('class' => 'btn btn-success btn-lg btn-block', 'style' => 'margin-top: 20px', 'form' => 'upload_form')) }}
 			@else
 				<script type="text/javascript">

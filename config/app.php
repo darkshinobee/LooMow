@@ -182,9 +182,9 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         Intervention\Image\ImageServiceProvider::class,
-        Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        // Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
 
-        Unicodeveloper\Paystack\PaystackServiceProvider::class,
+        // Unicodeveloper\Paystack\PaystackServiceProvider::class,
         PhpConsole\Laravel\ServiceProvider::class,
         Laravel\Dusk\DuskServiceProvider::class,
 
@@ -240,9 +240,9 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
 
         'Image' => Intervention\Image\Facades\Image::class,
-        'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
+        // 'Cart' => Gloudemans\Shoppingcart\Facades\Cart::class,
 
-        'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
+        // 'Paystack' => Unicodeveloper\Paystack\Facades\Paystack::class,
 
     ],
 

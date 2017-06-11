@@ -21,7 +21,6 @@
           </a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/account">My Account</a></li>
-            <li><a href="/orders">My Orders</a></li>
             <li><a href="/my_uploads">My Games</a></li>
             <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
               document.getElementById('logout-form').submit();">Logout</a>
@@ -74,14 +73,8 @@
     </nav>
   </div>
   <div class="col-sm-3"></div>
-  <div class="col-sm-3 cartBuy padTop" id="app">
+  <div class="col-sm-4 cartBuy padTop" id="app">
     <search></search>
-</div>
-<div class="col-sm-1 cartBuy padTop cartMargin">
-  <a class="" href="/viewBuy">
-    <span class="badge"> {{ Cart::instance('buyCart')->count() }} </span>
-    <img src="/images/theme/cart.png" alt=""/>
-  </a>
 </div>
 </div>
 <script src="/js/search.js"></script>

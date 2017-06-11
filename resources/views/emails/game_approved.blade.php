@@ -1,8 +1,8 @@
 @component('mail::message')
-# Game Approved
+# Game Upload Approved
 
 Hello {{ $customer->first_name }},<br>
-your game has been verified to be in good working condition and is awaiting purchase. You will be contacted as soon as a customer makes a purchase.
+your request has been processed succesfully. Your game is available for purchase on LooMow. Cross your fingers and wait for that call!
 
 @component('mail::table')
 | Game               | Platform              | Status              |

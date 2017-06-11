@@ -76,19 +76,25 @@
         </div>
       </div><hr>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-10 col-md-offset-1">
           @if ($obj->Count())
             @foreach ($obj as $ob)
-              <div class="col-sm-4">
+              <div class="col-sm-6">
                 <div class="panel panel-primary">
                   <div class="panel-body">
-                    <img src="{{ $product->image_path }}" class="img-responsive"><hr>
-                    <ul class="ul_bullet">
-                      <li>Used for:</li>
-                      <li class="list-group-item"><i>{{ $ob->purchase_time }}</i></li>
-                      <li class="list-group-item">Price: &#8358;{{ number_format($ob->price,2) }}</li>
-                    </ul><br>
-                    <a href="{{ route('cart.addBuy', [$product->id, $ob->id]) }}" class="btn btnColor btn-block a_link">Add to Cart</a>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <img src="{{ $product->image_path }}" class="img-responsive">
+                      </div>
+                      <div class="col-sm-6">
+                        <ul class="ul_bullet">
+                          <li class="list-group-item">Seller: {{ $ob->first_name.' '.$ob->last_name }}</li>
+                          <li class="list-group-item">Phone: {{ $ob->phone}}</li>
+                          <li class="list-group-item">Used for: <i>{{ $ob->purchase_time }}</i></li>
+                          <li class="list-group-item">Price: &#8358;{{ number_format($ob->price,2) }}</li>
+                        </ul>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

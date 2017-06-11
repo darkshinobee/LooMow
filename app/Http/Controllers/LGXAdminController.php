@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\SellTransaction;
-use App\ProductTransaction;
 use App\Selltemp;
-use App\Payout;
 use Auth;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\ProductController;
@@ -14,10 +12,8 @@ use App\Http\Controllers\SellTransactionController;
 use Session;
 use App\Product;
 use App\Customer;
-use App\Mail\DeliveryConfirmation;
 use App\Mail\GameApproved;
 use App\Mail\GameDisapproved;
-use App\Mail\GameReturn;
 use Illuminate\Support\Facades\Mail;
 
 class LGXAdminController extends Controller
@@ -44,23 +40,6 @@ class LGXAdminController extends Controller
     return view('admin.disapproved_games', compact('temps'));
   }
 
-  public function failed_transactions()
-  {
-    $p = 'products';
-    $pt = 'product_transactions';
-    $t = 'transactions';
-
-    $temps = DB::table($p)->select($t.'.reference_no', $pt.'.status', $pt.'.price',
-    $pt.'.quantity', $pt.'.updated_at', $p.'.title', $p.'.platform', $p.'.image_path')
-    ->join($pt, $p.'.id', '=', $pt.'.product_id')
-    ->join($t, $pt.'.transaction_id', '=', $t.'.id')
-    ->where($pt.'.key', 0)
-    ->orderBy($t.'.created_at', 'desc')
-    ->paginate(5);
-
-    return view('admin.failed_transactions', compact('temps'));
-  }
-
   public function tempUploads()
   {
     $temps = SellTransaction::orderby('created_at', 'asc')
@@ -85,35 +64,11 @@ class LGXAdminController extends Controller
     return view('admin.sold_games', compact('temps'));
   }
 
-  public function gamesDelivered()
-  {
-    $p = 'products';
-    $pt = 'product_transactions';
-    $t = 'transactions';
-
-    $temps = DB::table($p)->select($t.'.reference_no', $pt.'.status', $pt.'.price',
-    $pt.'.quantity', $pt.'.updated_at', $p.'.title', $p.'.platform', $p.'.image_path')
-    ->join($pt, $p.'.id', '=', $pt.'.product_id')
-    ->join($t, $pt.'.transaction_id', '=', $t.'.id')
-    ->where($pt.'.key', 2)
-    ->orderBy($t.'.created_at', 'desc')
-    ->paginate(5);
-
-    return view('admin.games_delivered', compact('temps'));
-  }
-
   public function approve($id)
   {
     $st = SellTransaction::find($id);
     $customer = Customer::find($st->customer_id);
     $stc = new SellTransactionController;
-
-    $payout = new Payout;
-    $payout->customer_id = $st->customer_id;
-    $payout->sell_id = $id;
-    $payout->key = 0;
-    $payout->status = 'Pending';
-    $payout->save();
 
     if ($st->product_id == null) {
       $selltemp = New Selltemp;
@@ -141,7 +96,6 @@ class LGXAdminController extends Controller
     $customer = Customer::find($st->customer_id);
 
     Mail::to($customer->email)->send(new GameDisapproved($st, $customer));
-    Mail::to('returns@loomow.com')->send(new GameReturn($st, $customer));
 
     Session::flash('success', 'Product Disapproved');
     return redirect()->action('LGXAdminController@getDashboard');
@@ -171,39 +125,6 @@ class LGXAdminController extends Controller
     ->get();
 
     return view('admin.refno_results', compact('results'));
-  }
-
-  public function update_delivered($tr_id)
-  {
-    DB::table('product_transactions')
-    ->where('transaction_id', $tr_id)
-    ->update([
-      'key' => 2,
-      'status' => 'Delivered'
-    ]);
-
-    $tr = DB::table('transactions')
-    ->where('id', $tr_id)
-    ->first();
-
-    $p = 'products';
-    $pt = 'product_transactions';
-    $t = 'transactions';
-
-    $p_obj = DB::table($p)->select($pt.'.price', $pt.'.quantity', $p.'.title', $p.'.platform')
-    ->join($pt, $p.'.id', '=', $pt.'.product_id')
-    ->join($t, $pt.'.transaction_id', '=', $t.'.id')
-    ->where($t.'.reference_no', $tr->reference_no)
-    ->where($pt.'.key', 2)
-    ->where($t.'.customer_id', $tr->customer_id)
-    ->get();
-
-    $customer = DB::table('customers')->where('id', $tr->customer_id)->first();
-
-    // send delivery report
-    Mail::to($customer->email)->send(new DeliveryConfirmation($p_obj, $customer, $tr->reference_no));
-
-    return redirect()->action('LGXAdminController@gamesDelivered');
   }
 
   public function id_update(Request $request, $id)

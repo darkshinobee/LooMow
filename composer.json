@@ -7,15 +7,13 @@
     "require": {
         "php": ">=5.6.4",
         "Doctrine/dbal": "^2.5",
-        "gloudemans/shoppingcart": "^2.3",
         "guzzlehttp/guzzle": "^6.2",
         "hesto/multi-auth": "^1.0",
         "intervention/image": "^2.3",
         "laravel/framework": "5.4.*",
         "laravel/scout": "^3.0",
         "laravelcollective/html": "^5.3.0",
-        "php-console/php-console": "^3.1",
-        "unicodeveloper/laravel-paystack": "1.0.*"
+        "php-console/php-console": "^3.1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

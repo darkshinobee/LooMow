@@ -10,9 +10,4 @@ class Transaction extends Model
     {
     	return $this->belongsTo('App\Customer');
     }
-
-    public function prodTrans()
-    {
-    	return $this->hasMany('App\ProductTransaction');
-    }
 }

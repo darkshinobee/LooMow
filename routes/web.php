@@ -22,7 +22,6 @@ Route::get('/', 'PageController@getIndex');
 Route::get('/game_upload', 'ProductController@uploadGame');
 
 Route::get('/account', 'PageController@getAccount');
-Route::get('/orders', 'ProductTransactionController@getOrders');
 Route::get('/my_uploads', 'ProductTransactionController@getUploads');
 Route::post('/subscribe', 'EmailsubscriptionController@store');
 Route::put('/unsubscribe', 'EmailsubscriptionController@update');
@@ -34,22 +33,8 @@ Route::resource('uploads', 'SellTransactionController');
 Route::put('/account/updateDetails/{id}', ['as' => 'misc.updateDetails', 'uses' => 'MiscController@updateDetails']);
 Route::put('/account/updateInfo/{id}', ['as' => 'misc.updateInfo', 'uses' => 'MiscController@updateInfo']);
 
-Route::get('/orderFail/{failRef}', 'ProductTransactionController@orderFail');
-Route::get('/orderSuccess/{tref}', 'ProductTransactionController@orderSuccess');
-
-Route::get('/cart/{p_id}/{s_id}', ['as' => 'cart.addBuy', 'uses' => 'CartController@addBuyCart']);
-Route::post('/cart/{id}/removeBuy', ['as' => 'cart.removeBuy', 'uses' => 'CartController@removeBuy']);
-Route::put('/cart/{id}/updateBuy', ['as' => 'cart.updateBuy', 'uses' => 'CartController@updateBuy']);
-Route::get('/viewBuy', 'CartController@viewBuyCart');
-Route::get('/checkout', 'CartController@checkout');
-
-// Route::get('/products/{img_name}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
-// Route::post('/products/{img_name}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
 Route::get('games/{slug}', ['as' => 'products.show', 'uses' => 'ProductController@show']);
 Route::post('games/{slug}', ['uses' => 'BlogController@store', 'as' => 'blogs.store']);
-
-Route::post('/pay', 'PaymentController@redirectToGateway')->name('pay');
-Route::get('/payment/callback', 'PaymentController@handleGatewayCallback');
 
 Route::group(['prefix' => 'admin_lgx'], function () {
   Route::get('/login', 'AdminAuth\LoginController@showLoginForm');
@@ -67,12 +52,9 @@ Route::group(['prefix' => 'admin_lgx'], function () {
   Route::get('/dashboard', 'LGXAdminController@getDashboard');
   Route::get('/addProduct', 'LGXAdminController@addProduct');
   Route::get('/disapproved_games', 'LGXAdminController@viewDisapproved');
-  Route::get('/failed_transactions', 'LGXAdminController@failed_transactions');
   Route::get('/temp_uploads', 'LGXAdminController@tempUploads');
   Route::get('/games_awaiting_purchase', 'LGXAdminController@viewPendingPurchase');
   Route::get('/games_sold', 'LGXAdminController@gamesSold');
-  Route::get('/games_delivered', 'LGXAdminController@gamesDelivered');
-  Route::get('/delivery_update/{id}', 'LGXAdminController@update_delivered');
   Route::get('/approve/{id}', 'LGXAdminController@approve');
   Route::get('/disapprove/{id}', 'LGXAdminController@disApprove');
   Route::get('/search', 'LGXAdminController@admin_search');

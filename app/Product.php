@@ -14,11 +14,6 @@ class Product extends Model
     return $this->hasMany('App\Blog');
   }
 
-  public function product_transaction()
-  {
-    return $this->hasMany('App\ProductTransaction');
-  }
-
   public function searchableAs()
     {
         return 'products_index';
