@@ -3,13 +3,12 @@
 
 @section('content')
 	<div class="content-mid">
-		<h3>Faimatu</h3>
+		<h3>About Us</h3>
 		<label class="line"></label>
 	</div><br>
 <div class="container">
 <div class="row">
 	<div class="col-md-8 col-md-offset-2">
-		<h3>Faimatu</h3><br>
 		<p class="">
 			Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
 			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
